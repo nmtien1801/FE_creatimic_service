@@ -23,8 +23,19 @@ import Cookies from "js-cookie";
 import Home from "../clientPages/TrangChu.jsx";
 import About from "../clientPages/GioiThieu.jsx";
 import Service from "../clientPages/dichVu/DichVu.jsx";
-import ServiceLive from "../clientPages/dichVu/DvLiveStream.jsx";
-import ServiceTone from "../clientPages/dichVu/DvAutoTone.jsx";
+import WebsiteTronGoi from "../clientPages/dichVu/wesite/WebsiteTronGoi.jsx";
+import WebsiteXayDung from "../clientPages/dichVu/wesite/WebsiteXayDung.jsx";
+import WebsiteThietKe from "../clientPages/dichVu/wesite/WebsiteThietKe.jsx";
+import WebsiteChamSoc from "../clientPages/dichVu/wesite/WebsiteChamSoc.jsx";
+import SocialTronGoi from "../clientPages/dichVu/social/SocialTronGoi.jsx";
+import SocialFanpage from "../clientPages/dichVu/social/SocialFanpage.jsx";
+import SocialInstagram from "../clientPages/dichVu/social/SocialInstagram.jsx";
+import SocialYoutube from "../clientPages/dichVu/social/SocialYoutube.jsx";
+import SocialTiktok from "../clientPages/dichVu/social/SocialTiktok.jsx";
+import SocialLinkedin from "../clientPages/dichVu/social/SocialLinkedin.jsx";
+import SocialEmailMarketing from "../clientPages/dichVu/social/SocialEmailMarketing.jsx";
+import HeThongAIAgent from "../clientPages/dichVu/n8n/HeThongAIAgent.jsx";
+import TronGoiMarketing from "../clientPages/dichVu/marketing/TronGoiMarketing.jsx";
 import News from "../clientPages/TinTuc.jsx";
 import Contact from "../clientPages/LienHe.jsx";
 import PostDetail from '../components/post/postDetail.jsx'
@@ -92,8 +103,22 @@ function RouterRoot() {
           <Route path="gioi-thieu" element={<About />} />
 
           <Route path="dich-vu" element={<Service />} />
-          <Route path="dich-vu/set-up-phong-livestream" element={<ServiceLive />} />
-          <Route path="dich-vu/phan-mem-auto-tone" element={<ServiceTone />} />
+
+          <Route path="dich-vu/website-landing-page/tron-goi" element={<WebsiteTronGoi />} />
+          <Route path="dich-vu/website-landing-page/xay-dung" element={<WebsiteXayDung />} />
+          <Route path="dich-vu/website-landing-page/thiet-ke-giao-dien" element={<WebsiteThietKe />} />
+          <Route path="dich-vu/website-landing-page/cham-soc" element={<WebsiteChamSoc />} />
+
+          <Route path="dich-vu/cham-soc-kenh-social/tron-goi" element={<SocialTronGoi />} />
+          <Route path="dich-vu/cham-soc-kenh-social/fanpage" element={<SocialFanpage />} />
+          <Route path="dich-vu/cham-soc-kenh-social/instagram" element={<SocialInstagram />} />
+          <Route path="dich-vu/cham-soc-kenh-social/youtube" element={<SocialYoutube />} />
+          <Route path="dich-vu/cham-soc-kenh-social/tiktok" element={<SocialTiktok />} />
+          <Route path="dich-vu/cham-soc-kenh-social/linkedin" element={<SocialLinkedin />} />
+          <Route path="dich-vu/cham-soc-kenh-social/email-marketing" element={<SocialEmailMarketing />} />
+
+          <Route path="dich-vu/he-thong-ai-agent" element={<HeThongAIAgent />} />
+          <Route path="dich-vu/tron-goi-marketing" element={<TronGoiMarketing />} />
           <Route path="tin-tuc" element={<News />} />
           <Route path="/tin-tuc/:title/:id" element={<PostDetail />} />
           <Route path="lien-he" element={<Contact />} />

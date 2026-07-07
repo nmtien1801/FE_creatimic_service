@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const serviceColumns = [
   {
     title: "Website - Landing Page",
-    titlePath: "/dich-vu/website-landing-page",
+    titlePath: "/dich-vu/website-landing-page/tron-goi",
     items: [
       { label: "Trọn gói thiết kế & xây dựng", path: "/dich-vu/website-landing-page/tron-goi" },
       { label: "Xây dựng Website - Landing Page", path: "/dich-vu/website-landing-page/xay-dung" },
@@ -15,7 +15,7 @@ const serviceColumns = [
   },
   {
     title: "Chăm sóc kênh social",
-    titlePath: "/dich-vu/cham-soc-kenh-social",
+    titlePath: "/dich-vu/cham-soc-kenh-social/tron-goi",
     items: [
       { label: "Trọn gói kênh social", path: "/dich-vu/cham-soc-kenh-social/tron-goi" },
       { label: "Chăm sóc Fanpage", path: "/dich-vu/cham-soc-kenh-social/fanpage" },
