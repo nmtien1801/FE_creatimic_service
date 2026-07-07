@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-// Nội dung 4 cột dịch vụ — chỉnh sửa đường dẫn / nhãn tại đây khi cần
 const serviceColumns = [
   {
     title: "Website - Landing Page",
@@ -38,41 +37,45 @@ const serviceColumns = [
   },
 ];
 
-/**
- * Mega menu hiển thị khi hover vào mục "DỊCH VỤ" trên thanh nav desktop.
- * Đặt component này bên trong <nav>, ngay sau danh sách menuItems,
- * và render có điều kiện dựa trên state isOpen từ component cha (Header).
- */
 export default function ServicesMegaMenu({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
     <div
-      className="absolute left-0 right-0 top-full w-full bg-[#ed792f] shadow-xl z-40 animate-in fade-in slide-in-from-top-2 duration-200"
+      className="absolute left-0 right-0 top-full w-full !bg-white/95 !backdrop-blur-2xl border-b border-slate-100 shadow-[0_25px_50px_-12px_rgba(15,23,42,0.08)] z-50 animate-in fade-in slide-in-from-top-2 duration-300 pointer-events-auto"
       onMouseLeave={onClose}
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-[1248px] mx-auto px-6 py-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8 items-start">
           {serviceColumns.map((col) => (
-            <div key={col.title}>
+            <div key={col.title} className="group/col flex flex-col">
               <NavLink
                 to={col.titlePath}
                 onClick={onClose}
-                className="block text-white font-extrabold text-base lg:text-lg mb-3 hover:underline underline-offset-4 decoration-2"
+                className="inline-flex items-center gap-1.5 !text-slate-900 font-bold text-[15px] lg:text-base mb-2 hover:!text-[#FF5D3A] transition-colors duration-200 tracking-tight"
               >
-                {col.title}
+                <span>{col.title}</span>
+                <svg
+                  className="w-3.5 h-3.5 text-slate-400 opacity-0 -translate-x-1 group-hover/col:opacity-100 group-hover/col:translate-x-0 transition-all duration-200 group-hover/col:text-[#FF5D3A]"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
               </NavLink>
 
               {col.items.length > 0 && (
-                <ul className="space-y-2.5">
+                <ul className="space-y-2.5 border-t border-slate-100/60 pt-3">
                   {col.items.map((item) => (
                     <li key={item.label}>
                       <NavLink
                         to={item.path}
                         onClick={onClose}
-                        className="text-white/95 font-bold text-sm hover:text-black transition-colors"
+                        className="group/link block !text-slate-500 hover:!text-slate-900 font-medium text-[13.5px] transition-all duration-200"
                       >
-                        {item.label}
+                        <span className="relative pb-0.5 inline-block">
+                          {item.label}
+                          <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[#FF5D3A] transition-all duration-200 group-hover/link:w-full" />
+                        </span>
                       </NavLink>
                     </li>
                   ))}

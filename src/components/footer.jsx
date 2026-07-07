@@ -32,7 +32,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-[#ed792f] font-sans py-14 px-6 md:px-12 mt-12 text-[13px]">
+        <footer className="bg-[#ed792f] font-sans py-14 px-6 md:px-12 text-[13px]">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
 
                 {/* CỘT 1: THƯƠNG HIỆU & LIÊN HỆ */}
