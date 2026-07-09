@@ -39,8 +39,7 @@ import TronGoiMarketing from "../clientPages/dichVu/marketing/TronGoiMarketing.j
 import News from "../clientPages/TinTuc.jsx";
 import Contact from "../clientPages/LienHe.jsx";
 import PostDetail from '../components/post/postDetail.jsx'
-import PaymentMomoPage from '../clientPages/payment/PaymentMomoPage.jsx'
-import PaymentVietQrPage from '../clientPages/payment/PaymentVietQrPage.jsx'
+import HoSoNangLuc from "../clientPages/HoSoNangLuc.jsx";
 
 import ChinhSach1 from '../components/chinhsach/Chinhsach1.jsx'
 import ChinhSach2 from '../components/chinhsach/Chinhsach2.jsx'
@@ -117,13 +116,10 @@ function RouterRoot() {
           <Route path="dich-vu/cham-soc-kenh-social/linkedin" element={<SocialLinkedin />} />
           <Route path="dich-vu/cham-soc-kenh-social/email-marketing" element={<SocialEmailMarketing />} />
 
-          <Route path="dich-vu/he-thong-ai-agent" element={<HeThongAIAgent />} />
-          <Route path="dich-vu/tron-goi-marketing" element={<TronGoiMarketing />} />
           <Route path="tin-tuc" element={<News />} />
           <Route path="/tin-tuc/:title/:id" element={<PostDetail />} />
           <Route path="lien-he" element={<Contact />} />
-          <Route path="payment-momo" element={<PaymentMomoPage />} />
-          <Route path="payment-vietqr" element={<PaymentVietQrPage />} />
+          <Route path="ho-so-nang-luc" element={<HoSoNangLuc />} />
 
           <Route path="dieu-khoan-dich-vu-va-dieu-kien-giao-dich-chung" element={<ChinhSach1 />} />
           <Route path="cac-phuong-thuc-thanh-toan" element={<ChinhSach2 />} />

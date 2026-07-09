@@ -184,7 +184,7 @@ const TinTuc = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
                     {/* Main Content - Giờ chiếm full width */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-4">
                         {/* Grid News - 4 cột trên màn hình lớn */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {filteredNews.map((news) => (
@@ -203,45 +203,7 @@ const TinTuc = () => {
                             />
                         )}
                     </div>
-                    {/* Sidebar - 1/4 cột */}
-                    <div className="lg:col-span-1 space-y-8">
-
-                        {/* 2. Thanh tìm kiếm trong Sidebar (Ẩn đi ở màn hình nhỏ, hiển thị từ màn hình lớn trở lên) */}
-                        <div className="hidden lg:block">
-                            <SearchBar search={search} setSearch={setSearch} />
-                        </div>
-
-                        {/* Banner Dọc */}
-                        <div className="w-full aspect-[3/4] rounded-2xl shadow-xl relative overflow-hidden group cursor-pointer">
-                            <img
-                                src="/BannerBộLivestream.png"
-                                alt="Combo livestream"
-                                className="absolute inset-0 w-full h-full object-cover"
-                                loading="lazy"
-                            />
-
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
-
-                            {/* Content */}
-                            <div className="relative z-10 flex items-center justify-center h-full text-center text-white p-6">
-                                <div>
-                                    <div className="text-2xl font-black mb-4 leading-tight">
-                                        Combo Livestream Chất Lượng Cao
-                                    </div>
-                                    <div className="text-sm opacity-90 mb-6">
-                                        Khuyến mãi đặc biệt
-                                    </div>
-                                    <div className="inline-flex items-center gap-2 text-sm font-bold bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full group-hover:bg-white/30 transition-all"
-                                        onClick={() => navigate('/combo-livestream-thu-am/1/all')}
-                                    >
-                                        Xem ngay →
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+               
                 </div>
             </main>
         </div>
