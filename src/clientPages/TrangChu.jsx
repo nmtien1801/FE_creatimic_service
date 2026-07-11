@@ -1,309 +1,323 @@
 import React from 'react';
-import { 
-  Phone, 
-  XCircle, 
-  UserCheck, 
-  MessageSquare, 
-  Send, 
-  FileText, 
-  Settings, 
-  Calendar,
-  ArrowRight,
-  ArrowDown,
-  ArrowLeft
+import { motion } from 'framer-motion';
+import {
+    AlertCircle,
+    TrendingUp,
+    Layers,
+    Cpu,
+    DollarSign,
+    Award,
+    ArrowRight,
+    Globe,
+    MessageSquare,
+    CheckCircle2
 } from 'lucide-react';
 
-export default function TrangChu() {
-    // DATA SESSION 2: Điểm nghẽn
-    const problems = [
-        {
-            title: "Marketing\nmanh mún, rời rạc",
-            desc: "Làm nhiều kênh (Facebook, TikTok, Website) nhưng không có sự kết nối, không tạo ra chuyển đổi."
-        },
-        {
-            title: '"Đốt tiền" quảng cáo\nhưng dừng là hết khách',
-            desc: "Phụ thuộc hoàn toàn vào Ads, chi phí ngày càng cao nhưng không giữ chân được khách hàng."
-        },
-        {
-            title: "Khó đo lường,\nphân bổ theo cảm tính",
-            desc: "Không có dashboard báo cáo chỉ số rõ ràng, không biết dòng tiền thực sự đang hiệu quả ở kênh nào."
-        },
-        {
-            title: "Khủng hoảng\nnhân sự freelance",
-            desc: "Thiếu chuyên môn xây chiến lược, chi phí vận hành bộ máy marketing nội bộ chưa tối ưu và khó đồng hành dài hạn."
-        }
-    ];
+// Cấu hình hiệu ứng Framer Motion mượt mà
+const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
 
-    // DATA SESSION 3: Giá trị cốt lõi
-    const values = [
-        {
-            badge: "HỆ THỐNG HÓA BÀI BẢN",
-            desc: "Tập trung xây dựng các tài sản số lâu dài (Website, Funnel, CRM) thuộc sở hữu của riêng bạn."
-        },
-        {
-            badge: "TỐI ƯU CHI PHÍ & TINH GỌN",
-            desc: "Chi phí linh hoạt, thấp hơn nhiều so với việc duy trì một phòng marketing cồng kềnh."
-        },
-        {
-            badge: "CHUYỂN GIAO NĂNG LỰC",
-            desc: "Từng bước giúp doanh nghiệp của bạn làm chủ hệ thống, tự vận hành và giảm phụ thuộc vào bên ngoài."
-        }
-    ];
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 }
+    }
+};
 
-    // DATA SESSION 4: Các dịch vụ chính
-    const services = [
-        {
-            title: "DỰNG VÀ THIẾT KẾ\nWEBSITE & LANDING PAGE",
-            desc: "Tại CMIC MEDIA, chúng tôi không bán một trang web đơn lẻ. Chúng tôi cung cấp giải pháp Xây dựng Tài sản số cốt lõi. Một website được thiết kế bởi CMIC MEDIA thỏa mãn 3 yếu tố trọng tâm: Thẩm mỹ thương hiệu - Trải nghiệm mượt mà - Tỷ lệ chuyển đổi tối đa."
-        },
-        {
-            title: "CHĂM SÓC TOÀN DIỆN\nCÁC “ĐIỂM CHẠM” TRÊN SOCIAL",
-            desc: "Đăng bài ngẫu hứng là cách nhanh nhất để triệt tiêu hiệu quả truyền thông. CMIC MEDIA đồng hành cùng bạn xây dựng ma trận nội dung đồng bộ, giáo dục thị trường và biến các kênh mạng xã hội thành phễu thu hút Lead chất lượng cao với chi phí tối ưu nhất."
-        },
-        {
-            title: "THIẾT KẾ HỆ THỐNG AI AGENT",
-            desc: "Chúng tôi sử dụng n8n – nền tảng tự động hóa quy trình mạnh mẽ nhất hiện nay kết hợp với trí tuệ nhân tạo (AI) để xây dựng hệ thống tự động hóa vận hành, giải phóng 80% nguồn lực cho SME."
-        },
-        {
-            title: "TRỌN GÓI MARKETING",
-            desc: "CMIC MEDIA giúp bạn xây dựng chiến lược, thiết lập toàn bộ tài sản số, sản xuất nội dung đa kênh, cài đặt hệ thống đo lường dữ liệu và ứng dụng AI tự động hóa vận hành. Chúng tôi làm việc như một phòng marketing nội bộ thực chiến, cam kết đồng hành lâu dài cùng mục tiêu doanh thu của doanh nghiệp."
-        }
-    ];
-
+export default function LandingPage() {
     return (
-        <div className="min-h-screen bg-white font-sans selection:bg-[#ed792f] selection:text-white antialiased">
-            
-            {/* =======================================================
-                SESSION 1: HERO SECTION
-               ======================================================= */}
-            <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-7 space-y-6">
-                    <div className="space-y-2">
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight">
-                            GIẢI PHÁP IN-HOUSE MARKETING AGENCY
-                        </h1>
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ed792f] tracking-wide">
-                            PHÒNG MARKETING THUÊ NGOÀI THỰC CHIẾN
+        <div className="min-h-screen bg-[#faf8f6] text-slate-800 font-sans selection:bg-[#ed792f] selection:text-white overflow-x-hidden">
+
+            {/* 1. HERO SECTION */}
+            <header className="relative bg-gradient-to-br from-slate-900 via-[#3d200f] to-slate-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                {/* Lớp phủ Grid công nghệ nhẹ */}
+                <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px]"></div>
+                {/* Glow hiệu ứng màu cam thương hiệu */}
+                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#ed792f]/20 rounded-full blur-3xl animate-pulse"></div>
+
+                <div className="max-w-6xl mx-auto text-center relative z-10">
+                    <motion.span
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="inline-block bg-[#ed792f]/10 text-[#ff914d] border border-[#ed792f]/30 px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wider mb-6"
+                    >
+                        GIẢI PHÁP IN-HOUSE MARKETING AGENCY
+                    </motion.span>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.5 }}
+                        className="text-4xl sm:text-6xl font-black tracking-tight leading-none mb-6"
+                    >
+                        PHÒNG MARKETING THUÊ NGOÀI <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ed792f] to-[#ffaa73]">THỰC CHIẾN CMIC MEDIA</span>
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                        className="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 mb-10 leading-relaxed"
+                    >
+                        Vần hành theo mô hình <span className="text-white font-semibold">in-house marketing agency</span>, đồng hành cùng Startup, SME và Cá nhân kinh doanh thiết kế & vận hành hệ thống online marketing bài bản, dễ quản lý và đo lường.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="flex flex-col sm:flex-row justify-center gap-4"
+                    >
+                        <a href="#register" className="bg-[#ed792f] hover:bg-[#d66520] text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-[#ed792f]/20 transform hover:-translate-y-0.5 transition flex items-center justify-center gap-2 group">
+                            Đăng ký nhận tư vấn ngay
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </a>
+                        <a href="#services" className="bg-white/10 hover:bg-white/15 text-white border border-white/20 font-medium px-8 py-4 rounded-xl transition">
+                            Khám phá dịch vụ
+                        </a>
+                    </motion.div>
+                </div>
+            </header>
+
+            {/* 2. PAIN POINTS SECTION */}
+            <section className="py-20 px-4 max-w-6xl mx-auto">
+                <motion.div
+                    initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+                        Doanh nghiệp bạn có đang gặp phải <br />
+                        <span className="text-[#ed792f] font-black">Những "Điểm Nghẽn" Này?</span>
+                    </h2>
+                </motion.div>
+
+                <motion.div
+                    variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                    {[
+                        { title: "Marketing manh mún, rời rạc", desc: "Làm nhiều kênh (Facebook, TikTok, Website) nhưng không có sự kết nối, không tạo ra chuyển đổi." },
+                        { title: "\"Đốt tiền\" quảng cáo nhưng dừng là hết khách", desc: "Phụ thuộc hoàn toàn vào Ads, chi phí ngày càng cao nhưng không giữ chân được khách hàng." },
+                        { title: "Khó đo lường, phân bổ theo cảm tính", desc: "Không có dashboard báo cáo chỉ số rõ ràng, không biết dòng tiền thực sự đang hiệu quả ở kênh nào." },
+                        { title: "Khủng hoảng nhân sự freelance", desc: "Thiếu chuyên môn xây chiến lược, chi phí vận hành bộ máy marketing nội bộ chưa tối ưu và khó đồng hành dài hạn." }
+                    ].map((item, idx) => (
+                        <motion.div
+                            key={idx} variants={fadeInUp} whileHover={{ y: -4 }}
+                            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex gap-4 items-start relative overflow-hidden group"
+                        >
+                            <div className="absolute top-0 left-0 w-1 h-full bg-[#ed792f] opacity-40 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="p-2 bg-orange-50 text-[#ed792f] rounded-lg shrink-0">
+                                <AlertCircle className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-slate-900 mb-1.5">{item.title}</h3>
+                                <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </section>
+
+            {/* 3. VALUE PROPOSITION */}
+            <section className="bg-slate-900 text-white py-20 px-4 relative overflow-hidden">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div
+                        initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+                        className="max-w-3xl mb-14"
+                    >
+                        <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#ff914d] to-[#ed792f] mb-4">
+                            Marketing là tài sản số giúp bạn tạo dòng tiền bền vững
                         </h2>
+                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            CMIC MEDIA đóng vai trò là một đối tác chiến lược. Chúng tôi không nhận làm <span className="text-[#ff914d] font-semibold">"thuê theo đầu việc"</span>. Chúng tôi vào cuộc để: <span className="text-orange-300">Xây nền tảng – Chuẩn hoá quy trình – Thiết lập hệ thống đo lường – Đồng hành vận hành.</span>
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                    >
+                        {[
+                            { icon: <Layers className="w-5 h-5 text-[#ff914d]" />, title: "Hệ thống hóa bài bản", desc: "Tập trung xây dựng các tài sản số lâu dài (Website, Funnel, CRM) thuộc sở hữu của riêng bạn." },
+                            { icon: <DollarSign className="w-5 h-5 text-emerald-400" />, title: "Tối ưu chi phí & Tinh gọn", desc: "Chi phí linh hoạt, thấp hơn nhiều so với việc duy trì một phòng marketing cồng kềnh." },
+                            { icon: <Award className="w-5 h-5 text-amber-400" />, title: "Chuyển giao năng lực", desc: "Từng bước giúp doanh nghiệp của bạn làm chủ hệ thống, tự vận hành và giảm phụ thuộc vào bên ngoài." }
+                        ].map((value, idx) => (
+                            <motion.div
+                                key={idx} variants={fadeInUp}
+                                className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm"
+                            >
+                                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                                    {value.icon}
+                                </div>
+                                <h3 className="text-lg font-bold mb-2 text-white">{value.title}</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed">{value.desc}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* 4. SERVICES SECTION (THU NHỎ COMPONENT & TINH GỌN LẠI) */}
+            <section id="services" className="py-20 px-4 bg-orange-50/30">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-12">
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
+                            Các dịch vụ chính CMIC MEDIA cung cấp
+                        </h2>
+                        <div className="w-16 h-1 bg-[#ed792f] mx-auto rounded-full"></div>
                     </div>
-                    
-                    <div className="bg-[#fff6f0] p-6 md:p-8 rounded-[32px] text-gray-800 leading-relaxed text-justify text-sm md:text-base border border-orange-100/50">
-                        <p>
-                            <strong className="font-bold text-gray-950">CMIC MEDIA</strong> vận hành theo mô hình in-house marketing agency (phòng marketing nội bộ), nhằm đồng hành cùng Startup, SME và Cá nhân kinh doanh trong việc thiết kế và vận hành một hệ thống online marketing bài bản, dễ quản lý và đo lường hiệu quả. Thay vì triển khai các hoạt động marketing rời rạc hoặc phụ thuộc vào quảng cáo trả phí, mô hình của chúng tôi tập trung giúp doanh nghiệp xây dựng nền tảng marketing bền vững thông qua các tài sản số cốt lõi như website, hệ thống nội dung đa kênh, phễu chuyển đổi, ads, email/CRM và công cụ đo lường.
+
+                    {/* Grid dịch vụ thu nhỏ thành 3 cột */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+
+                        {/* Service 1 */}
+                        <motion.div
+                            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+                            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60 flex flex-col justify-between"
+                        >
+                            <div>
+                                <div className="p-2.5 bg-orange-50 text-[#ed792f] rounded-xl w-fit mb-4"><Globe className="w-6 h-6" /></div>
+                                <h3 className="text-lg font-bold text-slate-900 mb-2">Dựng & thiết kế Website / Landing Page</h3>
+                                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                                    Không bán web đơn lẻ. Chúng tôi xây dựng Tài sản số cốt lõi thỏa mãn 3 yếu tố trọng tâm.
+                                </p>
+                            </div>
+                            <div className="text-xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <span className="font-semibold text-[#ed792f]">Tiêu chuẩn:</span> Thẩm mỹ thương hiệu — Trải nghiệm mượt mà — Tỷ lệ chuyển đổi.
+                            </div>
+                        </motion.div>
+
+                        {/* Service 2 */}
+                        <motion.div
+                            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+                            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60"
+                        >
+                            <div className="p-2.5 bg-orange-50 text-[#ed792f] rounded-xl w-fit mb-4"><MessageSquare className="w-6 h-6" /></div>
+                            <h3 className="text-lg font-bold text-slate-900 mb-2">Chăm sóc toàn diện các “điểm chạm” trên social</h3>
+                            <p className="text-xs text-slate-600 leading-relaxed">
+                                Đăng bài ngẫu hứng là cách nhanh nhất để triệt tiêu hiệu quả truyền thông. CMIC MEDIA đồng hành cùng bạn xây dựng ma trận nội dung đồng bộ, giáo dục thị trường và biến các kênh mạng xã hội thành phễu thu hút Lead chất lượng cao với chi phí tối ưu nhất.
+                            </p>
+                        </motion.div>
+
+                        {/* Service 3 */}
+                        <motion.div
+                            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+                            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/60"
+                        >
+                            <div className="p-2.5 bg-orange-50 text-[#ed792f] rounded-xl w-fit mb-4"><Cpu className="w-6 h-6" /></div>
+                            <h3 className="text-lg font-bold text-slate-900 mb-2">Thiết kế hệ thống AI Agent</h3>
+                            <p className="text-xs text-slate-600 leading-relaxed">
+                                Sử dụng nền tảng tự động hóa mạnh mẽ <strong>n8n</strong> kết hợp trí tuệ nhân tạo (AI) để chuẩn hóa quy trình vận hành tự động, giúp giải phóng đến 80% nguồn lực cho SME.
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    {/* Dịch vụ trọn gói lớn nằm ngang làm điểm nhấn */}
+                    <motion.div
+                        initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+                        className="bg-gradient-to-r from-slate-950 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md border border-[#ed792f]/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6"
+                    >
+                        <div className="max-w-2xl">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="bg-[#ed792f] text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">Giải pháp Core</span>
+                                <h3 className="text-xl font-bold">Trọn gói Marketing thực chiến</h3>
+                            </div>
+                            <p className="text-xs text-slate-400 leading-relaxed">
+                                CMIC MEDIA xây dựng chiến lược, thiết lập tài sản số, sản xuất nội dung đa kênh, cài đặt hệ thống đo lường dữ liệu và ứng dụng AI tự động hóa vận hành. Đồng hành như một phòng marketing nội bộ thực chiến cam kết theo doanh thu.
+                            </p>
+                        </div>
+                        <a href="#register" className="bg-[#ed792f] hover:bg-[#d66520] text-white text-xs font-bold px-5 py-3 rounded-lg transition whitespace-nowrap shrink-0">
+                            Nhận tư vấn gói tổng thể
+                        </a>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* 5. PROCESS SECTION */}
+            <section className="pb-20 px-4 max-w-4xl mx-auto">
+                <div className="text-center mb-14">
+                    <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Quy trình hợp tác tinh gọn</h2>
+                    <p className="text-xs text-slate-500">Chuyên nghiệp, rõ ràng và minh bạch trong từng bước đi</p>
+                </div>
+
+                <div className="relative border-l border-slate-200 ml-4 sm:ml-24 space-y-10">
+                    {[
+                        { step: "01", title: "Đăng ký nhận tư vấn", body: "Điền form thông tin yêu cầu của doanh nghiệp." },
+                        { step: "02", title: "Tư vấn viên liên hệ trao đổi", body: "Khảo sát sâu về mô hình và các điểm nghẽn hiện tại." },
+                        { step: "03", title: "Gửi proposal giải pháp", body: "Bản kế hoạch khung định hướng và phân bổ ngân sách." },
+                        { step: "04", title: "Ký hợp đồng hợp tác", body: "Cam kết chỉ số rõ ràng bằng văn bản pháp lý." },
+                        { step: "05", title: "Lập kế hoạch chi tiết và triển khai", body: "Xây dựng hệ thống tài sản số và phân bổ nhân sự." },
+                        { step: "06", title: "Theo dõi & Báo cáo định kỳ", body: "Dashboard minh bạch, cải tiến liên tục dựa trên số liệu thực tế." }
+                    ].map((proc, idx) => (
+                        <motion.div
+                            key={idx} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }} transition={{ delay: idx * 0.08 }}
+                            className="relative pl-6 group"
+                        >
+                            <div className="absolute -left-[5.5px] top-1.5 w-2.5 h-2.5 rounded-full bg-white border-2 border-[#ed792f] group-hover:bg-[#ed792f] transition-colors"></div>
+                            <div className="flex items-baseline gap-2 mb-0.5">
+                                <span className="text-[11px] font-mono font-bold text-[#ed792f]">{proc.step}.</span>
+                                <h4 className="text-base font-bold text-slate-900">{proc.title}</h4>
+                            </div>
+                            <p className="text-xs text-slate-600">{proc.body}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
+            {/* 6. CONVERTING FORM */}
+            <section id="register" className="bg-gradient-to-br from-[#3d200f] to-slate-900 text-white py-16 px-4">
+                <div className="max-w-3xl mx-auto bg-white text-slate-950 rounded-2xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1.5 bg-[#ed792f]"></div>
+
+                    <div className="text-center mb-8">
+                        <h2 className="text-2xl font-black mb-2 text-slate-900">Bứt phá doanh thu cùng CMIC MEDIA</h2>
+                        <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                            Đừng để hệ thống Marketing rời rạc triệt tiêu ngân sách của bạn. Hãy thiết lập phòng Marketing In-house ngay hôm nay!
                         </p>
                     </div>
-                    
-                    <button className="inline-flex items-center gap-3 bg-[#ed792f] hover:bg-[#d66523] text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-orange-500/20 transition duration-300 transform hover:scale-[1.02] text-base md:text-lg group">
-                        <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
-                        <div className="bg-white/20 p-1.5 rounded-full">
-                            <Phone className="w-5 h-5 fill-white text-[#ed792f]" />
-                        </div>
-                    </button>
-                </div>
 
-                <div className="lg:col-span-5 relative grid grid-cols-2 gap-4 p-2">
-                    <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-                        <img src="path-to-image1.jpg" className="w-full h-full object-cover opacity-80" alt="Dịch vụ 1" />
-                    </div>
-                    <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-                        <img src="path-to-image2.jpg" className="w-full h-full object-cover opacity-80" alt="Dịch vụ 2" />
-                    </div>
-                    <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-                        <img src="path-to-image3.jpg" className="w-full h-full object-cover opacity-80" alt="Dịch vụ 3" />
-                    </div>
-                    <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-emerald-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-                        <img src="path-to-image4.jpg" className="w-full h-full object-cover opacity-80" alt="Dịch vụ 4" />
-                    </div>
-                    
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-white p-4 rounded-full shadow-xl border border-gray-100 flex items-center justify-center w-16 h-16 md:w-20 md:h-20">
-                            <svg className="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <hr className="border-gray-100" />
-
-            {/* =======================================================
-                SESSION 2: ĐIỂM NGHẼN CỦA DOANH NGHIỆP
-               ======================================================= */}
-            <section className="bg-white py-16 px-6 max-w-7xl mx-auto">
-                <div className="text-center space-y-2 mb-16">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight uppercase">
-                        DOANH NGHIỆP BẠN CÓ ĐANG GẶP PHẢI
-                    </h2>
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ed792f] tracking-wide uppercase">
-                        NHỮNG "ĐIỂM NGHẼN" NÀY?
-                    </h3>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-                    {problems.map((item, index) => (
-                        <div key={index} className="flex flex-col items-center text-center space-y-4 px-2">
-                            <div className="relative flex items-center justify-center">
-                                <XCircle className="w-14 h-14 text-red-500 fill-red-500 stroke-white drop-shadow-md" />
+                    <form onSubmit={(e) => e.preventDefault()} className="space-y-4 text-xs sm:text-sm">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-xs font-semibold text-slate-700 mb-1">Họ và tên *</label>
+                                <input type="text" placeholder="Nguyễn Văn A" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-slate-50" required />
                             </div>
-                            <h4 className="text-lg md:text-xl font-bold text-[#ed792f] leading-snug whitespace-pre-line min-h-[56px] flex items-center justify-center">
-                                {item.title}
-                            </h4>
-                            <p className="text-gray-800 text-sm md:text-base leading-relaxed max-w-xs sm:max-w-none">
-                                {item.desc}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <hr className="border-gray-100" />
-
-            {/* =======================================================
-                SESSION 3: MARKETING LÀ TÀI SẢN SỐ
-               ======================================================= */}
-            <section className="bg-white py-16 px-6 max-w-7xl mx-auto space-y-12">
-                <div className="text-center space-y-6 max-w-4xl mx-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight uppercase leading-tight">
-                        <span className="text-[#ed792f]">MARKETING</span> LÀ TÀI SẢN SỐ GIÚP BẠN<br />TẠO DÒNG TIỀN BỀN VỮNG
-                    </h2>
-                    <div className="bg-[#fff6f0] px-6 py-6 rounded-[28px] border border-orange-100/70 shadow-sm text-sm md:text-base text-gray-800 leading-relaxed">
-                        CMIC MEDIA đóng vai trò là một đối tác chiến lược. Chúng tôi không nhận làm "thuê theo đầu việc". Chúng tôi vào cuộc để <strong className="text-gray-950 font-bold">Xây nền tảng – Chuẩn hoá quy trình – Thiết lập hệ thống đo lường – Đồng hành vận hành.</strong>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 pt-6">
-                    {values.map((value, idx) => (
-                        <div key={idx} className="relative flex flex-col pt-6">
-                            <div className="absolute top-0 left-6 right-6 bg-black text-[#ed792f] text-center font-bold text-sm md:text-base py-2.5 rounded-t-xl z-10 uppercase tracking-wide shadow-md">
-                                {value.badge}
-                            </div>
-                            <div className="bg-[#ed792f] text-white p-6 md:p-8 rounded-2xl shadow-lg shadow-orange-500/10 text-justify text-sm md:text-base leading-relaxed flex-1 mt-4 pt-10 min-h-[160px]">
-                                <p>{value.desc}</p>
+                            <div>
+                                <label className="block text-xs font-semibold text-slate-700 mb-1">Số điện thoại / Zalo *</label>
+                                <input type="tel" placeholder="0901234567" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-slate-50" required />
                             </div>
                         </div>
-                    ))}
+
+                        <div>
+                            <label className="block text-xs font-semibold text-slate-700 mb-1">Tên Doanh nghiệp / Mô hình kinh doanh</label>
+                            <input type="text" placeholder="Công ty TNHH Thương Mại ABC..." className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-slate-50" />
+                        </div>
+
+                        <div>
+                            <label className="block text-xs font-semibold text-slate-700 mb-1">"Điểm nghẽn" lớn nhất bạn đang gặp phải?</label>
+                            <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-slate-50 text-slate-700 text-xs">
+                                <option>Marketing manh mún, rời rạc, ít chuyển đổi</option>
+                                <option>Đốt tiền quảng cáo (Ngừng Ads là ngừng khách)</option>
+                                <option>Khó đo lường chỉ số, quản lý bằng cảm tính</option>
+                                <option>Khủng hoảng hoặc thiếu nhân sự chuyên môn</option>
+                                <option>Khác...</option>
+                            </select>
+                        </div>
+
+                        <motion.button
+                            whileTap={{ scale: 0.98 }}
+                            className="w-full bg-[#ed792f] text-white font-bold py-3.5 rounded-xl shadow-md shadow-[#ed792f]/10 hover:bg-[#d66520] transition duration-200 text-sm tracking-wide mt-4"
+                        >
+                            Gửi yêu cầu & Đăng ký tư vấn miễn phí
+                        </motion.button>
+                    </form>
                 </div>
             </section>
-
-            <hr className="border-gray-100" />
-
-            {/* =======================================================
-                SESSION 4: CÁC DỊCH VỤ CHÍNH CMIC MEDIA CUNG CẤP
-               ======================================================= */}
-            <section className="bg-white py-16 px-6 max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight uppercase">
-                        CÁC DỊCH VỤ CHÍNH <span className="text-[#ed792f]">CMIC MEDIA CUNG CẤP</span>
-                    </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-16 md:gap-y-12">
-                    {services.map((svc, index) => (
-                        <div key={index} className="space-y-3 flex flex-col">
-                            <h3 className="text-lg md:text-xl font-extrabold text-[#ed792f] tracking-wide whitespace-pre-line leading-snug">
-                                {svc.title}
-                            </h3>
-                            <p className="text-gray-800 text-sm md:text-base leading-relaxed text-justify">
-                                {svc.desc}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <hr className="border-gray-100" />
-
-            {/* =======================================================
-                SESSION 5: QUY TRÌNH HỢP TÁC
-               ======================================================= */}
-            <section className="bg-white py-16 px-6 max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight uppercase">
-                        QUY TRÌNH <span className="text-[#ed792f]">HỢP TÁC</span>
-                    </h2>
-                </div>
-
-                {/* Khối quy trình responsive tốt */}
-                <div className="hidden lg:flex flex-col gap-6 max-w-6xl mx-auto">
-                    {/* Hàng 1 (Bước 1 -> 2 -> 3) */}
-                    <div className="grid grid-cols-5 items-center">
-                        {/* Bước 1 */}
-                        <div className="bg-black text-white p-6 rounded-3xl border-2 border-[#ed792f]/40 text-center flex flex-col items-center justify-center space-y-4 shadow-xl h-44">
-                            <UserCheck className="w-10 h-10 text-[#ed792f]" />
-                            <span className="font-extrabold text-sm tracking-wider">ĐĂNG KÝ NHẬN TƯ VẤN</span>
-                        </div>
-                        {/* Mũi tên 1 -> 2 */}
-                        <div className="flex justify-center"><ArrowRight className="w-8 h-8 text-[#ed792f] animate-pulse" /></div>
-                        {/* Bước 2 */}
-                        <div className="bg-black text-white p-6 rounded-3xl border-2 border-[#ed792f]/40 text-center flex flex-col items-center justify-center space-y-4 shadow-xl h-44">
-                            <MessageSquare className="w-10 h-10 text-[#ed792f]" />
-                            <span className="font-extrabold text-sm tracking-wider">TƯ VẤN VIÊN LIÊN HỆ TRAO ĐỔI</span>
-                        </div>
-                        {/* Mũi tên 2 -> 3 */}
-                        <div className="flex justify-center"><ArrowRight className="w-8 h-8 text-[#ed792f] animate-pulse" /></div>
-                        {/* Bước 3 */}
-                        <div className="bg-black text-white p-6 rounded-3xl border-2 border-[#ed792f]/40 text-center flex flex-col items-center justify-center space-y-4 shadow-xl h-44">
-                            <Send className="w-10 h-10 text-[#ed792f]" />
-                            <span className="font-extrabold text-sm tracking-wider">GỬI PROPOSAL</span>
-                        </div>
-                    </div>
-
-                    {/* Mũi tên đi xuống từ bước 3 xuống bước 4 */}
-                    <div className="grid grid-cols-5">
-                        <div className="col-start-5 flex justify-center py-2">
-                            <ArrowDown className="w-8 h-8 text-[#ed792f]" />
-                        </div>
-                    </div>
-
-                    {/* Hàng 2 (Bước 6 <- 5 <- 4) */}
-                    <div className="grid grid-cols-5 items-center">
-                        {/* Bước 6 */}
-                        <div className="bg-black text-white p-6 rounded-3xl border-2 border-[#ed792f]/40 text-center flex flex-col items-center justify-center space-y-4 shadow-xl h-44">
-                            <FileText className="w-10 h-10 text-[#ed792f]" />
-                            <span className="font-extrabold text-xs tracking-wider">THEO DÕI ĐỊNH KỲ, HỌP HÀNH VÀ GỬI BÁO CÁO ĐỊNH KỲ</span>
-                        </div>
-                        {/* Mũi tên 5 -> 6 */}
-                        <div className="flex justify-center"><ArrowLeft className="w-8 h-8 text-[#ed792f] animate-pulse" /></div>
-                        {/* Bước 5 */}
-                        <div className="bg-black text-white p-6 rounded-3xl border-2 border-[#ed792f]/40 text-center flex flex-col items-center justify-center space-y-4 shadow-xl h-44">
-                            <Settings className="w-10 h-10 text-[#ed792f]" />
-                            <span className="font-extrabold text-sm tracking-wider">LẬP KẾ HOẠCH VÀ TRIỂN KHAI CÔNG VIỆC</span>
-                        </div>
-                        {/* Mũi tên 4 -> 5 */}
-                        <div className="flex justify-center"><ArrowLeft className="w-8 h-8 text-[#ed792f] animate-pulse" /></div>
-                        {/* Bước 4 */}
-                        <div className="bg-black text-white p-6 rounded-3xl border-2 border-[#ed792f]/40 text-center flex flex-col items-center justify-center space-y-4 shadow-xl h-44 relative overflow-hidden group">
-                            <Calendar className="w-10 h-10 text-[#ed792f]" />
-                            <span className="font-extrabold text-sm tracking-wider z-10">KÝ HỢP ĐỒNG HỢP TÁC</span>
-                            <div className="absolute top-4 bg-white text-black font-black px-4 py-1 rounded-full text-[10px] uppercase shadow-sm tracking-widest scale-95 pointer-events-none">
-                              FOLLOW
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Layout dành riêng cho Mobile/Tablet (Xếp dọc tuyến tính) */}
-                <div className="flex lg:hidden flex-col items-center space-y-4 max-w-sm mx-auto">
-                    {[
-                        { icon: <UserCheck className="w-8 h-8 text-[#ed792f]" />, text: "ĐĂNG KÝ NHẬN TƯ VẤN" },
-                        { icon: <MessageSquare className="w-8 h-8 text-[#ed792f]" />, text: "TƯ VẤN VIÊN LIÊN HỆ TRAO ĐỔI" },
-                        { icon: <Send className="w-8 h-8 text-[#ed792f]" />, text: "GỬI PROPOSAL" },
-                        { icon: <Calendar className="w-8 h-8 text-[#ed792f]" />, text: "KÝ HỢP ĐỒNG HỢP TÁC" },
-                        { icon: <Settings className="w-8 h-8 text-[#ed792f]" />, text: "LẬP KẾ HOẠCH VÀ TRIỂN KHAI CÔNG VIỆC" },
-                        { icon: <FileText className="w-8 h-8 text-[#ed792f]" />, text: "THEO DÕI ĐỊNH KỲ, HỌP HÀNH VÀ GỬI BÁO CÁO ĐỊNH KỲ" },
-                    ].map((step, i) => (
-                        <React.Fragment key={i}>
-                            <div className="w-full bg-black text-white p-6 rounded-2xl border border-[#ed792f]/30 text-center flex flex-col items-center space-y-3 shadow-md">
-                                {step.icon}
-                                <span className="font-extrabold text-sm tracking-wide">{step.text}</span>
-                            </div>
-                            {i < 5 && <ArrowDown className="w-6 h-6 text-[#ed792f]" />}
-                        </React.Fragment>
-                    ))}
-                </div>
-            </section>
-
         </div>
     );
 }

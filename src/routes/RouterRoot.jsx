@@ -115,6 +115,8 @@ function RouterRoot() {
           <Route path="dich-vu/cham-soc-kenh-social/tiktok" element={<SocialTiktok />} />
           <Route path="dich-vu/cham-soc-kenh-social/linkedin" element={<SocialLinkedin />} />
           <Route path="dich-vu/cham-soc-kenh-social/email-marketing" element={<SocialEmailMarketing />} />
+          <Route path="dich-vu/he-thong-ai-agent" element={<HeThongAIAgent />} />
+          <Route path="dich-vu/tron-goi-marketing" element={<TronGoiMarketing />} />
 
           <Route path="tin-tuc" element={<News />} />
           <Route path="/tin-tuc/:title/:id" element={<PostDetail />} />
