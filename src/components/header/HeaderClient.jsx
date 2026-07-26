@@ -18,8 +18,8 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   return (
     <header className="bg-[#ed792f] shadow-md sticky top-0 z-50 w-full">
       {/* 1. TOP HEADER: LOGO - CONTACT */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-2 flex items-center justify-between gap-4">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4">
 
           {/* LOGO (Trái) */}
           <div className="flex-shrink-0 w-[120px] lg:w-[150px]">
@@ -69,7 +69,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
         className="bg-white hidden md:block border-t border-gray-100/50 shadow-sm relative"
         onMouseLeave={() => setIsServicesOpen(false)}
       >
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="w-full px-4">
           <div className="flex justify-center items-center">
             {menuItems.map((item) => {
               const isServiceItem = item.label === "DỊCH VỤ";
@@ -129,7 +129,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
                       to={item.path}
                       className={({ isActive }) =>
                         `block p-3.5 rounded-xl font-bold transition-all duration-200
-                                                 ${isActive ? "bg-orange-50 text-[#ed792f] translate-x-2" : "text-gray-700 hover:bg-gray-50"}`
+                                                  ${isActive ? "bg-orange-50 text-[#ed792f] translate-x-2" : "text-gray-700 hover:bg-gray-50"}`
                       }
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
