@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 const bgImageUrl = "https://web.hn.ss.bfcplatform.vn/muadienmay/content/article2/3087889034-1620532650.jpg";
+const bgSession3 = "/gioiThieu/bgSs3.png";
+const bgSession4 = "/gioiThieu/bgSs4.png";
 
 // ========================================================
 // SESSION 1: BANNER VỀ CHÚNG TÔI
@@ -33,7 +35,6 @@ function BannerSection() {
 function AboutStorySection() {
   return (
     <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-8 bg-white">
-      {/* Background Blur & Họa tiết đường sóng */}
       <img
         src={bgImageUrl}
         alt="Background Blur"
@@ -45,21 +46,18 @@ function AboutStorySection() {
         </svg>
       </div>
 
-      <div className="relative z-20 w-full mx-auto space-y-12">
-
+      <div className="relative z-20 w-full mx-auto space-y-12 px-4 md:px-8">
         {/* PHẦN 1: CÂU CHUYỆN THƯƠNG HIỆU */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Cột trái: Khung ghép 2 ảnh */}
           <div className="lg:col-span-5 flex justify-center relative w-full mx-auto aspect-square max-w-sm">
             <div className="w-[82%] h-[82%] rounded-3xl overflow-hidden shadow-xl border-4 border-white absolute top-0 left-0">
-              <img src={bgImageUrl} alt="Teamwork" className="w-full h-full object-cover" />
+              <img src="/gioiThieu/img1ss2.png" alt="Teamwork" className="w-full h-full object-cover" />
             </div>
             <div className="w-[58%] h-[52%] rounded-2xl overflow-hidden shadow-2xl border-4 border-indigo-950 absolute bottom-0 right-0 z-20">
-              <img src={bgImageUrl} alt="Puzzle Pieces" className="w-full h-full object-cover" />
+              <img src="/gioiThieu/img2ss2.png" alt="Puzzle Pieces" className="w-full h-full object-cover" />
             </div>
           </div>
 
-          {/* Cột phải: Nội dung Câu chuyện thương hiệu */}
           <div className="lg:col-span-7 flex flex-col space-y-3.5 text-left">
             <h2 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-gray-950">
               CÂU CHUYỆN <span className="text-orange-600">THƯƠNG HIỆU</span>
@@ -83,10 +81,7 @@ function AboutStorySection() {
 
         {/* PHẦN 2: TẦM NHÌN & SỨ MỆNH */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-          {/* Cột trái: Lời ngỏ + Khối Tầm nhìn & Sứ mệnh */}
           <div className="lg:col-span-7 flex flex-col space-y-5 text-left">
-            {/* Lời ngỏ mở đầu */}
             <div className="space-y-3 text-sm md:text-base text-gray-700 font-normal leading-relaxed">
               <p>
                 Chúng tôi không chỉ làm dịch vụ, chúng tôi hòa mình làm một phần đội ngũ nội bộ của khách hàng, cùng trăn trở, cùng tối ưu và cùng tăng trưởng.
@@ -102,7 +97,6 @@ function AboutStorySection() {
               </p>
             </div>
 
-            {/* Khối TẦM NHÌN */}
             <div className="space-y-1.5 pt-1 mt-12">
               <h3 className="text-lg md:text-xl font-bold uppercase tracking-wide text-gray-950">
                 TẦM NHÌN
@@ -114,7 +108,6 @@ function AboutStorySection() {
               </div>
             </div>
 
-            {/* Khối SỨ MỆNH */}
             <div className="space-y-1.5 pt-1">
               <div className="flex justify-end">
                 <h3 className="text-lg md:text-xl font-bold uppercase tracking-wide text-gray-950">
@@ -127,7 +120,6 @@ function AboutStorySection() {
                 </p>
               </div>
             </div>
-
           </div>
 
           <div className="lg:col-span-5 flex justify-center lg:justify-end relative self-stretch items-start pt-2">
@@ -139,24 +131,30 @@ function AboutStorySection() {
               />
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
 }
 
 // ========================================================
-// SESSION 3: GIÁ TRỊ CỐT LÕI
+// SESSION 3: GIÁ TRỊ CỐT LÕI (ĐÃ FIX KHÔNG BỊ TRẮNG 2 BÊN)
 // ========================================================
 function CoreValuesSection({ coreValues }) {
   return (
-    <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-8 bg-gray-50 flex justify-center">
-      <img src={bgImageUrl} alt="SS4 Blur" className="absolute inset-0 w-full h-full object-cover blur-xl scale-105 opacity-10 pointer-events-none z-0" />
+    <section className="relative w-full overflow-hidden py-10 md:py-14 bg-gray-50 flex justify-center">
+      <div
+        className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+        style={{
+          backgroundImage: `url(${bgSession3})`,
+          backgroundPosition: 'center center',
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
 
-      <div className="relative z-20 w-full max-w-4xl mx-auto flex flex-col space-y-8 items-center">
-        {/* Nút tiêu đề được làm gọn hơn */}
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-4 md:px-8 flex flex-col space-y-8 items-center">
+        {/* Nút tiêu đề */}
         <div className="w-full max-w-xs mx-auto flex items-center bg-gray-950 text-white rounded-full pr-5 pl-1.5 py-1 shadow-md border border-gray-800">
           <div className="w-8 h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center font-bold text-sm shadow-inner">★</div>
           <h2 className="text-base md:text-lg font-bold uppercase tracking-wider pl-3 text-center flex-1">
@@ -164,6 +162,7 @@ function CoreValuesSection({ coreValues }) {
           </h2>
         </div>
 
+        {/* Danh sách các thẻ */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1 w-full">
           {coreValues.map((val, idx) => (
             <div
@@ -192,7 +191,15 @@ function CoreValuesSection({ coreValues }) {
 function ContactSection({ contactData, handleInputChange, handleFormSubmit }) {
   return (
     <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-8 bg-white flex justify-center">
-      <img src={bgImageUrl} alt="SS5 Blur" className="absolute inset-0 w-full h-full object-cover blur-xl scale-105 opacity-10 pointer-events-none z-0" />
+      <div
+        className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+        style={{
+          backgroundImage: `url(${bgSession4})`,
+          backgroundPosition: 'center center',
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
 
       <div className="relative z-20 w-full max-w-lg mx-auto">
         <form
