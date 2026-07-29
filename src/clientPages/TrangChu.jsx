@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 //           Teal #135C50 (chiến lược/tin cậy) · Terracotta #B23A2E (cảnh báo)
 // Chữ hiển thị: 'Be Vietnam Pro' (tiêu đề) · 'Inter' (nội dung)
 // ========================================================
-const BG_IMAGE_URL = "https://web.hn.ss.bfcplatform.vn/muadienmay/content/article2/3087889034-1620532650.jpg";
 const bgSession1 = "/trangChu/bgSs1.png";
 const bgSession2 = "/trangChu/sa.png";
 const bgSession7 = "/trangChu/bgSs7.png";
@@ -237,8 +236,6 @@ const SERVICES_DATA = [
         clipDirection: "left"
     }
 ];
-const SERVICE_ICONS = [MonitorIcon, MegaphoneIcon, RobotIcon, LightbulbIcon];
-const SERVICE_TONES = ['amber', 'teal', 'ink', 'terracotta'];
 
 const STEPS_DATA = [
     { stepNum: "01. Đăng ký nhận tư vấn", detail: "Điền form thông tin tư vấn" },
@@ -275,11 +272,11 @@ function HeroSection() {
         <section className="relative w-full overflow-hidden py-8 md:py-12 px-4 md:px-10">
             {/* Ảnh nền Full-width tràn 100% màn hình */}
             <div
-                className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+                className="absolute inset-0 w-full h-full pointer-events-none z-0"
                 style={{
                     backgroundImage: `url(${bgSession1})`,
                     backgroundPosition: 'center center',
-                    backgroundSize: '100% 100%',
+                    backgroundSize: 'cover', // Hoặc '100% 100%' tùy ý bạn
                     backgroundRepeat: 'no-repeat'
                 }}
             />
@@ -336,17 +333,10 @@ function HeroSection() {
     );
 }
 
-// COMBINED SESSION 2 & 3: PROBLEMS + STRATEGY (Dùng chung bgSession2)
+// COMBINED SESSION 2 & 3: PROBLEMS + STRATEGY
 function ProblemsAndStrategySection({ problems }) {
     return (
         <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-10">
-            {/* Background dùng chung bgSession2 */}
-            <img
-                src={bgSession2}
-                alt="Problems & Strategy Section Background"
-                className="absolute top-0 bottom-0 h-full w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 object-fill scale-x-110"
-            />
-
             {/* Khối nội dung chính */}
             <div className="relative z-10 w-full flex flex-col space-y-12">
 
@@ -452,10 +442,7 @@ function ProblemsAndStrategySection({ problems }) {
 // SESSION 4: SERVICES
 function ServicesSection({ services }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-16 px-4 md:px-10 bg-white">
-            <div className="absolute inset-0 blueprint-grid opacity-60 z-0" />
-            <Ambient tone="ink" />
-
+        <section className="relative w-full overflow-hidden py-10 md:py-16 px-4 md:px-10">
             <div className="relative z-10 w-full flex flex-col space-y-10 md:space-y-12">
                 {/* Tiêu đề chính của Section */}
                 <h2 className="text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase border-l-4 border-[#C96F1E] pl-3">
@@ -467,9 +454,9 @@ function ServicesSection({ services }) {
                     {services.map((svc, index) => (
                         <div
                             key={index}
-                            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full bg-white p-2 rounded-2xl"
+                            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full p-2 rounded-2xl"
                         >
-                            {/* 1. KHỐI ẢNH: Giảm tỉ lệ từ 1/2 xuống 2/5 (~40%) để ảnh tập trung hơn, không bị trống */}
+                            {/* 1. KHỐI ẢNH */}
                             <div className="w-full sm:w-2/5 shrink-0 flex items-center justify-center">
                                 <img
                                     src={svc.image}
@@ -481,7 +468,7 @@ function ServicesSection({ services }) {
                                 />
                             </div>
 
-                            {/* 2. KHỐI NỘI DUNG: Tăng tỉ lệ lên 3/5 (~60%) giúp chữ thoáng và dễ đọc */}
+                            {/* 2. KHỐI NỘI DUNG */}
                             <div className="w-full sm:w-3/5 flex flex-col space-y-2 text-left">
                                 <h3 className="text-base md:text-lg font-black text-[#14181F] tracking-tight leading-snug">
                                     {svc.title}
@@ -604,30 +591,30 @@ function FaqSection({ faqs }) {
 
             <div className="absolute inset-0 grain-soft opacity-60 z-0" />
             <div className="relative z-10 w-full flex flex-col space-y-6">
-               <div className="relative z-10 w-full flex flex-col space-y-6">
-                <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
-                    <div className="flex items-center space-x-2">
-                        <div className="flex flex-col items-center">
-                            <div className="w-1.5 h-1.5 bg-[#14181F] rounded-full" />
-                            <div className="w-[1.5px] h-5 bg-[#14181F]" />
+                <div className="relative z-10 w-full flex flex-col space-y-6">
+                    <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
+                        <div className="flex items-center space-x-2">
+                            <div className="flex flex-col items-center">
+                                <div className="w-1.5 h-1.5 bg-[#14181F] rounded-full" />
+                                <div className="w-[1.5px] h-5 bg-[#14181F]" />
+                            </div>
+                            <h2 className="text-xl md:text-2xl font-black text-[#14181F] tracking-tight uppercase">FAQs</h2>
                         </div>
-                        <h2 className="text-xl md:text-2xl font-black text-[#14181F] tracking-tight uppercase">FAQs</h2>
+                    </div>
+                    <div className="w-full flex flex-col space-y-5 text-left">
+                        {faqs.map((faq, index) => (
+                            <div key={index} className="w-full flex flex-col space-y-1.5">
+                                <h3 className="text-base md:text-lg font-extrabold text-[#14181F] flex items-start gap-2.5 leading-snug">
+                                    <IconBadge tone="amber" size="sm"><HelpIcon className="w-3.5 h-3.5" /></IconBadge>
+                                    <span className="pt-0.5">{faq.question}</span>
+                                </h3>
+                                <div className="pl-[2.6rem]">
+                                    <p className="text-[#4B5160] text-xs md:text-sm leading-relaxed">{faq.answer}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className="w-full flex flex-col space-y-5 text-left">
-                    {faqs.map((faq, index) => (
-                        <div key={index} className="w-full flex flex-col space-y-1.5">
-                            <h3 className="text-base md:text-lg font-extrabold text-[#14181F] flex items-start gap-2.5 leading-snug">
-                                <IconBadge tone="amber" size="sm"><HelpIcon className="w-3.5 h-3.5" /></IconBadge>
-                                <span className="pt-0.5">{faq.question}</span>
-                            </h3>
-                            <div className="pl-[2.6rem]">
-                                <p className="text-[#4B5160] text-xs md:text-sm leading-relaxed">{faq.answer}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
             </div>
         </section>
     );
@@ -657,11 +644,26 @@ export default function MarketingLandingPage() {
     };
 
     return (
-        <div className="cmic-landing w-full bg-[#FBF9F6] antialiased selection:bg-[#DD8A3B] selection:text-white">
+        <div className="cmic-landing w-full overflow-x-hidden bg-[#FBF9F6] antialiased selection:bg-[#DD8A3B] selection:text-white">
             <FontStyles />
             <HeroSection />
-            <ProblemsAndStrategySection problems={PROBLEMS_DATA} />
-            <ServicesSection services={SERVICES_DATA} />
+
+            {/* Container bao bọc cả ProblemsAndStrategySection & ServicesSection dùng chung bgSession2 */}
+            <div className="relative w-full overflow-hidden">
+                <div
+                    className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+                    style={{
+                        backgroundImage: `url(${bgSession2})`,
+                        backgroundPosition: 'center center',
+                        backgroundSize: '100% 100%',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                />
+
+                <ProblemsAndStrategySection problems={PROBLEMS_DATA} />
+                <ServicesSection services={SERVICES_DATA} />
+            </div>
+
             <ConsultationFormSection
                 formData={formData}
                 onInputChange={handleInputChange}
