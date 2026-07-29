@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 // Chữ hiển thị: 'Be Vietnam Pro' (tiêu đề) · 'Inter' (nội dung)
 // ========================================================
 const bgSession1 = "/trangChu/bgSs1.png";
-const bgSession2 = "/trangChu/sa.png";
+const bgSession2 = "/trangChu/bgSs2.png";
 const bgSession7 = "/trangChu/bgSs7.png";
 
 function FontStyles() {
@@ -393,11 +393,11 @@ function ProblemsAndStrategySection({ problems }) {
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full pt-2">
                         {/* Phễu Marketing */}
-                        <div className="lg:col-span-5 flex justify-center items-center w-full max-w-[260px] mx-auto overflow-hidden">
+                        <div className="lg:col-span-5 flex justify-center items-center w-full max-w-[200px] mx-auto overflow-hidden">
                             <img
                                 src="/trangChu/pheuSs3.png"
                                 alt="Marketing Funnel"
-                                className="w-full h-auto object-contain scale-[2.2] transform transition-transform"
+                                className="w-full h-auto object-contain scale-100 transform transition-transform"
                             />
                         </div>
 
