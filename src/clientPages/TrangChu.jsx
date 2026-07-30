@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContactForm from '../components/FormContact';
+import { ChevronRight } from "lucide-react";
 
 // ========================================================
 // DESIGN SYSTEM
@@ -113,32 +114,9 @@ const PhoneIcon = ({ className = ic }) => (
         <path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24c1.13.37 2.33.57 3.6.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.27.2 2.47.57 3.6a1 1 0 01-.25 1.02l-2.2 2.18z" stroke="currentColor" strokeWidth="0.4" fill="currentColor" />
     </svg>
 );
-const MonitorIcon = ({ className = ic }) => (
+const ChevronRightIcon = ({ className = icSm }) => (
     <svg viewBox="0 0 24 24" fill="none" className={className}>
-        <rect x="3.2" y="4.5" width="17.6" height="11.4" rx="1.8" stroke="currentColor" strokeWidth="1.6" />
-        <path d="M8.5 20h7M12 15.9V20" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M6.5 8.6l3 2.4-3 2.4M12 13.4h3.4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-);
-const MegaphoneIcon = ({ className = ic }) => (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-        <path d="M3.5 10.2v3.6c0 .8.6 1.4 1.4 1.4h1l.7 3.4a1.2 1.2 0 001.2 1h.6a1.2 1.2 0 001.16-1.5l-.56-2.9 8.5 3V6.6l-8.5 3H4.9c-.8 0-1.4.6-1.4 1.4Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" />
-        <path d="M19.5 9.7a3.4 3.4 0 010 4.6" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" />
-    </svg>
-);
-const RobotIcon = ({ className = ic }) => (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-        <rect x="4.5" y="9" width="15" height="10" rx="2.4" stroke="currentColor" strokeWidth="1.6" />
-        <circle cx="9.3" cy="14" r="1.15" fill="currentColor" />
-        <circle cx="14.7" cy="14" r="1.15" fill="currentColor" />
-        <path d="M12 9V6.2M9.5 17.3h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="12" cy="4.6" r="1.5" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-);
-const LightbulbIcon = ({ className = ic }) => (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-        <path d="M9 18.3h6M9.7 21h4.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M12 3.4a5.6 5.6 0 00-3.3 10.1c.6.5 1 1.2 1 2v.7h4.6v-.7c0-.8.4-1.5 1-2A5.6 5.6 0 0012 3.4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
 const FormIcon = ({ className = icSm }) => (
@@ -277,7 +255,7 @@ function HeroSection() {
                 style={{
                     backgroundImage: `url(${bgSession1})`,
                     backgroundPosition: 'center center',
-                    backgroundSize: 'cover', // Hoặc '100% 100%' tùy ý bạn
+                    backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }}
             />
@@ -549,46 +527,89 @@ function WorkflowSection({ steps }) {
     );
 }
 
-// SESSION 7: FAQS
-function FaqSection({ faqs }) {
-    return (
-        <section className="relative w-full py-10 md:py-14 px-4 md:px-20 bg-[#FCFAF8]">
-            {/* Ảnh nền Full-width tràn 100% màn hình */}
-            <div
-                className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110 overflow-hidden"
-                style={{
-                    backgroundImage: `url(${bgSession7})`,
-                    backgroundPosition: 'center center',
-                    backgroundSize: '100% 100%',
-                    backgroundRepeat: 'no-repeat'
-                }}
-            />
+// SESSION 7: FAQS (ĐÃ CẬP NHẬT TÍNH NĂNG ĐÓNG/MỞ)
+function FaqSection({ faqs = FAQS_DATA, bgSession7 }) {
+    // Mặc định mở câu đầu tiên (index = 0)
+    const [openIndex, setOpenIndex] = useState(0);
 
-            <div className="absolute inset-0 grain-soft opacity-60 z-0" />
-            <div className="relative z-10 w-full flex flex-col space-y-6">
-                <div className="relative z-10 w-full flex flex-col space-y-6">
-                    <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
-                        <div className="flex items-center space-x-2">
-                            <div className="flex flex-col items-center">
-                                <div className="w-1.5 h-1.5 bg-[#14181F] rounded-full" />
-                                <div className="w-[1.5px] h-5 bg-[#14181F]" />
+    return (
+        <section className="relative w-full py-10 md:py-14 px-4 md:px-20 bg-[#FCFAF8] overflow-hidden font-sans">
+            {/* Ảnh nền Full-width tràn 100% màn hình */}
+            {bgSession7 && (
+                <div
+                    className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+                    style={{
+                        backgroundImage: `url(${bgSession7})`,
+                        backgroundPosition: 'center center',
+                        backgroundSize: '100% 100%',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                />
+            )}
+
+            <div className="absolute inset-0 grain-soft opacity-60 z-0 pointer-events-none" />
+
+            <div className="relative z-10 w-full flex flex-col space-y-6 max-w-5xl mx-auto">
+                {/* Header FAQ: Chữ FAQs + Đường kẻ ngang + Chấm tròn */}
+                <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
+                    <div className="flex items-center space-x-2 w-full">
+                        <div className="flex items-center gap-3 w-full">
+                            <h2 className="text-xl md:text-2xl font-black text-[#14181F] tracking-tight uppercase shrink-0">
+                                FAQs
+                            </h2>
+                            <div className="h-[1.5px] bg-[#14181F] flex-1 relative">
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full border-2 border-[#14181F] bg-white" />
                             </div>
-                            <h2 className="text-xl md:text-2xl font-black text-[#14181F] tracking-tight uppercase">FAQs</h2>
                         </div>
                     </div>
-                    <div className="w-full flex flex-col space-y-5 text-left">
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="w-full flex flex-col space-y-1.5">
-                                <h3 className="text-base md:text-lg font-extrabold text-[#14181F] flex items-start gap-2.5 leading-snug">
-                                    <IconBadge tone="amber" size="sm"><HelpIcon className="w-3.5 h-3.5" /></IconBadge>
-                                    <span className="pt-0.5">{faq.question}</span>
-                                </h3>
-                                <div className="pl-[2.6rem]">
-                                    <p className="text-[#4B5160] text-xs md:text-sm leading-relaxed">{faq.answer}</p>
-                                </div>
+                </div>
+
+                {/* Danh sách FAQs đóng/mở */}
+                <div className="w-full flex flex-col space-y-4 text-left">
+                    {faqs.map((faq, index) => {
+                        const isOpen = openIndex === index;
+                        const questionText = faq.question || faq.q;
+                        const answerText = faq.answer || faq.a;
+                        const formattedIndex = String(index + 1).padStart(2, "0");
+
+                        return (
+                            <div key={index} className="w-full flex flex-col space-y-1.5 border-b border-gray-200/60 pb-3">
+                                {/* Tiêu đề câu hỏi dạng nút click toggle đóng/mở */}
+                                <button
+                                    type="button"
+                                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                                    className="w-full text-left focus:outline-none flex items-start justify-between gap-3 group cursor-pointer"
+                                >
+                                    <h3 className="text-base md:text-lg font-extrabold text-[#14181F] flex items-start gap-2.5 leading-snug group-hover:text-[#F2680C] transition-colors">
+                                        {/* Icon mũi tên tam giác đen chuẩn thiết kế */}
+                                        <span className="text-black text-sm mt-0.5 shrink-0 select-none">
+                                            ➤
+                                        </span>
+                                        <span className="pt-0.5">
+                                            {formattedIndex}. {questionText}
+                                        </span>
+                                    </h3>
+
+                                    {/* Chevron indicator xoay khi mở/đóng */}
+                                    <span
+                                        className="shrink-0 mt-1.5 text-[#14181F] transition-transform duration-200"
+                                        style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
+                                    >
+                                        <ChevronRight className="w-5 h-5" />
+                                    </span>
+                                </button>
+
+                                {/* Nội dung câu trả lời hiển thị khi isOpen = true */}
+                                {isOpen && (
+                                    <div className="pl-6 md:pl-7 pt-1">
+                                        <div className="text-[#4B5160] text-xs md:text-sm leading-relaxed whitespace-pre-line">
+                                            {answerText}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
