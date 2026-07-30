@@ -15,15 +15,7 @@ const serviceColumns = [
   {
     title: "Chăm sóc kênh social",
     titlePath: "/dich-vu/cham-soc-kenh-social/tron-goi",
-    items: [
-      { label: "Trọn gói kênh social", path: "/dich-vu/cham-soc-kenh-social/tron-goi" },
-      { label: "Chăm sóc Fanpage", path: "/dich-vu/cham-soc-kenh-social/fanpage" },
-      { label: "Chăm sóc Instagram", path: "/dich-vu/cham-soc-kenh-social/instagram" },
-      { label: "Chăm sóc YouTube", path: "/dich-vu/cham-soc-kenh-social/youtube" },
-      { label: "Chăm sóc TikTok", path: "/dich-vu/cham-soc-kenh-social/tiktok" },
-      { label: "Chăm sóc LinkedIn", path: "/dich-vu/cham-soc-kenh-social/linkedin" },
-      { label: "Email Marketing", path: "/dich-vu/cham-soc-kenh-social/email-marketing" },
-    ],
+    items: [],
   },
   {
     title: "Hệ thống AI Agent (n8n)",

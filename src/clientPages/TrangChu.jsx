@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ContactForm from '../components/FormContact';
 
 // ========================================================
 // DESIGN SYSTEM
@@ -492,8 +493,8 @@ function ServicesSection({ services }) {
     );
 }
 
-// SESSION 5: FORM
-function ConsultationFormSection({ formData, onInputChange, onSubmit }) {
+// SESSION 5: FORM (Tái sử dụng ContactForm)
+function ConsultationFormSection() {
     return (
         <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-10 bg-gradient-to-b from-white to-[#FDF0DF]/60">
             <Ambient tone="amber" />
@@ -503,34 +504,8 @@ function ConsultationFormSection({ formData, onInputChange, onSubmit }) {
                     <p className="text-[#4B5160] text-xs md:text-sm leading-relaxed">Để lại thông tin nhận tư vấn miễn phí, đội ngũ chuyên gia của chúng tôi sẽ chủ động liên hệ khảo sát và đưa ra lộ trình phù hợp nhất cho doanh nghiệp của bạn.</p>
                 </div>
                 <div className="lg:col-span-7 w-full">
-                    <form onSubmit={onSubmit} className="w-full bg-white/95 backdrop-blur-sm border border-[#0F4B41]/20 rounded-2xl p-5 md:p-7 shadow-xl flex flex-col space-y-3.5 text-[#14181F]">
-                        <h3 className="text-xl md:text-2xl font-black text-[#14181F] tracking-tight text-center uppercase pb-1">Tôi cần tư vấn</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div className="flex flex-col space-y-1 text-left">
-                                <label className="text-xs md:text-sm font-bold text-[#14181F]">Họ và tên*</label>
-                                <input type="text" name="fullName" required value={formData.fullName} onChange={onInputChange} className="w-full border border-black/15 rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4B41]/40 bg-white transition-shadow" />
-                            </div>
-                            <div className="flex flex-col space-y-1 text-left">
-                                <label className="text-xs md:text-sm font-bold text-[#14181F]">Số điện thoại*</label>
-                                <input type="tel" name="phone" required value={formData.phone} onChange={onInputChange} className="w-full border border-black/15 rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4B41]/40 bg-white transition-shadow" />
-                            </div>
-                        </div>
-                        <div className="flex flex-col space-y-1 text-left">
-                            <label className="text-xs md:text-sm font-bold text-[#14181F]">Email*</label>
-                            <input type="email" name="email" required value={formData.email} onChange={onInputChange} className="w-full border border-black/15 rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4B41]/40 bg-white transition-shadow" />
-                        </div>
-                        <div className="flex flex-col space-y-1 text-left">
-                            <label className="text-xs md:text-sm font-bold text-[#14181F]">Bạn cần CMIC MEDIA tư vấn gì?*</label>
-                            <textarea name="consultRequest" required rows={2} value={formData.consultRequest} onChange={onInputChange} className="w-full border border-black/15 rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4B41]/40 bg-white resize-none transition-shadow" />
-                        </div>
-                        <div className="flex flex-col space-y-1 text-left">
-                            <label className="text-xs md:text-sm font-bold text-[#14181F] leading-tight">Cung cấp kênh marketing của doanh nghiệp bạn (nếu có)</label>
-                            <textarea name="marketingChannels" rows={2} value={formData.marketingChannels} onChange={onInputChange} className="w-full border border-black/15 rounded-lg px-3 py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4B41]/40 bg-white resize-none transition-shadow" />
-                        </div>
-                        <div className="pt-1">
-                            <button type="submit" className="w-full bg-gradient-to-r from-[#F0A155] to-[#C96F1E] text-white font-extrabold text-sm py-2.5 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide">Gửi ngay</button>
-                        </div>
-                    </form>
+                    {/* Tái sử dụng component ContactForm ở đây */}
+                    <ContactForm />
                 </div>
             </div>
         </section>
@@ -624,25 +599,6 @@ function FaqSection({ faqs }) {
 // MAIN COMPONENT
 // ========================================================
 export default function MarketingLandingPage() {
-    const [formData, setFormData] = useState({
-        fullName: '',
-        phone: '',
-        email: '',
-        consultRequest: '',
-        marketingChannels: ''
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Dữ liệu đăng ký tư vấn:", formData);
-        alert("Đăng ký tư vấn thành công!");
-    };
-
     return (
         <div className="cmic-landing w-full overflow-x-hidden bg-[#FBF9F6] antialiased selection:bg-[#DD8A3B] selection:text-white">
             <FontStyles />
@@ -664,11 +620,7 @@ export default function MarketingLandingPage() {
                 <ServicesSection services={SERVICES_DATA} />
             </div>
 
-            <ConsultationFormSection
-                formData={formData}
-                onInputChange={handleInputChange}
-                onSubmit={handleSubmit}
-            />
+            <ConsultationFormSection />
             <WorkflowSection steps={STEPS_DATA} />
             <FaqSection faqs={FAQS_DATA} />
         </div>

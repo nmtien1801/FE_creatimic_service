@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ContactForm from '../components/FormContact';
 
 const bgImageUrl = "https://web.hn.ss.bfcplatform.vn/muadienmay/content/article2/3087889034-1620532650.jpg";
 const bgSession3 = "/gioiThieu/bgSs3.png";
@@ -30,7 +31,7 @@ function BannerSection() {
 }
 
 // ========================================================
-// SESSION 2: CÂU CHUYỆN THƯƠNG HIỆU - TẦM NHÌN - SỨ MỆNH (GỘP)
+// SESSION 2: CÂU CHUYỆN THƯƠNG HIỆU - TẦM NHÌN - SỨ MỆNH
 // ========================================================
 function AboutStorySection() {
   return (
@@ -47,7 +48,6 @@ function AboutStorySection() {
       </div>
 
       <div className="relative z-20 w-full mx-auto space-y-12 px-4 md:px-8">
-        {/* PHẦN 1: CÂU CHUYỆN THƯƠNG HIỆU */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 flex justify-center relative w-full mx-auto aspect-square max-w-sm">
             <div className="w-[82%] h-[82%] rounded-3xl overflow-hidden shadow-xl border-4 border-white absolute top-0 left-0">
@@ -79,7 +79,6 @@ function AboutStorySection() {
           </div>
         </div>
 
-        {/* PHẦN 2: TẦM NHÌN & SỨ MỆNH */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 flex flex-col space-y-5 text-left">
             <div className="space-y-3 text-sm md:text-base text-gray-700 font-normal leading-relaxed">
@@ -138,7 +137,7 @@ function AboutStorySection() {
 }
 
 // ========================================================
-// SESSION 3: GIÁ TRỊ CỐT LÕI (ĐÃ FIX KHÔNG BỊ TRẮNG 2 BÊN)
+// SESSION 3: GIÁ TRỊ CỐT LÕI
 // ========================================================
 function CoreValuesSection({ coreValues }) {
   return (
@@ -154,7 +153,6 @@ function CoreValuesSection({ coreValues }) {
       />
 
       <div className="relative z-20 w-full max-w-4xl mx-auto px-4 md:px-8 flex flex-col space-y-8 items-center">
-        {/* Nút tiêu đề */}
         <div className="w-full max-w-xs mx-auto flex items-center bg-gray-950 text-white rounded-full pr-5 pl-1.5 py-1 shadow-md border border-gray-800">
           <div className="w-8 h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center font-bold text-sm shadow-inner">★</div>
           <h2 className="text-base md:text-lg font-bold uppercase tracking-wider pl-3 text-center flex-1">
@@ -162,7 +160,6 @@ function CoreValuesSection({ coreValues }) {
           </h2>
         </div>
 
-        {/* Danh sách các thẻ */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1 w-full">
           {coreValues.map((val, idx) => (
             <div
@@ -186,9 +183,9 @@ function CoreValuesSection({ coreValues }) {
 }
 
 // ========================================================
-// SESSION 4: LIÊN HỆ VỚI CHÚNG TÔI
+// SESSION 4: SECTION CHỨA FORM LIÊN HỆ
 // ========================================================
-function ContactSection({ contactData, handleInputChange, handleFormSubmit }) {
+function ContactSection() {
   return (
     <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-8 bg-white flex justify-center">
       <div
@@ -202,45 +199,7 @@ function ContactSection({ contactData, handleInputChange, handleFormSubmit }) {
       />
 
       <div className="relative z-20 w-full max-w-lg mx-auto">
-        <form
-          onSubmit={handleFormSubmit}
-          className="w-full bg-white border-2 border-emerald-900/80 rounded-2xl p-5 md:p-7 shadow-lg flex flex-col space-y-4 text-gray-900"
-        >
-          <h2 className="text-xl md:text-2xl font-bold text-gray-950 tracking-tight text-center uppercase pb-1">
-            LIÊN HỆ VỚI CHÚNG TÔI
-          </h2>
-
-          <div className="flex flex-col space-y-1 text-left">
-            <label className="text-xs md:text-sm font-semibold text-gray-900">Họ và tên*</label>
-            <input type="text" name="fullName" required value={contactData.fullName} onChange={handleInputChange} className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white" />
-          </div>
-
-          <div className="flex flex-col space-y-1 text-left">
-            <label className="text-xs md:text-sm font-semibold text-gray-900">Số điện thoại*</label>
-            <input type="tel" name="phone" required value={contactData.phone} onChange={handleInputChange} className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white" />
-          </div>
-
-          <div className="flex flex-col space-y-1 text-left">
-            <label className="text-xs md:text-sm font-semibold text-gray-900">Email*</label>
-            <input type="email" name="email" required value={contactData.email} onChange={handleInputChange} className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white" />
-          </div>
-
-          <div className="flex flex-col space-y-1 text-left">
-            <label className="text-xs md:text-sm font-semibold text-gray-900">Bạn cần CMIC MEDIA tư vấn gì?*</label>
-            <textarea name="consultRequest" required rows={3} value={contactData.consultRequest} onChange={handleInputChange} className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white resize-none" />
-          </div>
-
-          <div className="flex flex-col space-y-1 text-left">
-            <label className="text-xs md:text-sm font-semibold text-gray-900 leading-tight">Vui lòng cung cấp kênh marketing của doanh nghiệp bạn (nếu có)</label>
-            <textarea name="marketingChannels" rows={2} value={contactData.marketingChannels} onChange={handleInputChange} className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white resize-none" />
-          </div>
-
-          <div className="pt-2">
-            <button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-sm md:text-base py-2.5 rounded-xl shadow hover:from-orange-600 hover:to-orange-700 transition-all uppercase tracking-wider">
-              Gửi ngay
-            </button>
-          </div>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );
@@ -250,25 +209,6 @@ function ContactSection({ contactData, handleInputChange, handleFormSubmit }) {
 // COMPONENT CHÍNH ABOUT PAGE
 // ========================================================
 export default function AboutPage() {
-  const [contactData, setContactData] = useState({
-    fullName: '',
-    phone: '',
-    email: '',
-    consultRequest: '',
-    marketingChannels: ''
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setContactData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("Dữ liệu liên hệ gửi đi:", contactData);
-    alert("Gửi thông tin liên hệ thành công!");
-  };
-
   const coreValues = [
     {
       title: "HIỆU QUẢ",
@@ -293,11 +233,7 @@ export default function AboutPage() {
       <BannerSection />
       <AboutStorySection />
       <CoreValuesSection coreValues={coreValues} />
-      <ContactSection
-        contactData={contactData}
-        handleInputChange={handleInputChange}
-        handleFormSubmit={handleFormSubmit}
-      />
+      <ContactSection />
     </div>
   );
 }
