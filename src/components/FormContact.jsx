@@ -38,7 +38,7 @@ export default function ContactForm({ onSubmitSuccess }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full bg-white border-2 border-emerald-900/80 rounded-2xl p-5 md:p-7 shadow-lg flex flex-col space-y-4 text-gray-900"
+      className="w-full bg-white border-2 border-black rounded-2xl p-5 md:p-7 shadow-lg flex flex-col space-y-4 text-gray-900"
     >
       <h2 className="text-xl md:text-2xl font-bold text-gray-950 tracking-tight text-center uppercase pb-1">
         LIÊN HỆ VỚI CHÚNG TÔI

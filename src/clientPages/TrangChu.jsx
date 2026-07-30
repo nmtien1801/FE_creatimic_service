@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ContactForm from '../components/FormContact';
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 
 // ========================================================
 // DESIGN SYSTEM
@@ -528,85 +528,97 @@ function WorkflowSection({ steps }) {
 }
 
 // SESSION 7: FAQS (ĐÃ CẬP NHẬT TÍNH NĂNG ĐÓNG/MỞ)
-function FaqSection({ faqs = FAQS_DATA, bgSession7 }) {
-    // Mặc định mở câu đầu tiên (index = 0)
+function FaqSection({ faqs }) {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
-        <section className="relative w-full py-10 md:py-14 px-4 md:px-20 bg-[#FCFAF8] overflow-hidden font-sans">
-            {/* Ảnh nền Full-width tràn 100% màn hình */}
-            {bgSession7 && (
-                <div
-                    className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
-                    style={{
-                        backgroundImage: `url(${bgSession7})`,
-                        backgroundPosition: 'center center',
-                        backgroundSize: '100% 100%',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
-            )}
+        <section className="relative w-full py-10 md:py-14 px-4 md:px-20 bg-[#FCFAF8]">
+            {/* Background */}
+            <div
+                className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110 overflow-hidden"
+                style={{
+                    backgroundImage: `url(${bgSession7})`,
+                    backgroundPosition: "center center",
+                    backgroundSize: "100% 100%",
+                    backgroundRepeat: "no-repeat",
+                }}
+            />
 
-            <div className="absolute inset-0 grain-soft opacity-60 z-0 pointer-events-none" />
+            <div className="absolute inset-0 grain-soft opacity-60 z-0" />
 
-            <div className="relative z-10 w-full flex flex-col space-y-6 max-w-5xl mx-auto">
-                {/* Header FAQ: Chữ FAQs + Đường kẻ ngang + Chấm tròn */}
+            <div className="relative z-10 flex flex-col space-y-6">
+                {/* Title */}
                 <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
-                    <div className="flex items-center space-x-2 w-full">
-                        <div className="flex items-center gap-3 w-full">
-                            <h2 className="text-xl md:text-2xl font-black text-[#14181F] tracking-tight uppercase shrink-0">
-                                FAQs
-                            </h2>
-                            <div className="h-[1.5px] bg-[#14181F] flex-1 relative">
-                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full border-2 border-[#14181F] bg-white" />
-                            </div>
+                    <div className="flex items-center space-x-2">
+                        <div className="flex flex-col items-center">
+                            <div className="w-1.5 h-1.5 bg-[#14181F] rounded-full" />
+                            <div className="w-[1.5px] h-5 bg-[#14181F]" />
                         </div>
+
+                        <h2 className="text-xl md:text-2xl font-black text-[#14181F] uppercase tracking-tight">
+                            FAQs
+                        </h2>
                     </div>
                 </div>
 
-                {/* Danh sách FAQs đóng/mở */}
-                <div className="w-full flex flex-col space-y-4 text-left">
+                {/* FAQ */}
+                <div className="space-y-4">
                     {faqs.map((faq, index) => {
                         const isOpen = openIndex === index;
-                        const questionText = faq.question || faq.q;
-                        const answerText = faq.answer || faq.a;
-                        const formattedIndex = String(index + 1).padStart(2, "0");
 
                         return (
-                            <div key={index} className="w-full flex flex-col space-y-1.5 border-b border-gray-200/60 pb-3">
-                                {/* Tiêu đề câu hỏi dạng nút click toggle đóng/mở */}
+                            <div
+                                key={index}
+                                className="overflow-hidden rounded-2xl border border-[#14181F]/10 bg-white/80 backdrop-blur shadow-sm transition-all duration-300 hover:shadow-md"
+                            >
+                                {/* Header */}
                                 <button
                                     type="button"
-                                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                                    className="w-full text-left focus:outline-none flex items-start justify-between gap-3 group cursor-pointer"
+                                    onClick={() =>
+                                        setOpenIndex(isOpen ? -1 : index)
+                                    }
+                                    className="group flex w-full items-center justify-between gap-4 p-4 text-left transition-all duration-300 hover:bg-[#FFF7EE]"
                                 >
-                                    <h3 className="text-base md:text-lg font-extrabold text-[#14181F] flex items-start gap-2.5 leading-snug group-hover:text-[#F2680C] transition-colors">
-                                        {/* Icon mũi tên tam giác đen chuẩn thiết kế */}
-                                        <span className="text-black text-sm mt-0.5 shrink-0 select-none">
-                                            ➤
-                                        </span>
-                                        <span className="pt-0.5">
-                                            {formattedIndex}. {questionText}
-                                        </span>
-                                    </h3>
+                                    <div className="flex items-start gap-3">
+                                        <IconBadge tone="amber" size="sm">
+                                            <HelpIcon className="w-3.5 h-3.5" />
+                                        </IconBadge>
 
-                                    {/* Chevron indicator xoay khi mở/đóng */}
-                                    <span
-                                        className="shrink-0 mt-1.5 text-[#14181F] transition-transform duration-200"
-                                        style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
-                                    >
-                                        <ChevronRight className="w-5 h-5" />
-                                    </span>
+                                        <h3
+                                            className={`text-base md:text-lg font-extrabold leading-snug transition-colors duration-300 ${
+                                                isOpen
+                                                    ? "text-[#C96F1E]"
+                                                    : "text-[#14181F]"
+                                            } group-hover:text-[#C96F1E]`}
+                                        >
+                                            {faq.question}
+                                        </h3>
+                                    </div>
+
+                                    <ChevronDown
+                                        size={22}
+                                        className={`flex-shrink-0 text-[#C96F1E] transition-all duration-300 ${
+                                            isOpen ? "rotate-180" : ""
+                                        }`}
+                                    />
                                 </button>
 
-                                {/* Nội dung câu trả lời hiển thị khi isOpen = true */}
-                                {isOpen && (
-                                    <div className="pl-6 md:pl-7 pt-1">
-                                        <div className="text-[#4B5160] text-xs md:text-sm leading-relaxed whitespace-pre-line">
-                                            {answerText}
+                                {/* Content */}
+                                <div
+                                    className={`grid transition-all duration-500 ease-in-out ${
+                                        isOpen
+                                            ? "grid-rows-[1fr] opacity-100"
+                                            : "grid-rows-[0fr] opacity-0"
+                                    }`}
+                                >
+                                    <div className="overflow-hidden">
+                                        <div className="px-16 pb-5">
+                                            <p className="text-sm leading-7 text-[#4B5160]">
+                                                {faq.answer}
+                                            </p>
                                         </div>
                                     </div>
-                                )}
+                                </div>
                             </div>
                         );
                     })}
@@ -615,7 +627,6 @@ function FaqSection({ faqs = FAQS_DATA, bgSession7 }) {
         </section>
     );
 }
-
 // ========================================================
 // MAIN COMPONENT
 // ========================================================
