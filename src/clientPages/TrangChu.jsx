@@ -248,7 +248,7 @@ const FAQS_DATA = [
 // SESSION 1: HERO
 function HeroSection() {
     return (
-        <section className="relative w-full overflow-hidden py-8 md:py-12 px-4 md:px-10">
+        <section className="relative w-full overflow-hidden py-8 md:py-12 px-10 md:px-30">
             {/* Ảnh nền Full-width tràn 100% màn hình */}
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none z-0"
@@ -315,7 +315,7 @@ function HeroSection() {
 // COMBINED SESSION 2 & 3: PROBLEMS + STRATEGY
 function ProblemsAndStrategySection({ problems }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-10">
+        <section className="relative w-full overflow-hidden py-10 md:py-14 px-10 md:px-30">
             {/* Khối nội dung chính */}
             <div className="relative z-10 w-full flex flex-col space-y-12">
 
@@ -421,7 +421,7 @@ function ProblemsAndStrategySection({ problems }) {
 // SESSION 4: SERVICES
 function ServicesSection({ services }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-16 px-4 md:px-10">
+        <section className="relative w-full overflow-hidden py-10 md:py-16 px-10 md:px-30">
             <div className="relative z-10 w-full flex flex-col space-y-10 md:space-y-12">
                 {/* Tiêu đề chính của Section */}
                 <h2 className="text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase border-l-4 border-[#C96F1E] pl-3">
@@ -474,14 +474,16 @@ function ServicesSection({ services }) {
 // SESSION 5: FORM (Tái sử dụng ContactForm)
 function ConsultationFormSection() {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-10 bg-gradient-to-b from-white to-[#FDF0DF]/60">
+        <section className="relative w-full overflow-hidden py-10 md:py-14 px-10 md:px-30 bg-gradient-to-b from-white to-[#FDF0DF]/60">
             <Ambient tone="amber" />
             <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-5 text-left space-y-3">
+                <div className="lg:col-span-6 text-left space-y-3">
                     <h2 className="text-2xl md:text-3xl font-black text-[#14181F] tracking-tight uppercase leading-snug">Sẵn sàng tăng bứt phá doanh số cùng CMIC MEDIA?</h2>
                     <p className="text-[#4B5160] text-xs md:text-sm leading-relaxed">Để lại thông tin nhận tư vấn miễn phí, đội ngũ chuyên gia của chúng tôi sẽ chủ động liên hệ khảo sát và đưa ra lộ trình phù hợp nhất cho doanh nghiệp của bạn.</p>
                 </div>
-                <div className="lg:col-span-7 w-full">
+                 <div className="lg:col-span-1 text-left space-y-3">
+                </div>
+                <div className="lg:col-span-5 w-full">
                     {/* Tái sử dụng component ContactForm ở đây */}
                     <ContactForm />
                 </div>
@@ -493,7 +495,7 @@ function ConsultationFormSection() {
 // SESSION 6: WORKFLOW
 function WorkflowSection({ steps }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-20 bg-[#FBF9F6]">
+        <section className="relative w-full overflow-hidden py-10 md:py-14 px-10 md:px-30 bg-[#FBF9F6]">
             <div className="absolute inset-0 flow-lines opacity-50 z-0" />
             <Ambient tone="teal" />
             <div className="relative z-10 w-full flex flex-col space-y-6">
@@ -532,7 +534,7 @@ function FaqSection({ faqs }) {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
-        <section className="relative w-full py-10 md:py-14 px-4 md:px-20 bg-[#FCFAF8]">
+        <section className="relative w-full py-10 md:py-14 px-10 md:px-30 bg-[#FCFAF8]">
             {/* Background */}
             <div
                 className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110 overflow-hidden"
@@ -585,11 +587,10 @@ function FaqSection({ faqs }) {
                                         </IconBadge>
 
                                         <h3
-                                            className={`text-base md:text-lg font-extrabold leading-snug transition-colors duration-300 ${
-                                                isOpen
-                                                    ? "text-[#C96F1E]"
-                                                    : "text-[#14181F]"
-                                            } group-hover:text-[#C96F1E]`}
+                                            className={`text-base md:text-lg font-extrabold leading-snug transition-colors duration-300 ${isOpen
+                                                ? "text-[#C96F1E]"
+                                                : "text-[#14181F]"
+                                                } group-hover:text-[#C96F1E]`}
                                         >
                                             {faq.question}
                                         </h3>
@@ -597,19 +598,17 @@ function FaqSection({ faqs }) {
 
                                     <ChevronDown
                                         size={22}
-                                        className={`flex-shrink-0 text-[#C96F1E] transition-all duration-300 ${
-                                            isOpen ? "rotate-180" : ""
-                                        }`}
+                                        className={`flex-shrink-0 text-[#C96F1E] transition-all duration-300 ${isOpen ? "rotate-180" : ""
+                                            }`}
                                     />
                                 </button>
 
                                 {/* Content */}
                                 <div
-                                    className={`grid transition-all duration-500 ease-in-out ${
-                                        isOpen
-                                            ? "grid-rows-[1fr] opacity-100"
-                                            : "grid-rows-[0fr] opacity-0"
-                                    }`}
+                                    className={`grid transition-all duration-500 ease-in-out ${isOpen
+                                        ? "grid-rows-[1fr] opacity-100"
+                                        : "grid-rows-[0fr] opacity-0"
+                                        }`}
                                 >
                                     <div className="overflow-hidden">
                                         <div className="px-16 pb-5">

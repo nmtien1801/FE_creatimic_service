@@ -35,7 +35,7 @@ function BannerSection() {
 // ========================================================
 function AboutStorySection() {
   return (
-    <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 md:px-8 bg-white">
+    <section className="relative w-full overflow-hidden py-10 md:py-14 px-10 md:px-30 bg-white">
       <img
         src={bgImageUrl}
         alt="Background Blur"

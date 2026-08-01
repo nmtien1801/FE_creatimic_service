@@ -1,269 +1,459 @@
-import React, { useState } from "react";
-import { XCircle, CheckCircle2, Check } from "lucide-react";
+import React from "react";
+import { Phone } from "lucide-react";
+import ContactForm from '../../../components/FormContact';
 
-export default function CmicMarketingPartnerPage() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        company: "",
-        problem: ""
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert("CMIC Media đã nhận yêu cầu tư vấn 1:1 của bạn!");
-        setFormData({ name: "", email: "", company: "", problem: "" });
-    };
-
+/* ================= SECTION 1: HERO BANNER ================= */
+function HeroBanner() {
     return (
-        <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-x-hidden font-sans scroll-smooth relative">
-
-            {/* ================= SECTION 1: HERO SECTION & FORM ================= */}
-            <section className="max-w-6xl mx-auto px-6 pt-24 pb-20 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    
-                    {/* Cột trái: Giới thiệu */}
-                    <div className="space-y-6 text-left lg:sticky lg:top-24">
-                        <div className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-[#ed792f]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#ed792f]" />
-                            In-house Marketing Partner
-                        </div>
-                        <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 leading-tight tracking-tight uppercase">
-                            Dịch Vụ "In-House Marketing Partner" –<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ed792f] to-[#ff8e42]">Phòng Marketing Thuê Ngoài Toàn Diện Cho SME</span>
-                        </h1>
-                        <div className="space-y-4 pt-2">
-                            <p className="text-neutral-500 font-medium text-sm sm:text-base leading-relaxed text-justify">
-                                Phá bỏ mô hình thuê freelancer chắp vá hay agency ngắn hạn chỉ biết đốt tiền chạy ads. <span className="text-neutral-900 font-semibold">CMIC MEDIA</span> mang đến gói giải pháp tổng thể:
-                            </p>
-                            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed text-justify font-normal">
-                                Thay bạn xây dựng chiến lược, thiết lập toàn bộ tài sản số, sản xuất nội dung đa kênh, cài đặt hệ thống đo lường dữ liệu và ứng dụng AI tự động hóa vận hành. Chúng tôi làm việc như một phòng marketing nội bộ thực chiến, cam kết đồng hành lâu dài cùng mục tiêu doanh thu của doanh nghiệp.
-                            </p>
-                        </div>
+        <div
+            className="relative w-full px-6 py-10 px-10 md:px-30"
+            style={{
+                background: "linear-gradient(100deg, #626567 0%, #ffffff 32%, #fbe2cf 68%, #f0904f 100%)"
+            }}
+        >
+            <div className="relative flex flex-col md:flex-row items-center justify-end min-h-[400px]">
+                {/* LEFT: Image Container */}
+                <div className="w-full md:w-[46%] mb-8 md:mb-0 relative md:absolute md:left-0 md:top-65 md:-translate-y-1/2 z-10">
+                    <div className="relative w-full aspect-[16/10] overflow-hidden shadow-2xl">
+                        <img
+                            src="/trongoi.marketing/img1.png"
+                            alt="Handshake illustration"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
-
-                    {/* Cột phải: Form Đăng ký tối giản cao cấp */}
-                    <div id="form-tu-van" className="bg-white border border-neutral-200/60 p-6 sm:p-8 rounded-xl shadow-sm">
-                        <div className="flex items-center justify-between mb-6 border-b border-neutral-100 pb-4">
-                            <h3 className="text-base font-bold tracking-wide text-neutral-900 uppercase">
-                                ĐĂNG KÝ NHẬN TƯ VẤN
-                            </h3>
-                        </div>
-                        <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm font-medium">
-                            <div>
-                                <label className="block font-bold text-neutral-700 uppercase tracking-wide mb-1">Họ và tên</label>
-                                <input type="text" name="name" required value={formData.name} onChange={handleInputChange} placeholder="Nhập họ và tên" className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-neutral-50" />
-                            </div>
-                            <div>
-                                <label className="block font-bold text-neutral-700 uppercase tracking-wide mb-1">Email</label>
-                                <input type="email" name="email" required value={formData.email} onChange={handleInputChange} placeholder="Nhập email" className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-neutral-50" />
-                            </div>
-                            <div>
-                                <label className="block font-bold text-neutral-700 uppercase tracking-wide mb-1">Tên doanh nghiệp</label>
-                                <input type="text" name="company" required value={formData.company} onChange={handleInputChange} placeholder="Nhập tên doanh nghiệp" className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-neutral-50" />
-                            </div>
-                            <div>
-                                <label className="block font-bold text-neutral-700 uppercase tracking-wide mb-1">Vấn đề doanh nghiệp bạn đang gặp phải</label>
-                                <textarea rows="3" name="problem" value={formData.problem} onChange={handleInputChange} placeholder="Mô tả chi tiết vấn đề..." className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#ed792f] transition-shadow bg-neutral-50 leading-relaxed" />
-                            </div>
-                            <button type="submit" className="w-full bg-[#ed792f] text-white font-semibold py-3 rounded-lg hover:bg-neutral-950 transition-all duration-300 uppercase tracking-wider text-xs shadow-sm mt-2">
-                                Gửi yêu cầu nhận tư vấn
-                            </button>
-                        </form>
-                    </div>
-
                 </div>
-            </section>
 
+                {/* RIGHT: Content Container */}
+                <div className="w-full md:w-[50%] z-10">
+                    <div>
+                        <div className="relative py-5">
+                            {/* TIÊU ĐỀ CHÍNH - Chữ to, đè lấp lên khối trắng */}
+                            <h1 className="relative z-10 text-black font-bold uppercase tracking-tighter leading-none text-3xl sm:text-4xl md:text-6xl">
+                                ĐỐI TÁC CHIẾN LƯỢC
+                            </h1>
 
-            {/* ================= SECTION 2: SỰ MẮC KẸT ================= */}
-            <section className="py-24 bg-white border-y border-neutral-200/40 px-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.3s_forwards]">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    
-                    {/* Cột tiêu đề đối xứng trái */}
-                    <div className="space-y-4">
-                        <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Phân tích thị trường</span>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 leading-tight tracking-tight uppercase">
-                            SỰ "MẮC KẸT" CỦA<br />
-                            <span className="text-[#ed792f] block mt-1">CHỦ DOANH NGHIỆP SMES HIỆN TẠI</span>
-                        </h2>
-                        <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed text-justify font-normal pt-2">
-                            Hơn ai hết, chúng tôi thấu hiểu những nỗi bực bội và rào cản lớn mà các chủ doanh nghiệp đang phải gánh chịu khi làm Marketing
+                            {/* KHỐI NỀN TRẮNG RỘNG - Thụt lùi từ mép chữ "TÁC" và kéo dài tràn hẳn ra bên phải */}
+                            <div className="inline-block bg-white -mt-2 md:-mt-5 ml-[10%] sm:ml-[12%] pl-6 sm:pl-8 pr-12 sm:pr-20 pt-6 sm:pt-8 pb-3 sm:pb-4 shadow-sm">
+                                <p className="font-bold uppercase tracking-wider text-black text-2xl md:text-3xl leading-none whitespace-nowrap">
+                                    INHOUSE MARKETING PARTNER
+                                </p>
+                            </div>
+                        </div>
+
+                        <p className="text-neutral-800 text-base sm:text-lg leading-relaxed text-justify">
+                            Thay thế mô hình thuê freelancer chắp vá hay agency làm theo dự án
+                            ngắn hạn. CMIC MEDIA mang đến gói giải pháp tổng thể: cùng bạn xây
+                            dựng chiến lược phát triển trên toàn bộ tài sản số, sản xuất nội
+                            dung đa kênh, triển khai chiến dịch, đo lường dữ liệu và tối ưu vận
+                            hành. Chúng tôi cam kết đồng hành lâu dài cùng mục tiêu kinh doanh
+                            của doanh nghiệp.
                         </p>
-                        <div className="w-12 h-[2px] bg-[#ed792f]" />
-                    </div>
 
-                    {/* Cột danh sách lỗi căn chỉnh lề bên phải */}
-                    <div className="space-y-6">
-                        <div className="divide-y divide-neutral-100">
-                            {[
-                                { title: "Thuê Agency đại trà:", text: "Họ chỉ tập trung vào việc chạy ads, cam kết các chỉ số ảo (reaction, spam inbox). Khi bạn dừng chi tiền quảng cáo, dòng khách hàng lập tức sụt giảm về con số 0. Bạn không sở hữu bất kỳ một tài sản bền vững nào." },
-                                { title: "Thuê Đội ngũ Freelancer tự do:", text: "Chi phí có thể rẻ ban đầu nhưng họ làm việc thiếu quy trình bài bản, không có tư duy chiến lược tổng thể bám sát mục tiêu kinh doanh, không có đội ngũ back-up và chỉ làm theo từng task riêng lẻ." },
-                                { title: "Tự xây dựng phòng Marketing In-house:", text: "Chi phí lương thưởng cho một bộ máy đầy đủ vị trí (Trưởng phòng, Copywriter, Designer, Kỹ thuật Web, Chạy Ads...) là cực kỳ đắt đỏ, vượt quá nguồn lực của một SME. Thêm vào đó là bài toán khó khăn trong khâu tuyển dụng và quản trị nhân sự chuyên môn." }
-                            ].map((item, idx) => (
-                                <div key={idx} className="py-4 first:pt-0 last:pb-0 flex items-start gap-3 group">
-                                    <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed text-justify">
-                                        <strong className="text-neutral-900 font-medium block mb-1 group-hover:text-[#ed792f] transition-colors">{item.title}</strong> {item.text}
-                                    </p>
-                                </div>
-                            ))}
+                        {/* NÚT ĐĂNG KÝ NẰM CHÍNH GIỮA CỘT 2 */}
+                        <div className="flex justify-center mt-8 relative md:absolute md:right-1/7 md:top-1/1 md:-translate-y-1/2 z-10">
+                            <button
+                                type="button"
+                                className="group inline-flex items-center gap-3 rounded-full pl-7 pr-2 py-2.5 font-extrabold text-white shadow-xl transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                style={{ background: "linear-gradient(90deg, #f0904f 0%, #e8752b 100%)" }}
+                            >
+                                <span className="tracking-wide text-sm sm:text-base uppercase">
+                                    Đăng ký nhận tư vấn
+                                </span>
+                                <span
+                                    className="flex items-center justify-center rounded-full p-2.5"
+                                    style={{ background: "rgba(0,0,0,0.15)" }}
+                                >
+                                    <Phone size={18} strokeWidth={2.5} className="text-black fill-black" />
+                                </span>
+                            </button>
                         </div>
                     </div>
-
                 </div>
-            </section>
+            </div>
+        </div>
+    );
+}
 
+/* ================= SECTION 2: PROBLEM & CONTACT FORM ================= */
+function ProblemAndContact() {
+    return (
+        <div className="w-full px-10 md:px-30 py-12 md:py-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* LEFT COLUMN: Problem points (7 cols) */}
+                <div className="lg:col-span-7 space-y-6 text-neutral-800 text-base sm:text-lg leading-relaxed">
+                    <p>
+                        Trong giai đoạn thị trường cạnh tranh gay gắt, để bứt phá doanh thu, mỗi doanh nghiệp SME đều cần một hệ thống Marketing vận hành đồng bộ và chuẩn chỉnh.
+                    </p>
 
-            {/* ================= SECTION 3: GIẢI PHÁP CMIC MEDIA ================= */}
-            <section className="py-24 max-w-6xl mx-auto px-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
-                <div className="mb-16 space-y-3 max-w-3xl">
-                    <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Mô hình giải quyết</span>
-                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
-                        CMIC MEDIA GIẢI QUYẾT KHOẢNG TRỐNG THỊ TRƯỜNG NHƯ THẾ NÀO?
+                    <p className="text-lg font-normal">
+                        Tuy nhiên, <strong className="font-bold text-black">việc triển khai Marketing tổng thể đòi hỏi rất nhiều <span className="text-red-600 font-bold">tài nguyên</span>:</strong>
+                    </p>
+
+                    {/* Item 1 */}
+                    <div className="space-y-2 pt-2">
+                        <div className="inline-block bg-[#fcd8c1] text-red-600 font-bold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            01. Tối ưu chi phí & nguồn lực
+                        </div>
+                        <p className="text-neutral-700">
+                            Cần giải pháp vừa đáp ứng đầy đủ các vị trí chuyên môn (Chiến lược, Content, Design, Web, Ads, Data), vừa đảm bảo ngân sách tối ưu và linh hoạt cho doanh nghiệp.
+                        </p>
+                    </div>
+
+                    {/* Item 2 */}
+                    <div className="space-y-2 pt-2">
+                        <div className="inline-block bg-[#fcd8c1] text-red-600 font-bold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            02. Xây dựng tài sản số bền vững
+                        </div>
+                        <p className="text-neutral-700">
+                            Không chỉ tập trung vào ngắn hạn, doanh nghiệp cần sở hữu hệ thống kênh, dữ liệu khách hàng và quy trình vận hành riêng biệt để phát triển dài hạn.
+                        </p>
+                    </div>
+
+                    {/* Item 3 */}
+                    <div className="space-y-2 pt-2">
+                        <div className="inline-block bg-[#fcd8c1] text-red-600 font-bold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            03. Đo lường chính xác & Tự động hóa
+                        </div>
+                        <p className="text-neutral-700">
+                            Cần các công cụ quản trị dữ liệu minh bạch để theo dõi hiệu quả kinh doanh thực tế, tối ưu chi phí vận hành.
+                        </p>
+                    </div>
+                </div>
+
+                {/* RIGHT COLUMN: Contact Form (5 cols) */}
+                <div className="lg:col-span-5 border-2 border-[#1c3f39] rounded-2xl p-6 sm:p-8 bg-white shadow-sm">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-neutral-900 mb-6 tracking-tight">
+                        LIÊN HỆ VỚI CHÚNG TÔI
                     </h2>
-                    <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed text-justify">
-                        Chúng tôi chọn một lối đi hoàn toàn khác biệt: Xây dựng năng lực marketing dài hạn và có khả năng chuyển giao cho khách hàng. Gói dịch vụ trọn gói của CMIC MEDIA là sự kết hợp hoàn hảo giữa 3 vai trò trong 1 gói chi phí duy nhất:
+
+                    <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
+                                Họ và tên*
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
+                                Số điện thoại*
+                            </label>
+                            <input
+                                type="tel"
+                                required
+                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
+                                Email*
+                            </label>
+                            <input
+                                type="email"
+                                required
+                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
+                                Bạn cần CMIC MEDIA tư vấn gì?*
+                            </label>
+                            <textarea
+                                rows={3}
+                                required
+                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all resize-none"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
+                                Vui lòng cung cấp kênh marketing của doanh nghiệp bạn (nếu có)
+                            </label>
+                            <textarea
+                                rows={3}
+                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all resize-none"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full py-3 mt-2 bg-[#e8752b] hover:bg-[#d6641e] text-white font-extrabold text-base rounded-full uppercase tracking-wider transition-colors shadow-md active:scale-[0.99]"
+                        >
+                            GỬI NGAY
+                        </button>
+
+                        <p className="text-[11px] text-center text-neutral-500 pt-1">
+                            Your Canva profile name will be shared. Never submit passwords.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            {/* BOTTOM BANNER / CONCLUSION BOX */}
+            <div className="mt-10 bg-[#fbd0b4] border border-[#d6641e] p-4 sm:p-5 text-center rounded-sm">
+                <p className="font-extrabold text-neutral-900 text-base sm:text-lg md:text-xl leading-snug">
+                    CMIC MEDIA ra đời để mang đến giải pháp trọn gói, giải quyết trọn vẹn những bài toán này cho doanh nghiệp của bạn.
+                </p>
+            </div>
+        </div>
+    );
+}
+
+/* ================= SECTION 3: MÔ HÌNH ALL-IN-ONE ================= */
+function AllInOneModel() {
+    return (
+        <div className="w-fullpx-10 md:px-30 py-12 md:py-16">
+            {/* Header Section 3 */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-12">
+                <div className="md:col-span-6 flex justify-center">
+                    <img
+                        src="/trongoi.marketing/img2.png"
+                        alt="Biểu đồ năng lực"
+                        className="w-full max-w-[420px] h-auto object-contain"
+                    />
+                </div>
+
+                <div className="md:col-span-6 space-y-3">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight uppercase leading-tight">
+                        CHÚNG TÔI MANG ĐẾN MÔ HÌNH
+                    </h2>
+                    <p className="text-xl sm:text-2xl font-extrabold text-[#e8752b]">
+                        All-in-One Marketing Partner
+                    </p>
+                    <p className="text-neutral-700 text-base sm:text-lg leading-relaxed pt-2">
+                        Tích hợp 4 năng lực cốt lõi trong một gói dịch vụ duy nhất, giúp doanh nghiệp vận hành marketing hiệu quả, chuyên nghiệp và tự chủ lâu dài:
+                    </p>
+                </div>
+            </div>
+
+            {/* Main Content Grid: 4 Năng lực cốt lõi */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                {/* Left Side: Mục 01, 02 */}
+                <div className="md:col-span-6 space-y-8">
+                    <div className="space-y-2">
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            01. Cố vấn chiến lược & Phễu chuyển đổi
+                        </div>
+                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                            Định hình chiến lược marketing gắn liền với mô hình kinh doanh. Thiết kế phễu bán hàng và hành trình trải nghiệm khách hàng tối ưu nhất cho từng ngành hàng.
+                        </p>
+                    </div>
+
+                    <div className="space-y-2">
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            02. Đội ngũ thực thi chuyên nghiệp
+                        </div>
+                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                            Trực tiếp triển khai trọn gói mọi hoạt động hàng ngày: Viết bài, thiết kế hình ảnh, sản xuất video ngắn, tối ưu SEO/Website, chạy quảng cáo và quản trị hệ thống kênh đa nền tảng.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Right Side: Ảnh ghép Business (img2) */}
+                <div className="md:col-span-6 flex justify-center">
+                    <div className="relative w-full max-w-[420px] aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-neutral-200">
+                        <img
+                            src="/trongoi.marketing/img3.png"
+                            alt="Business Handshake keyboard"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+
+                {/* Left Side Bottom: Biểu đồ hình quạt / bánh (img3) */}
+                <div className="md:col-span-6 flex justify-center order-2 md:order-1 pt-6 md:pt-0">
+                    <img
+                        src="/trongoi.marketing/img4.png"
+                        alt="Mô hình bánh đà Marketing"
+                        className="w-full max-w-[380px] h-auto object-contain"
+                    />
+                </div>
+
+                {/* Right Side Bottom: Mục 03, 04 */}
+                <div className="md:col-span-6 space-y-8 order-1 md:order-2">
+                    <div className="space-y-2">
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            03. Ứng dụng công nghệ & Tự động hóa
+                        </div>
+                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                            Xây dựng hệ thống Dashboard đo lường chỉ số kinh doanh real-time và ứng dụng AI Agent (n8n) để tự động hóa quy trình vận hành, tối ưu hóa năng suất làm việc.
+                        </p>
+                    </div>
+
+                    <div className="space-y-2">
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                            04. Đào tạo - Phát triển đội ngũ inhouse
+                        </div>
+                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                            Đồng hành cùng doanh nghiệp tuyển dụng, phỏng vấn, trực tiếp đào tạo kỹ năng chuyên môn và chuyển giao trọn bộ quy trình chuẩn (SOP) giúp đội ngũ nội bộ nhanh chóng làm chủ và tự vận hành hệ thống marketing lâu dài.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ================= SECTION 4: LỘ TRÌNH ĐỒNG HÀNH TOÀN DIỆN ================= */
+function Roadmap() {
+    return (
+        <div
+            className="w-full py-16 px-10 md:px-30"
+            style={{
+                background: "linear-gradient(180deg, #fff2e8 0%, #fcd7be 40%, #f0904f 100%)"
+            }}
+        >
+            <div className="w-full space-y-8">
+                {/* Header Section 4 */}
+                <div className="text-center space-y-2">
+                    <h2 className="text-xl md:text-2xl font-extrabold text-neutral-900 tracking-tight uppercase">
+                        Lộ trình đồng hành toàn diện
+                    </h2>
+                    <p className="text-xl sm:text-2xl font-extrabold text-[#e85d04] uppercase tracking-wide">
+                        3 Giai đoạn
                     </p>
                 </div>
 
-                {/* Lưới 3 cột mở rộng tinh gọn phân tách bằng border t */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {[
-                        { step: "01", title: "Chuyên gia cố vấn chiến lược (Consulting)", desc: "Định hình chiến lược marketing dựa trên mô hình kinh doanh, quy hoạch phễu chuyển đổi, thiết kế hành trình khách hàng chuẩn chỉnh." },
-                        { step: "02", title: "Đội ngũ thực thi chuyên nghiệp (Executive)", desc: "Trực tiếp nhúng tay vào làm việc hằng ngày: Viết bài, thiết kế hình ảnh, sản xuất, edit video, tối ưu website, quản trị hạ tầng số." },
-                        { step: "03", title: "Kỹ sư công nghệ tự động hóa (Tech Dev)", desc: "Triển khai cài đặt các dashboard đo lường chỉ số thực và ứng dụng AI Agent (n8n) để tinh gọn bộ máy vận hành." }
-                    ].map((item, idx) => (
-                        <div key={idx} className="space-y-4 border-t border-neutral-200/60 pt-6 group">
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-xs font-mono font-bold text-neutral-400 group-hover:text-[#ed792f] transition-colors">{item.step} /</span>
-                                <h3 className="text-base font-bold text-neutral-900 uppercase tracking-wide">
-                                    {item.title}
-                                </h3>
-                            </div>
-                            <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed font-normal text-justify">
-                                {item.desc}
-                            </p>
+                {/* GIAI ĐOẠN 1 */}
+                <div className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
+                    <div className="flex flex-col md:flex-row items-stretch">
+                        {/* CỘT ẢNH: Chiều rộng tự động (w-auto) ôm khít viền ảnh, không thừa 2 bên */}
+                        <div className="w-full md:w-auto md:max-w-[35%] shrink-0 flex items-center justify-center bg-[#fde2d1]">
+                            <img
+                                src="/trongoi.marketing/img5.png"
+                                alt="Giai đoạn 1: Chuẩn hoá hạ tầng"
+                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl m-2"
+                            />
                         </div>
-                    ))}
-                </div>
-            </section>
 
-
-            {/* ================= SECTION 4: LỘ TRÌNH 3 GIAI ĐOẠN ================= */}
-            <section className="py-24 bg-white border-t border-neutral-200/40 px-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards]">
-                <div className="max-w-4xl mx-auto">
-                    <div className="mb-16 space-y-2">
-                        <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Quy trình đồng hành</span>
-                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
-                            LỘ TRÌNH ĐỒNG HÀNH TOÀN DIỆN 3 GIAI ĐOẠN CỦA CMIC MEDIA
-                        </h2>
-                        <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed pt-1">
-                            Chúng tôi triển khai công việc theo lộ trình rõ ràng, có kế hoạch chia nhỏ theo từng tuần/tháng để chủ doanh nghiệp dễ dàng kiểm soát tiến độ
-                        </p>
-                        <div className="w-12 h-[2px] bg-[#ed792f] pt-1" />
-                    </div>
-
-                    {/* Danh sách các giai đoạn dọc tinh tế */}
-                    <div className="space-y-12">
-                        
-                        {/* GIAI ĐOẠN 1 */}
-                        <div className="space-y-4 group">
-                            <h3 className="text-base sm:text-lg font-bold text-neutral-900 border-l-2 border-[#ed792f] pl-3 uppercase">
-                                Giai đoạn 1: Chuẩn hóa hạ tầng &amp; Khởi tạo tài sản số
+                        {/* CỘT NỘI DUNG: flex-1 tự động tràn vào áp sát mép ảnh */}
+                        <div className="flex-1 p-6 md:p-8 space-y-4">
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900 leading-snug">
+                                Giai đoạn 1: Chuẩn hoá hạ tầng & Khởi tạo tài sản số
                             </h3>
-                            <div className="space-y-3 pl-4 font-normal text-xs sm:text-sm text-neutral-500">
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Audit tổng thể:</strong> Rà soát lại toàn bộ thực trạng các kênh marketing hiện tại, phân tích đối thủ cạnh tranh sát sườn.</p></div>
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Setup nền tảng:</strong> Thiết kế/tối ưu lại Website/Landing Page chuẩn chuyển đổi, cấu hình hệ thống Social đồng bộ nhận diện.</p></div>
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Thiết lập Tracking:</strong> Xây dựng dashboard báo cáo chỉ số trung gian công khai để đo lường chính xác nguồn khách.</p></div>
-                            </div>
-                        </div>
 
-                        {/* GIAI ĐOẠN 2 */}
-                        <div className="space-y-4 group">
-                            <h3 className="text-base sm:text-lg font-bold text-neutral-900 border-l-2 border-[#ed792f] pl-3 uppercase">
-                                Giai đoạn 2: Vận hành đa kênh &amp; Kích hoạt phễu chuyển đổi
-                            </h3>
-                            <div className="space-y-3 pl-4 font-normal text-xs sm:text-sm text-neutral-500">
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Sản xuất nội dung đồng bộ:</strong> Viết bài blog chuẩn SEO, chăm sóc Fanpage hằng tuần, sản xuất video TikTok/Reels/YouTube kéo traffic tự nhiên.</p></div>
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Vận hành Funnel &amp; CRM:</strong> Kích hoạt phễu thu lead bằng tài liệu miễn phí, cấu hình Email Marketing tự động nuôi dưỡng và làm ấm lead.</p></div>
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Họp tối ưu hằng tuần:</strong> Đọc chỉ số báo cáo định kỳ hằng tuần cùng chủ doanh nghiệp, điều chỉnh ngân sách dựa trên dữ liệu thực tế mang về.</p></div>
-                            </div>
-                        </div>
-
-                        {/* GIAI ĐOẠN 3 */}
-                        <div className="space-y-4 group">
-                            <h3 className="text-base sm:text-lg font-bold text-neutral-900 border-l-2 border-[#ed792f] pl-3 uppercase">
-                                Giai đoạn 3: Tự động hóa vận hành và Chuyển giao quy trình
-                            </h3>
-                            <div className="space-y-3 pl-4 font-normal text-xs sm:text-sm text-neutral-500">
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Tích hợp AI Agent n8n:</strong> Xây dựng kịch bản tự động hóa các khâu nhập liệu data, thông báo đơn hàng, báo cáo để giải phóng sức lao động.</p></div>
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Đóng gói bộ quy trình (SOP):</strong> Viết tài liệu hướng dẫn công việc chi tiết cho từng hạng mục marketing đã triển khai thành công.</p></div>
-                                <div className="flex items-start gap-2.5"><CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /><p className="text-justify"><strong className="text-neutral-900 font-medium">Đào tạo &amp; Chuyển giao:</strong> Hỗ trợ tuyển dụng nhân sự in-house và đào tạo, chuyển giao hệ thống quy trình lại cho doanh nghiệp tự chủ vận hành.</p></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            {/* ================= SECTION 5: CAM KẾT VÀNG & CTA ================= */}
-            <section className="py-24 bg-[#faf8f6] border-t border-neutral-200/40 px-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]">
-                <div className="max-w-6xl mx-auto">
-                    <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-                        <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Giá trị cốt lõi</span>
-                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
-                            CAM KẾT VÀNG TỪ CMIC MEDIA
-                        </h2>
-                        <div className="w-12 h-[2px] bg-[#ed792f] mx-auto mt-2" />
-                    </div>
-
-                    {/* Lưới 3 cột mở cho cam kết vàng */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
-                        {[
-                            { title: "NÓI KHÔNG VỚI CHỈ SỐ ẢO", text: "Chúng tôi không báo cáo lượt reach, lượt like vô nghĩa. CMIC MEDIA báo cáo số lượng Lead thực tế, tỷ lệ chuyển đổi và ROI dòng tiền rõ ràng." },
-                            { title: "MINH BẠCH 100% TÀI NGUYÊN", text: "Toàn bộ mật khẩu hệ thống, mã nguồn website, tài khoản tracking, file thiết kế gốc Figma... đều thuộc quyền sở hữu vĩnh viễn của bạn. Chúng tôi tuyệt đối không giữ tài nguyên để ràng buộc khách hàng." },
-                            { title: "TINH GỌN VÀ TRÁCH NHIỆM", text: "Làm việc sâu sát như những người cộng sự nội bộ của công ty bạn, thấu hiểu sản phẩm và đồng cam cộng khổ cùng mục tiêu tăng trưởng của doanh nghiệp." }
-                        ].map((item, idx) => (
-                            <div key={idx} className="space-y-4 border-t border-neutral-200/60 pt-5 group flex flex-col justify-between">
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-2">
-                                        <Check className="w-4 h-4 text-green-500 shrink-0" strokeWidth={3} />
-                                        <h3 className="text-base font-bold text-neutral-900 group-hover:text-[#ed792f] transition-colors uppercase tracking-wide">
-                                            {item.title}
-                                        </h3>
+                            <ul className="space-y-3 text-neutral-900 text-sm sm:text-base leading-relaxed">
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Audit tổng thể:</strong> Rà soát lại toàn bộ thực trạng các kênh marketing hiện tại, nghiên cứu thị trường và phân tích đối thủ cạnh tranh.
                                     </div>
-                                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed font-normal text-justify">
-                                        {item.text}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Nút đăng ký nhận tư vấn cuối trang dạng Minimal Link */}
-                    <div className="pt-6 border-t border-neutral-200/40 flex justify-center">
-                        <a href="#form-tu-van" className="bg-[#ed792f] text-white font-medium text-xs px-8 py-3 rounded-lg hover:bg-neutral-950 transition-all duration-300 shadow-sm uppercase tracking-wider">
-                            Đăng ký nhận tư vấn ngay
-                        </a>
+                                </li>
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Setup nền tảng:</strong> Thiết kế/tối ưu Website/Landing Page chuẩn chuyển đổi; thiết lập và đồng bộ nhận diện thương hiệu trên các kênh Social (Facebook, TikTok, YouTube...).
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Thiết lập Tracking:</strong> Cấu hình hệ thống đo lường dữ liệu và khởi tạo Dashboard báo cáo công khai để quản trị chỉ số hiệu quả.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-            {/* CSS Animation Keyframes */}
-            <style>{`
-                @keyframes fadeInUp {
-                    from { opacity: 0; transform: translateY(12px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-            `}</style>
+                {/* GIAI ĐOẠN 2 */}
+                <div className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
+                    <div className="flex flex-col md:flex-row items-stretch">
+                        <div className="w-full md:w-auto md:max-w-[35%] shrink-0 flex items-center justify-center bg-[#fde2d1]">
+                            <img
+                                src="/trongoi.marketing/img6.png"
+                                alt="Giai đoạn 2: Vận hành đa kênh"
+                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl m-2"
+                            />
+                        </div>
 
+                        <div className="flex-1 p-6 md:p-8 space-y-4">
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900 leading-snug">
+                                Giai đoạn 2: Vận hành đa kênh & Tối ưu phễu chuyển đổi
+                            </h3>
+
+                            <ul className="space-y-3 text-neutral-900 text-sm sm:text-base leading-relaxed">
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Sản xuất nội dung đồng bộ:</strong> Triển khai bài viết chuẩn SEO, chăm sóc kênh Social hàng tuần, sản xuất chuỗi video ngắn thu hút traffic tự nhiên.
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Vận hành Funnel & CRM:</strong> Kích hoạt phễu thu thập lead, xây dựng kịch bản Email Marketing/Automation tự động nuôi dưỡng và chăm sóc khách hàng tiềm năng.
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Tối ưu hóa liên tục:</strong> Định kỳ đọc báo cáo dữ liệu hàng tuần cùng chủ doanh nghiệp để điều chỉnh chiến lược và tối ưu ngân sách dựa trên hiệu quả thực tế.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {/* GIAI ĐOẠN 3 */}
+                <div className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
+                    <div className="flex flex-col md:flex-row items-stretch">
+                        <div className="w-full md:w-auto md:max-w-[35%] shrink-0 flex items-center justify-center bg-[#fde2d1]">
+                            <img
+                                src="/trongoi.marketing/img7.png"
+                                alt="Giai đoạn 3: Tự động hóa vận hành"
+                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl m-2"
+                            />
+                        </div>
+
+                        <div className="flex-1 p-6 md:p-8 space-y-4">
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900 leading-snug">
+                                Giai đoạn 3: Tự động hóa vận hành & Chuyển giao hệ thống
+                            </h3>
+
+                            <ul className="space-y-3 text-neutral-800 text-sm sm:text-base leading-relaxed">
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Tích hợp AI Agent (n8n):</strong> Tự động hóa các khâu thu thập data, đồng bộ đơn hàng và báo cáo tự động, giúp tối ưu thời gian và chi phí vận hành.
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Đóng gói bộ quy trình (SOP):</strong> Chuẩn hóa toàn bộ tài liệu hướng dẫn quy trình vận hành marketing đã kiểm chứng thành công.
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-2.5">
+                                    <span className="text-black font-bold text-lg leading-none mt-1">•</span>
+                                    <div>
+                                        <strong className="font-bold text-black">Đào tạo & Chuyển giao:</strong> Hỗ trợ phỏng vấn, đào tạo nhân sự và chuyển giao toàn bộ quy trình cùng hệ thống tài sản số để doanh nghiệp chủ động vận hành lâu dài.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ================= MAIN COMPONENT ================= */
+export default function MarketingLandingPage() {
+    return (
+        <div className="w-full bg-white text-neutral-800 font-sans">
+            <HeroBanner />
+            <ProblemAndContact />
+            <AllInOneModel />
+            <Roadmap />
         </div>
     );
 }

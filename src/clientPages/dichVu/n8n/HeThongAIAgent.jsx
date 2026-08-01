@@ -82,51 +82,6 @@ function HeroSection() {
                             </a>
                         </div>
                     </div>
-
-                    {/* Right Column: Glassmorphic Floating AI Card */}
-                    <div className="lg:col-span-5 relative">
-                        <div className="relative p-6 rounded-2xl bg-slate-900/80 border border-white/15 backdrop-blur-xl shadow-2xl space-y-4">
-                            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                                <div className="flex items-center gap-2.5">
-                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#F2680C] to-amber-400 flex items-center justify-center shadow-md">
-                                        <Zap size={20} className="text-white fill-white" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-white text-sm">CMIC AI Agent</h4>
-                                        <p className="text-[11px] text-emerald-400 flex items-center gap-1 font-medium">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                                            Active System 24/7
-                                        </p>
-                                    </div>
-                                </div>
-                                <span className="text-[10px] font-mono font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
-                                    v2.4
-                                </span>
-                            </div>
-
-                            <div className="space-y-2 text-xs">
-                                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                                    <span className="text-slate-300">Đồng bộ CRM Lead</span>
-                                    <span className="font-semibold text-emerald-400">Tự động 1s</span>
-                                </div>
-
-                                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                                    <span className="text-slate-300">Phản hồi khách ban đêm</span>
-                                    <span className="font-semibold text-cyan-400">100% Instant</span>
-                                </div>
-
-                                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                                    <span className="text-slate-300">Báo cáo ROI Realtime</span>
-                                    <span className="font-semibold text-purple-400">Gửi Telegram/Zalo</span>
-                                </div>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-gradient-to-r from-[#F2680C]/20 to-transparent border border-[#F2680C]/30 flex items-center justify-between">
-                                <span className="text-xs font-semibold text-white">Cắt giảm chi phí nhân sự</span>
-                                <span className="text-base font-extrabold text-[#F2680C]">~ 80%</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -581,7 +536,7 @@ const WORKFLOW_STEPS = [
 
 function WorkflowSection() {
     return (
-        <section className="py-16 md:py-20 bg-white border-t border-slate-100">
+        <section className="pb-16 md:pb-20 bg-white border-t border-slate-100">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
                 <h2 className="text-xl md:text-2xl font-bold uppercase text-left text-[#14181F] tracking-tight">
                     QUY TRÌNH HỢP TÁC
