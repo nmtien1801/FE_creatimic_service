@@ -176,51 +176,135 @@ function PentagonSolutionSection({ circularSteps, bgImageUrl }) {
 }
 
 function TimelineFlowSection({ workflowSteps }) {
-    return (
-        /* Đã xóa class `bg-white` ở section để nền trong suốt */
-        <section className="relative py-16 md:py-24 px-6 max-w-7xl mx-auto z-10">
+    const stagesWithRightTimeline = ["01", "03"];
 
-            <div className="text-center mb-14 md:mb-16 space-y-2 relative z-10">
+    return (
+        <section className="relative py-16 md:py-24 px-6 max-w-7xl mx-auto z-10">
+            <div className="text-center mb-12 space-y-2 relative z-10">
                 <span className="text-xs font-bold tracking-widest text-orange-600 uppercase block">— LUỒNG PHÁT TRIỂN DỰ ÁN —</span>
                 <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight uppercase">Quy Trình 5 Bước Vận Hành</h2>
             </div>
 
-            <div className="relative w-full z-10">
-                <div className="absolute left-6 md:left-1/2 top-2 bottom-2 w-0 border-l-2 border-dashed border-slate-200 -translate-x-1/2" />
+            <div className="relative w-full z-10 flex flex-col gap-4 md:gap-8">
+                {workflowSteps.map((step, idx) => {
+                    const stageNum = step.num || `0${idx + 1}`;
+                    const showRightTimeline = stagesWithRightTimeline.includes(stageNum);
+                    const isStage3 = idx === 2; // Kiểm tra nếu là Stage 3
+                    const isStage4 = idx === 3; // Kiểm tra nếu là Stage 4
 
-                <div className="space-y-14 md:space-y-16">
-                    {workflowSteps.map((step, idx) => {
-                        const isLeftColumn = idx % 2 === 0;
+                    // Dynamic Layout theo từng Div
+                    let layoutClass = "";
+                    if (idx === 0 || idx === 2) {
+                        layoutClass = "w-full md:w-[48%] md:mr-auto";
+                    } else if (idx === 1) {
+                        layoutClass = "w-full md:w-[48%] md:ml-[43%]";
+                    } else if (idx === 3) {
+                        layoutClass = "w-full md:w-[80%] md:ml-[10%]";
+                    } else if (idx === 4) {
+                        layoutClass = "w-full";
+                    }
 
-                        return (
-                            <div key={idx} className="relative w-full flex flex-col md:flex-row items-start">
-                                <div className="absolute left-6 md:left-1/2 top-1.5 w-4 h-4 bg-white border-4 border-slate-950 rounded-full z-30 -translate-x-1/2" />
+                    return (
+                        <div key={idx} className="relative w-full flex flex-col md:flex-row items-center">
 
-                                <div className={`w-full md:w-[48%] pl-12 md:pl-0 ${isLeftColumn ? 'md:pr-12 md:text-right md:ml-0' : 'md:pl-12 md:text-left md:ml-auto'} group/timeline`}>
-                                    <div className={`flex items-center gap-2 mb-2 ${isLeftColumn ? 'md:justify-end' : 'justify-start'}`}>
-                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200">
-                                            STAGE {step.num}
-                                        </span>
+                            <div className={`${layoutClass} group/timeline relative flex flex-col text-left`}>
+
+                                {/* --- BỐ CỤC STAGE 4 (CĂN TOP NỘI DUNG) --- */}
+                                {isStage4 ? (
+                                    /* items-start: Giúp nội dung căn từ Top thay vì ở giữa */
+                                    <div className="w-full flex flex-col md:flex-row items-start gap-6 md:gap-12 relative">
+
+                                        {/* 1. Ảnh nằm BÊN TRÁI */}
+                                        <div className="w-full md:w-1/2 flex justify-end">
+                                            <div className="relative p-1 overflow-hidden w-full">
+                                                <img
+                                                    src={step.imgUrl || step.image}
+                                                    alt={step.title}
+                                                    className="w-full h-auto max-h-72 object-cover rounded-xl block"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* 2. Đường SỌC NẾT ĐỨT NẰM GIỮA */}
+                                        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-0 border-r-2 border-dashed border-slate-900 pointer-events-none">
+                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-3 border-slate-950 rounded-full z-20" />
+                                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 bg-white border-3 border-slate-950 rounded-full z-20" />
+                                        </div>
+
+                                        {/* 3. Nội dung (Title & Desc) nằm BÊN PHẢI (bắt đầu từ Top) */}
+                                        <div className="w-full md:w-1/2 flex flex-col justify-start pl-0 md:pl-6 pt-1">
+                                            <h3 className="text-lg md:text-2xl font-black text-slate-950 tracking-tight mb-3 uppercase group-hover/timeline:text-orange-600 transition-colors">
+                                                {stageNum}. {step.title}
+                                            </h3>
+                                            <p className="text-slate-700 text-sm md:text-base font-normal leading-relaxed">
+                                                {step.desc}
+                                            </p>
+                                        </div>
+
                                     </div>
-                                    <h3 className="text-base md:text-lg font-black text-slate-950 tracking-tight mb-2 uppercase group-hover/timeline:text-orange-600 transition-colors">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-slate-500 text-sm font-normal leading-relaxed mb-4 max-w-lg inline-block">
-                                        {step.desc}
-                                    </p>
+                                ) : isStage3 ? (
+                                    /* --- BỐ CỤC STAGE 3 (ẢNH TRÊN - VIỀN CHỈ BẰNG ẢNH - CONTENT DƯỚI) --- */
+                                    <>
+                                        {/* Container riêng cho Ảnh + Viền Timeline */}
+                                        <div className="relative w-full flex justify-start mb-4">
+                                            <img
+                                                src={step.imgUrl || step.image}
+                                                alt={step.title}
+                                                className="max-w-full h-auto max-h-60 object-contain block"
+                                            />
 
-                                    <div className={`w-full flex ${isLeftColumn ? 'justify-start md:justify-end' : 'justify-start'} py-1`}>
-                                        <img
-                                            src={step.imgUrl || step.image}
-                                            alt={step.title}
-                                            className="max-w-full h-auto max-h-60 object-contain"
-                                        />
-                                    </div>
-                                </div>
+                                            {/* SỌC BÊN PHẢI - Giờ chỉ cao bằng đúng phần chứa ảnh này */}
+                                            {showRightTimeline && (
+                                                <div className="hidden md:block absolute -right-6 top-0 bottom-0 w-0 border-r-2 border-dashed border-slate-300 pointer-events-none">
+                                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-3 border-slate-950 rounded-full z-20" />
+                                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 bg-white border-3 border-slate-950 rounded-full z-20" />
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Title & Content (Nằm hoàn toàn bên dưới và ngoài phạm vi viền) */}
+                                        <h3 className="text-base md:text-lg font-black text-slate-950 tracking-tight mb-2 uppercase group-hover/timeline:text-orange-600 transition-colors">
+                                             {stageNum}. {step.title}
+                                        </h3>
+                                        <p className="text-slate-500 text-sm font-normal leading-relaxed">
+                                            {step.desc}
+                                        </p>
+                                    </>
+                                ) : (
+                                    /* --- BỐ CỤC MẶC ĐỊNH (01, 02, 05) --- */
+                                    <>
+                                        {/* Title & Desc */}
+                                        <h3 className="text-base md:text-lg font-black text-slate-950 tracking-tight mb-2 uppercase group-hover/timeline:text-orange-600 transition-colors">
+                                             {stageNum}. {step.title}
+                                        </h3>
+                                        <p className={`text-slate-500 text-sm font-normal leading-relaxed mb-4 `}>
+                                            {step.desc}
+                                        </p>
+
+                                        {/* Image Wrapper */}
+                                        <div className={`w-full flex relative ${idx === 4 ? 'justify-center' : 'justify-start'}`}>
+                                            <img
+                                                src={step.imgUrl || step.image}
+                                                alt={step.title}
+                                                className="max-w-full h-auto max-h-60 object-contain block"
+                                            />
+                                        </div>
+
+                                        {/* SỌC BÊN PHẢI (Stage 01) */}
+                                        {showRightTimeline && (
+                                            <div className="hidden md:block absolute -right-6 top-1 bottom-1 w-0 border-r-2 border-dashed border-slate-300 pointer-events-none">
+                                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-3 border-slate-950 rounded-full z-20" />
+                                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3.5 h-3.5 bg-white border-3 border-slate-950 rounded-full z-20" />
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+
                             </div>
-                        );
-                    })}
-                </div>
+
+                        </div>
+                    );
+                })}
             </div>
         </section>
     );
@@ -317,7 +401,7 @@ export default function WebServicePage() {
         { num: "02", title: "THIẾT KẾ WIREFRAME & UI/UX (VISUAL DESIGN)", desc: "Phác thảo bố cục, lựa chọn màu sắc thương hiệu và thiết kế giao diện chi tiết cho từng màn hình thiết bị (Desktop, Mobile, Tablet).", imgUrl: "/dichvu.tronGoi/img8.png" },
         { num: "03", title: "LẬP TRÌNH & TÍCH HỢP HỆ THỐNG", desc: "Chuyển hóa bản thiết kế thành code, tối ưu tốc độ, cài đặt các công cụ tracking đo lường và bảo mật hệ thống.", imgUrl: "/dichvu.tronGoi/img9.png" },
         { num: "04", title: "KIỂM THỬ & BÀN GIAO", desc: "Chạy thử nghiệm trên đa trình duyệt, sửa lỗi, đào tạo nhân sự của khách hàng quản trị và chính thức nghiệm thu bàn giao.", imgUrl: "/dichvu.tronGoi/img10.png" },
-        { num: "05", title: "GIẢI PHÁP CHĂM SÓC & VẬN HÀNH WEBSITE TOÀN DIỆN", desc: "Bảo trì định kỳ, cập nhật nội dung, theo dõi hiệu năng hệ thống liên tục giúp tối ưu chi phí và tăng trưởng bền vững.", imgUrl: "/dichvu.tronGoi/img11.png" }
+        { num: "05", title: "GIẢI PHÁP CHĂM SÓC & VẬN HÀNH WEBSITE TOÀN DIỆN", desc: "", imgUrl: "/dichvu.tronGoi/img11.png" }
     ];
 
     return (
