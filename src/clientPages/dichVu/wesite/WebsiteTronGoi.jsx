@@ -179,7 +179,7 @@ function TimelineFlowSection({ workflowSteps }) {
     const stagesWithRightTimeline = ["01", "03"];
 
     return (
-        <section className="relative py-16 md:py-24 px-6 max-w-7xl mx-auto z-10">
+        <section className="relative py-16 md:py-24 px-6 max-w-7xl mx-auto z-10 w-full flex flex-col items-center justify-center">
             <div className="text-center mb-12 space-y-2 relative z-10">
                 <span className="text-xs font-bold tracking-widest text-orange-600 uppercase block">— LUỒNG PHÁT TRIỂN DỰ ÁN —</span>
                 <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight uppercase">Quy Trình 5 Bước Vận Hành</h2>
@@ -195,13 +195,13 @@ function TimelineFlowSection({ workflowSteps }) {
                     // Dynamic Layout theo từng Div
                     let layoutClass = "";
                     if (idx === 0 || idx === 2) {
-                        layoutClass = "w-full md:w-[48%] md:mr-auto";
+                        layoutClass = "w-full md:w-[36%] md:ml-[12%]";
                     } else if (idx === 1) {
                         layoutClass = "w-full md:w-[48%] md:ml-[43%]";
                     } else if (idx === 3) {
                         layoutClass = "w-full md:w-[80%] md:ml-[10%]";
                     } else if (idx === 4) {
-                        layoutClass = "w-full";
+                        layoutClass = "w-full px-36";
                     }
 
                     return (
