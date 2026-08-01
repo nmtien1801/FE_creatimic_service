@@ -6,7 +6,7 @@ import ContactForm from '../../../components/FormContact';
 function HeroBanner() {
     return (
         <div
-            className="relative w-full px-6 py-10 px-10 md:px-30"
+            className="relative w-full px-6 py-10 px-10 md:px-35"
             style={{
                 background: "linear-gradient(100deg, #626567 0%, #ffffff 32%, #fbe2cf 68%, #f0904f 100%)"
             }}
@@ -26,19 +26,19 @@ function HeroBanner() {
                 {/* RIGHT: Content Container */}
                 <div className="w-full md:w-[50%] z-10">
                     <div>
-                        <div className="relative py-5">
-                            {/* TIÊU ĐỀ CHÍNH - Chữ to, đè lấp lên khối trắng */}
-                            <h1 className="relative z-10 text-black font-bold uppercase tracking-tighter leading-none text-3xl sm:text-4xl md:text-6xl">
-                                ĐỐI TÁC CHIẾN LƯỢC
-                            </h1>
+                       <div className="relative py-3 sm:py-4 lg:py-5 w-full overflow-hidden">
+    {/* TIÊU ĐỀ CHÍNH - Thu gọn font size vừa vặn với màn Tablet */}
+    <h1 className="relative z-10 text-black font-bold uppercase tracking-tighter leading-none text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
+        ĐỐI TÁC CHIẾN LƯỢC
+    </h1>
 
-                            {/* KHỐI NỀN TRẮNG RỘNG - Thụt lùi từ mép chữ "TÁC" và kéo dài tràn hẳn ra bên phải */}
-                            <div className="inline-block bg-white -mt-2 md:-mt-5 ml-[10%] sm:ml-[12%] pl-6 sm:pl-8 pr-12 sm:pr-20 pt-6 sm:pt-8 pb-3 sm:pb-4 shadow-sm">
-                                <p className="font-bold uppercase tracking-wider text-black text-2xl md:text-3xl leading-none whitespace-nowrap">
-                                    INHOUSE MARKETING PARTNER
-                                </p>
-                            </div>
-                        </div>
+    {/* KHỐI NỀN TRẮNG RỘNG - Xử lý không cho tràn màn hình Tablet */}
+    <div className="inline-block bg-white -mt-2 sm:-mt-3 lg:-mt-5 ml-[5%] sm:ml-[8%] lg:ml-[12%] pl-3 sm:pl-5 lg:pl-8 pr-4 sm:pr-8 lg:pr-20 pt-3 sm:pt-5 lg:pt-8 pb-2 sm:pb-3 lg:pb-4 shadow-sm max-w-[90%]">
+        <p className="font-bold uppercase tracking-wider text-black text-xs sm:text-base md:text-lg lg:text-3xl leading-snug lg:leading-none whitespace-normal sm:whitespace-nowrap">
+            INHOUSE MARKETING PARTNER
+        </p>
+    </div>
+</div>
 
                         <p className="text-neutral-800 text-base sm:text-lg leading-relaxed text-justify">
                             Thay thế mô hình thuê freelancer chắp vá hay agency làm theo dự án
@@ -77,7 +77,7 @@ function HeroBanner() {
 /* ================= SECTION 2: PROBLEM & CONTACT FORM ================= */
 function ProblemAndContact() {
     return (
-        <div className="w-full px-10 md:px-30 py-12 md:py-16">
+        <div className="w-full px-10 md:px-35 py-12 md:py-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* LEFT COLUMN: Problem points (7 cols) */}
                 <div className="lg:col-span-7 space-y-6 text-neutral-800 text-base sm:text-lg leading-relaxed">
@@ -121,77 +121,8 @@ function ProblemAndContact() {
                 </div>
 
                 {/* RIGHT COLUMN: Contact Form (5 cols) */}
-                <div className="lg:col-span-5 border-2 border-[#1c3f39] rounded-2xl p-6 sm:p-8 bg-white shadow-sm">
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-neutral-900 mb-6 tracking-tight">
-                        LIÊN HỆ VỚI CHÚNG TÔI
-                    </h2>
-
-                    <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-                        <div>
-                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
-                                Họ và tên*
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
-                                Số điện thoại*
-                            </label>
-                            <input
-                                type="tel"
-                                required
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
-                                Email*
-                            </label>
-                            <input
-                                type="email"
-                                required
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
-                                Bạn cần CMIC MEDIA tư vấn gì?*
-                            </label>
-                            <textarea
-                                rows={3}
-                                required
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all resize-none"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-semibold text-neutral-800 mb-1">
-                                Vui lòng cung cấp kênh marketing của doanh nghiệp bạn (nếu có)
-                            </label>
-                            <textarea
-                                rows={3}
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8752b] transition-all resize-none"
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="w-full py-3 mt-2 bg-[#e8752b] hover:bg-[#d6641e] text-white font-extrabold text-base rounded-full uppercase tracking-wider transition-colors shadow-md active:scale-[0.99]"
-                        >
-                            GỬI NGAY
-                        </button>
-
-                        <p className="text-[11px] text-center text-neutral-500 pt-1">
-                            Your Canva profile name will be shared. Never submit passwords.
-                        </p>
-                    </form>
+                <div className="lg:col-span-5">
+                    <ContactForm />
                 </div>
             </div>
 
@@ -208,7 +139,7 @@ function ProblemAndContact() {
 /* ================= SECTION 3: MÔ HÌNH ALL-IN-ONE ================= */
 function AllInOneModel() {
     return (
-        <div className="w-fullpx-10 md:px-30 py-12 md:py-16">
+        <div className="w-full px-10 md:px-35 py-12 md:py-16">
             {/* Header Section 3 */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-12">
                 <div className="md:col-span-6 flex justify-center">
@@ -304,7 +235,7 @@ function AllInOneModel() {
 function Roadmap() {
     return (
         <div
-            className="w-full py-16 px-10 md:px-30"
+            className="w-full py-16 px-10 md:px-35"
             style={{
                 background: "linear-gradient(180deg, #fff2e8 0%, #fcd7be 40%, #f0904f 100%)"
             }}
@@ -328,7 +259,7 @@ function Roadmap() {
                             <img
                                 src="/trongoi.marketing/img5.png"
                                 alt="Giai đoạn 1: Chuẩn hoá hạ tầng"
-                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl m-2"
+                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl p-2"
                             />
                         </div>
 
@@ -369,7 +300,7 @@ function Roadmap() {
                             <img
                                 src="/trongoi.marketing/img6.png"
                                 alt="Giai đoạn 2: Vận hành đa kênh"
-                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl m-2"
+                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl p-2"
                             />
                         </div>
 
@@ -409,7 +340,7 @@ function Roadmap() {
                             <img
                                 src="/trongoi.marketing/img7.png"
                                 alt="Giai đoạn 3: Tự động hóa vận hành"
-                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl m-2"
+                                className="w-full h-full object-contain max-h-[300px] md:max-h-[360px] rounded-l-2xl p-2"
                             />
                         </div>
 
