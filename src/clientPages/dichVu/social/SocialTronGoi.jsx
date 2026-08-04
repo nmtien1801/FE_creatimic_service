@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { XCircle } from "lucide-react";
+import { Phone, XCircle } from "lucide-react";
+import ContactForm from "../../../components/FormContact";
 
 function useScrollReveal() {
     const [isRevealed, setIsRevealed] = useState(false);
@@ -28,249 +29,444 @@ function useScrollReveal() {
     return [elementRef, isRevealed];
 }
 
-export default function CmicContentCarePage() {
-    const [heroRef, heroRevealed] = useScrollReveal();
-    const [probTitleRef, probTitleRevealed] = useScrollReveal();
-    const [probContentRef, probRevealed] = useScrollReveal();
-    const [valRef, valRevealed] = useScrollReveal();
-    const [sec1Ref, sec1Revealed] = useScrollReveal();
-    const [sec2Ref, sec2Revealed] = useScrollReveal();
-    const [sec3Ref, sec3Revealed] = useScrollReveal();
-    const [sec4Ref, sec4Revealed] = useScrollReveal();
-
+// ================= HERO SECTION (ĐÃ GỘP CONTACT KHÔNG VIỀN/NỀN) =================
+function HeroSection() {
     return (
-        <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-x-hidden font-sans scroll-smooth relative">
-            
-            {/* ================= SECTION 1: HERO SECTION & PREMIUM VIDEO ================= */}
-            <section id="hero-top" className="max-w-6xl mx-auto px-6 pt-24 pb-20 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div className="lg:col-span-7 space-y-6 text-left">
-                        <div className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-[#ed792f]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#ed792f]" />
-                            Dịch vụ chăm sóc
-                        </div>
-                        <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 leading-tight tracking-tight uppercase">
-                            DỊCH VỤ CHĂM SÓC<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ed792f] to-[#ff8e42]">HỆ SINH THÁI NỘI DUNG ĐA KÊNH THỰC CHIẾN</span>
-                        </h1>
-                        <p className="text-neutral-500 leading-relaxed text-sm sm:text-base text-justify">
-                            Đăng bài ngẫu hứng là cách nhanh nhất để triệt tiêu hiệu quả truyền thông. CMIC MEDIA đồng hành cùng bạn xây dựng ma trận nội dung đồng bộ, giáo dục thị trường và biến các kênh mạng xã hội thành phễu thu hút Lead chất lượng cao với chi phí tối ưu nhất.
-                        </p>
-                        <div className="pt-2">
-                            <a href="#register-bottom" className="inline-flex items-center bg-[#ed792f] text-white font-medium text-xs px-6 py-3 rounded-lg hover:bg-neutral-950 transition-all duration-300 shadow-sm uppercase tracking-wider">
-                                Đăng ký nhận tư vấn
-                            </a>
-                        </div>
-                    </div>
+        <section id="hero-top" className="relative max-w-5xl mx-auto px-6 pt-20 pb-16 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+            <div
+                className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+                style={{
+                    backgroundImage: `url('/social/bg1.png')`,
+                    backgroundPosition: 'center center',
+                    backgroundSize: '100% 100%',
+                    backgroundRepeat: 'no-repeat'
+                }}
+            />
 
-                    {/* Khung Video Premium cân bằng bên phải */}
-                    <div className="lg:col-span-5 w-full animate-[float_5s_ease-in-out_infinite_0.2s]">
-                        <div className="relative w-full aspect-video bg-neutral-100 rounded-xl overflow-hidden border border-neutral-200/60 shadow-sm">
-                            <iframe
-                                className="w-full h-full object-cover"
-                                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                                title="CMIC Media Content Introduction Video"
-                                allowFullScreen
-                            ></iframe>
-                        </div>
+            <div className="relative z-10 flex flex-col items-center text-center space-y-12">
+                {/* Tiêu đề căn giữa */}
+                <h1 className="text-xl sm:text-2xl md:text-[40px] font-extrabold text-neutral-900 leading-snug tracking-tight uppercase">
+                    DỊCH VỤ CHĂM SÓC HỆ SINH THÁI NỘI DUNG<br />
+                    <span className="text-[#ed792f] block mt-1">ĐA KÊNH THỰC CHIẾN CHO SME</span>
+                </h1>
+
+                {/* Khung Video Premium căn giữa */}
+                <div className="w-full max-w-4xl animate-[float_5s_ease-in-out_infinite_0.2s]">
+                    <div className="relative w-full aspect-video bg-neutral-100 rounded-xl overflow-hidden border border-neutral-200/60 shadow-lg">
+                        <iframe
+                            className="w-full h-full object-cover"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                            title="CMIC Media Content Introduction Video"
+                            allowFullScreen
+                        ></iframe>
                     </div>
                 </div>
-            </section>
 
+                {/* Đoạn mô tả */}
+                <p className="text-neutral-700 leading-relaxed text-base sm:text-lg max-w-4xl mx-auto text-center font-medium">
+                    Đăng bài ngẫu hứng là cách nhanh nhất để triệt tiêu hiệu quả truyền thông. CMIC MEDIA đồng hành cùng bạn xây dựng ma trận nội dung đồng bộ, giáo dục thị trường và biến các kênh mạng xã hội thành phễu thu hút lead chất lượng cao với chi phí tối ưu nhất.
+                </p>
 
-            {/* ================= SECTION 2: THỰC TRẠNG GẶP PHẢI ================= */}
-            <section className="py-24 bg-white border-y border-neutral-200/40 px-6">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    
-                    {/* Cột tiêu đề đối xứng bên trái có gắn hiệu ứng cuộn chuột xuất hiện */}
-                    <div 
-                        ref={probTitleRef}
-                        className={`space-y-4 transition-all duration-1000 ease-out transform ${
-                            probTitleRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                        }`}
-                    >
-                        <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Nhận diện vấn đề</span>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 leading-tight tracking-tight uppercase">
-                            THỰC TRẠNG GẶP PHẢI –<br />
-                            <span className="text-[#ed792f] block mt-1">BẠN CÓ ĐANG LÀM SOCIAL THEO BẢN NĂNG?</span>
-                        </h2>
-                        <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed text-justify font-normal pt-2">
-                            Nhiều chủ doanh nghiệp và cá nhân kinh doanh đang tốn rất nhiều thời gian tự mày mò quản lý mạng xã hội nhưng nhận lại kết quả lẹt đẹt:
-                        </p>
-                        <div className="w-12 h-[2px] bg-[#ed792f]" />
+                {/* Phần Form đăng ký */}
+                <div id="register-bottom" className="w-full max-w-2xl mx-auto space-y-6 pt-4">
+                    <div className="w-full">
+                        <ContactForm />
                     </div>
+                </div>
 
-                    {/* Cột danh sách lỗi căn chỉnh ngay ngắn bên phải */}
-                    <div 
-                        ref={probContentRef}
-                        className={`space-y-6 transition-all duration-1000 ease-out delay-150 transform ${
-                            probRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                        }`}
-                    >
-                        <div className="relative w-full aspect-video bg-neutral-100 rounded-xl overflow-hidden border border-neutral-200/60 shadow-sm mb-4">
-                            <img 
-                                src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600&auto=format&fit=crop" 
-                                alt="Social Media Instinct Problem Illustration" 
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                        <div className="divide-y divide-neutral-100">
-                            {[
-                                "Bài đăng thưa thớt, không theo một lộ trình hay tuyến nội dung (Content Pillar) rõ ràng.",
-                                "Hình ảnh, video tự thiết kế bằng AI bị mờ, không đúng yêu cầu, không đáp ứng bộ nhận diện thương hiệu làm giảm uy tín doanh nghiệp.",
-                                "Chỉ tập trung vào bài viết bán hàng trực diện khiến người theo dõi nhàm chán và bấm hủy tương tác.",
-                                "Không biết cách làm video marketing, chỉ quay rồi đăng lên hoặc viết bài ngẫu hứng, không có chiến lược chuyển đổi trên mạng xã hội."
-                            ].map((text, idx) => (
-                                <div key={idx} className="py-4 first:pt-0 last:pb-0 flex items-start gap-3">
-                                    <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                                    <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed text-justify">
-                                        {text}
-                                    </p>
+            </div>
+        </section>
+    );
+}
+
+// ================= BRAND MARQUEE & PAIN POINTS SECTION =================
+function BrandMarqueeSection() {
+    const icons = [
+        { src: "/facebook.png", alt: "Facebook" },
+        { src: "/tiktok.png", alt: "Tiktok" },
+        { src: "/YouTube.png", alt: "Youtube" },
+        { src: "/instagram.jpg", alt: "Instagram" },
+        { src: "/linkedin.png", alt: "LinkedIn" },
+    ];
+
+    return (
+        <section className="py-16 bg-[#faf8f6] overflow-hidden border-y border-neutral-200/40">
+            <div className="max-w-6xl mx-auto px-6 space-y-16">
+                {/* Phần Marquee icon mạng xã hội */}
+                <div className="max-w-4xl mx-auto text-center space-y-8">
+                    <p className="text-neutral-800 text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                        Nhiều chủ doanh nghiệp và cá nhân kinh doanh đang tốn rất nhiều thời gian tự mày mò quản lý mạng xã hội...
+                    </p>
+
+                    <div className="relative w-full overflow-hidden flex">
+                        <div className="flex w-max animate-[marquee_25s_linear_infinite] items-center gap-16 sm:gap-24">
+                            {[...icons, ...icons, ...icons].map((item, index) => (
+                                <div key={index} className="flex items-center justify-center shrink-0">
+                                    <img
+                                        src={item.src}
+                                        alt={item.alt}
+                                        className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-sm"
+                                    />
                                 </div>
                             ))}
                         </div>
                     </div>
-
                 </div>
-            </section>
 
+                {/* Phần: NHƯNG NHẬN LẠI KẾT QUẢ LẸT ĐẸT */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-10">
+                    <div className="lg:col-span-7 space-y-8">
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight uppercase">
+                            NHƯNG NHẬN LẠI KẾT QUẢ <span className="text-red-600">LẸT ĐẸT</span>
+                        </h2>
 
-            {/* ================= SECTION 3: GIẢI PHÁP TRỌN GÓI ================= */}
-            <section 
-                ref={valRef}
-                className={`py-24 max-w-6xl mx-auto px-6 transition-all duration-[1000ms] ease-out transform ${
-                    valRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
-            >
-                <div className="mb-16 space-y-3">
-                    <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Tư duy chiến lược</span>
-                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
-                        GIẢI PHÁP TRỌN GÓI TỪ CMIC MEDIA
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="shrink-0 mt-1">
+                                    <XCircle className="w-8 h-8 text-red-600 fill-red-50" />
+                                </div>
+                                <p className="text-neutral-700 text-base sm:text-lg leading-relaxed font-normal">
+                                    Bài đăng thưa thớt, không theo một lộ trình hay tuyến nội dung rõ ràng để đạt mục tiêu kinh doanh.
+                                </p>
+                            </div>
+
+                            <div className="flex items-start gap-4">
+                                <div className="shrink-0 mt-1">
+                                    <XCircle className="w-8 h-8 text-red-600 fill-red-50" />
+                                </div>
+                                <p className="text-neutral-700 text-base sm:text-lg leading-relaxed font-normal">
+                                    Hình ảnh tự thiết kế bằng công cụ miễn phí bị mờ, không đúng kích thước chuẩn, bố cục lộn xộn làm giảm uy tín thương hiệu.
+                                </p>
+                            </div>
+
+                            <div className="flex items-start gap-4">
+                                <div className="shrink-0 mt-1">
+                                    <XCircle className="w-8 h-8 text-red-600 fill-red-50" />
+                                </div>
+                                <p className="text-neutral-700 text-base sm:text-lg leading-relaxed font-normal">
+                                    Chỉ tập trung vào bài viết bán hàng trực diện khiến người theo dõi nhàm chán và bấm hủy tương tác.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-5 flex justify-center">
+                        <div className="w-full max-w-md">
+                            <img
+                                src="/social/img1.png"
+                                alt="Kết quả lẹt đẹt khi tự làm nội dung"
+                                className="w-full h-auto object-contain drop-shadow-xl"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ================= SOLUTION SECTION COMPONENT (SECTION 4) =================
+function SolutionSection() {
+    return (
+        <section className="py-14 bg-white overflow-hidden">
+            {/* Thêm max-w-6xl và mx-auto để ảnh nền giới hạn bằng khung nội dung */}
+            <div className="relative max-w-7xl mx-auto px-6 py-8 space-y-8">
+                {/* Ảnh nền có giới hạn chiều rộng */}
+                <div
+                    className="absolute inset-0 pointer-events-none z-0 rounded-2xl"
+                    style={{
+                        backgroundImage: `url('/social/bg3.png')`,
+                        backgroundPosition: 'center center',
+                        backgroundSize: '100% 100%',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                />
+
+                {/* Nội dung bên trong (để nổi lên trên ảnh nền) */}
+                <div className="relative z-10 text-center">
+                    <h2 className="text-xl sm:text-2xl font-extrabold text-neutral-900 uppercase tracking-tight">
+                        GIẢI PHÁP TRỌN GÓI TỪ <span className="text-[#ed792f]">CMIC MEDIA</span>
                     </h2>
-                    <p className="text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed text-justify max-w-3xl">
-                        Chúng tôi tiếp cận hệ sinh thái mạng xã hội bằng tư duy chiến lược dài hạn, tập trung vào việc gọi đúng vấn đề - tạo dựng niềm tin - dẫn dắt nhu cầu - chuyển đổi.
+                </div>
+
+                <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+                    <div className="flex flex-col space-y-4 text-center md:text-left">
+                        <h3 className="text-xl font-bold text-neutral-900 min-h-[56px] flex items-center justify-center md:justify-start">
+                            Thiết kế nhận diện thương hiệu
+                        </h3>
+                        <p className="text-neutral-600 text-base leading-relaxed">
+                            Không chỉ dừng lại ở logo, đây là hệ thống quy chuẩn toàn diện từ màu sắc, phông chữ đến ấn phẩm truyền thông, giúp thương hiệu luôn nổi bật, chuyên nghiệp và khắc sâu vào tâm trí khách hàng.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col space-y-4 text-center md:text-left">
+                        <h3 className="text-xl font-bold text-[#ed792f] min-h-[56px] flex items-center justify-center md:justify-start">
+                            Nội dung đa dạng hoá
+                        </h3>
+                        <p className="text-neutral-600 text-base leading-relaxed">
+                            Kết hợp linh hoạt giữa bài viết nhận diện, phân tích chuyên sâu, hình ảnh graphic trực quan, video ngắn, video dài và tài liệu đi kèm giá trị.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col space-y-4 text-center md:text-left">
+                        <h3 className="text-xl font-bold text-neutral-900 min-h-[56px] flex items-center justify-center md:justify-start">
+                            Tối ưu theo dữ liệu
+                        </h3>
+                        <p className="text-neutral-600 text-base leading-relaxed">
+                            Chuyển hóa các chỉ số marketing thực tế thành hành động cải tiến cụ thể. Bằng cách phân tích sâu hành vi và hiệu suất, chúng tôi tinh chỉnh chiến dịch liên tục nhằm thúc đẩy chuyển đổi và tối đa hóa mục tiêu kinh doanh của doanh nghiệp.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ================= SERVICES SECTION (SECTION 5 - CÁC GÓI DỊCH VỤ) =================
+function ServicesSection() {
+    const servicesTop = [
+        {
+            title: 'CHĂM SÓC FANPAGE',
+            description: 'Facebook vẫn là chiến trường tạo phễu và giữ chân khách hàng lớn nhất tại Việt Nam. CMIC MEDIA thay doanh nghiệp quản trị Fanpage toàn diện, xây dựng nội dung tương tác thực, chuẩn hóa hình ảnh nhận diện và biến Fanpage thành bộ mặt trực tuyến uy tín hàng đầu của bạn.',
+            icon: '/facebook.png',
+        },
+        {
+            title: 'CHĂM SÓC INSTAGRAM',
+            description: 'Đối với các ngành hàng yêu cầu cao về mặt hình ảnh, phong cách và trải nghiệm thị giác của phân khúc khách hàng hiện đại, Instagram là kênh không thể bỏ qua. CMIC MEDIA giúp doanh nghiệp kiến tạo một trang Instagram nghệ thuật, đồng bộ và cuốn hút.',
+            icon: '/instagram.jpg',
+        },
+        {
+            title: 'CHĂM SÓC YOUTUBE',
+            description: 'Video dài trên YouTube là công cụ mạnh mẽ nhất để xây dựng niềm tin tuyệt đối với khách hàng trước khi họ ra quyết định ký hợp đồng giá trị cao. CMIC MEDIA chịu trách nhiệm chuẩn hóa, tối ưu kỹ thuật SEO và quản trị vận hành kênh YouTube chuyên nghiệp cho doanh nghiệp của bạn.',
+            icon: '/YouTube.png',
+        },
+        {
+            title: 'CHĂM SÓC TIKTOK',
+            description: 'Bạn muốn đầu tư lâu dài cho thương hiệu cá nhân, hay muốn thương hiệu doanh nghiệp nhanh chóng phủ sóng và tiếp cận khách hàng mục tiêu? Kênh TikTok do CMIC MEDIA vận hành không hướng đến những lượt view “nhảm nhí”, chúng tôi tạo ra những video ngắn có chuyển đổi cao.',
+            icon: '/tiktok.png',
+        }
+    ];
+
+    return (
+        <section className="bg-white overflow-hidden relative pb-32">
+            {/* Ảnh nền bg5.png đặt ở bottom của section */}
+            <div
+                className="absolute bottom-20 left-0 right-0 h-64 md:h-200 pointer-events-none z-0"
+                style={{
+                    backgroundImage: `url('/social/bg5.png')`,
+                    backgroundPosition: '80% 100%',
+                    backgroundSize: '100% 100%',
+                    backgroundRepeat: 'no-repeat'
+                }}
+            />
+
+            <div className="max-w-6xl mx-auto px-6 relative z-10">
+
+                <div className="relative flex flex-col items-center mb-20 pt-16">
+                    <div className="bg-[#ed792f] text-white rounded-2xl py-6 px-12 text-center shadow-xl z-10">
+                        <h2 className="text-xl sm:text-2xl font-black uppercase tracking-wider leading-snug">
+                            CÁC GÓI<br />DỊCH VỤ
+                        </h2>
+                    </div>
+                    <div className="w-0 h-0 border-l-[24px] border-l-transparent border-r-[24px] border-r-transparent border-t-[30px] border-t-[#ed792f] -mt-1 z-10"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-24 relative mb-20">
+                    <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 border-l-2 border-dashed border-neutral-300 hidden md:block z-0"></div>
+
+                    {/* 1. Fanpage */}
+                    <div className="flex flex-col md:flex-row-reverse items-center md:items-start text-center md:text-right gap-6 relative z-10">
+                        <div className="shrink-0">
+                            <img src={servicesTop[0].icon} alt="Facebook" className="w-14 h-14 object-contain drop-shadow-sm" />
+                        </div>
+                        <div className="space-y-3">
+                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[0].title}</h3>
+                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[0].description}</p>
+                        </div>
+                    </div>
+
+                    {/* 2. Instagram */}
+                    <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 relative z-10">
+                        <div className="shrink-0">
+                            <img src={servicesTop[1].icon} alt="Instagram" className="w-14 h-14 object-contain drop-shadow-sm" />
+                        </div>
+                        <div className="space-y-3">
+                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[1].title}</h3>
+                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[1].description}</p>
+                        </div>
+                    </div>
+
+                    {/* 3. Youtube */}
+                    <div className="flex flex-col md:flex-row-reverse items-center md:items-start text-center md:text-right gap-6 relative z-10 pt-6">
+                        <div className="shrink-0">
+                            <img src={servicesTop[2].icon} alt="Youtube" className="w-14 h-14 object-contain drop-shadow-sm" />
+                        </div>
+                        <div className="space-y-3">
+                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[2].title}</h3>
+                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[2].description}</p>
+                        </div>
+                    </div>
+
+                    {/* 4. Tiktok */}
+                    <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 relative z-10 pt-6">
+                        <div className="shrink-0">
+                            <img src={servicesTop[3].icon} alt="Tiktok" className="w-14 h-14 object-contain drop-shadow-sm" />
+                        </div>
+                        <div className="space-y-3">
+                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[3].title}</h3>
+                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[3].description}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* LinkedIn */}
+                <div className="relative max-w-2xl mx-auto px-8 text-center space-y-6 z-10">
+                    <div className="flex justify-center">
+                        <div className="shrink-0">
+                            <img src="/linkedin.png" alt="LinkedIn" className="w-14 h-14 object-contain drop-shadow-sm" />
+                        </div>
+                    </div>
+                    <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">CHĂM SÓC LINKEDIN</h3>
+                    <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                        LinkedIn là thánh địa dành riêng cho các mối quan hệ doanh nghiệp với doanh nghiệp (B2B), các chủ doanh nghiệp lớn và đối tác chiến lược. CMIC MEDIA giúp bạn xây dựng trang cá nhân và trang doanh nghiệp trên LinkedIn với các nội dung chuẩn mực, tư duy vĩ mô để mở khóa những cơ hội hợp tác nghìn đô.
                     </p>
                 </div>
 
-                {/* Lưới 3 cột mở phân tách bằng đường kẻ t */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {[
-                        { step: "01", title: "XÂY DỰNG BỘ QUY CHUẨN VISUAL", desc: "Thiết kế khung ảnh, phong cách màu sắc nhất quán cho toàn bộ các kênh, tạo độ nhận diện thương hiệu sâu sắc ngay từ cái nhìn đầu tiên." },
-                        { step: "02", title: "ĐA DẠNG HÓA ĐỊNH DẠNG NỘI DUNG", desc: "Kết hợp linh hoạt giữa bài viết nhận diện, phân tích chuyên sâu, hình ảnh graphic trực quan, video ngắn, video dài và tài liệu đi kèm giá trị." },
-                        { step: "03", title: "QUẢN TRỊ VÀ TỐI ƯU THEO DỮ LIỆU", desc: "Đo lường các chỉ số phản ánh hiệu suất nội dung, khung giờ vàng của tệp khách hàng mục tiêu để liên tục cải tiến chất lượng thành phẩm." }
-                    ].map((item, idx) => (
-                        <div key={idx} className="space-y-4 border-t border-neutral-200/60 pt-6 group">
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-xs font-mono font-bold text-neutral-400 group-hover:text-[#ed792f] transition-colors">{item.step} /</span>
-                                <h3 className="text-base font-bold text-neutral-900 uppercase tracking-wide">
-                                    {item.title}
-                                </h3>
-                            </div>
-                            <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed font-normal text-justify">
-                                {item.desc}
-                            </p>
+            </div>
+        </section>
+    );
+}
+
+// ================= PORTFOLIO & CTA SECTION (SECTION 6) =================
+function PortfolioSection() {
+    // 4 hình ảnh mẫu dự án thực tế trong ảnh 1
+    const portfolioImages = [
+        "/social/img2.png",
+        "/social/img3.png",
+        "/social/img4.png",
+        "/social/img5.png",
+    ];
+
+    return (
+        <section className="py-24 bg-white overflow-hidden">
+            <div className="max-w-6xl mx-auto px-6 space-y-16">
+
+                {/* Lưới hiển thị 4 hình ảnh dự án thực tế */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+                    {portfolioImages.map((imgSrc, index) => (
+                        <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
+                            <img
+                                src={imgSrc}
+                                alt={`Dự án thực tế ${index + 1}`}
+                                className="w-full h-auto object-cover rounded-lg"
+                            />
                         </div>
                     ))}
                 </div>
-            </section>
 
+                {/* Nút CTA: ĐĂNG KÝ NHẬN TƯ VẤN kèm icon điện thoại */}
+                <div className="flex justify-center pt-6">
+                    <a
+                        href="#register-bottom"
+                        className="inline-flex items-center gap-3 bg-[#ed792f] hover:bg-[#d66822] text-white font-bold text-xl sm:text-xl py-4 px-10 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+                    >
+                        <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
+                        <Phone className="w-6 h-6 fill-white" />
+                    </a>
+                </div>
 
-            {/* ================= SECTION 4: CÁC GÓI DỊCH VỤ CHĂM SÓC SOCIAL ================= */}
-            <section className="py-24 bg-white border-t border-neutral-200/40 px-6">
-                <div className="max-w-6xl mx-auto">
-                    <div className="mb-16 space-y-2">
-                        <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Danh mục kênh vận hành</span>
-                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
-                            CÁC GÓI DỊCH VỤ CHĂM SÓC SOCIAL
-                        </h2>
-                        <div className="w-12 h-[2px] bg-[#ed792f] mt-2" />
-                    </div>
+            </div>
+        </section>
+    );
+}
 
-                    {/* Lưới 3 cột dịch vụ đồng đều cân đối */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {[
-                            { channel: "CHĂM SÓC FANPAGE", iconText: "FB", desc: "Facebook vẫn là chiến trường tạo phễu và giữ chân khách hàng lớn nhất tại Việt Nam. CMIC MEDIA thay doanh nghiệp quản trị Fanpage toàn diện, xây dựng nội dung tương tác thực, chuẩn hóa hình ảnh nhận diện và biến Fanpage thành bộ mặt trực tuyến uy tín hàng đầu của bạn." },
-                            { channel: "CHĂM SÓC INSTAGRAM", iconText: "IG", desc: "Đối với các ngành hàng yêu cầu cao về mặt hình ảnh, phong cách và trải nghiệm thị giác của phân khúc khách hàng hiện đại, Instagram là kênh không thể bỏ qua. CMIC MEDIA giúp doanh nghiệp kiến tạo một trang Instagram nghệ thuật, đồng bộ và cuốn hút." },
-                            { channel: "CHĂM SÓC YOUTUBE", iconText: "YT", desc: "Video dài trên YouTube là công cụ mạnh mẽ nhất để xây dựng niềm tin tuyệt đối với khách hàng trước khi họ ra quyết định ký hợp đồng giá trị cao. CMIC MEDIA chịu trách nhiệm chuẩn hóa, tối ưu kỹ thuật SEO và quản trị vận hành kênh YouTube chuyên nghiệp cho doanh nghiệp của bạn." },
-                            { channel: "CHĂM SÓC TIKTOK", iconText: "TT", desc: "Bạn muốn xây dựng thương hiệu cá nhân thành một chuyên gia trong ngành, hay muốn thương hiệu doanh nghiệp tiếp cận với đúng tệp khách hàng? Kênh TikTok do CMIC MEDIA vận hành không hướng đến những lượt view 'nhảm nhí', chúng tôi hỗ trợ bạn tạo ra những video ngắn bám sát định hướng kinh doanh." },
-                            { channel: "CHĂM SÓC LINKEDIN", iconText: "LN", desc: "LinkedIn là thánh địa dành riêng cho các mối quan hệ doanh nghiệp với doanh nghiệp (B2B), các chủ doanh nghiệp lớn và đối tác chiến lược. CMIC MEDIA giúp bạn xây dựng trang cá nhân và trang doanh nghiệp trên LinkedIn với các nội dung giáo dục chuẩn mực, theo hướng chuyên gia để mở khóa những cơ hội hợp tác nghìn đô." },
-                            { channel: "EMAIL MARKETING", iconText: "EM", desc: "Chi phí để thu hút một khách hàng mới (CAC) ngày càng đắt đỏ. Nếu bạn thu thập dữ liệu khách hàng từ các điểm chạm rồi bỏ quên, bạn đang lãng phí tiền bạc. CMIC MEDIA thiết kế hệ thống Email Marketing tự động hóa hoàn toàn, liên tục tương tác và khai thác tối đa giá trị từ tệp data của bạn." }
-                        ].map((item, idx) => (
-                            <div key={idx} className="space-y-4 border-t border-neutral-200/60 pt-5 flex flex-col justify-between group">
-                                <div className="space-y-3">
-                                    <div className="flex items-center justify-between">
-                                        <h3 className="text-base font-bold text-neutral-900 group-hover:text-[#ed792f] transition-colors uppercase tracking-wide">
-                                            {item.channel}
-                                        </h3>
-                                        <span className="w-7 h-7 rounded-lg bg-neutral-50 border border-neutral-200/60 flex items-center justify-center font-mono font-bold text-[10px] text-neutral-400 group-hover:bg-[#ed792f]/10 group-hover:text-[#ed792f] transition-colors">
-                                            {item.iconText}
-                                        </span>
-                                    </div>
-                                    <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed font-normal text-justify">
-                                        {item.desc}
-                                    </p>
-                                </div>
+// ================= WORKFLOW SECTION (SECTION 7 - QUY TRÌNH HỢP TÁC) =================
+function WorkflowSection() {
+    const steps = [
+        {
+            number: "01",
+            title: "Đăng ký nhận tư vấn",
+            desc: "Điền form thông tin tư vấn"
+        },
+        {
+            number: "02",
+            title: "Tư vấn viên liên hệ trao đổi",
+            desc: "Khảo sát các kênh marketing và xác định điểm nghẽn hiện tại"
+        },
+        {
+            number: "03",
+            title: "Gửi proposal giải pháp",
+            desc: "Bản kế hoạch định hướng và phân bổ ngân sách"
+        },
+        {
+            number: "04",
+            title: "Ký hợp đồng hợp tác",
+            desc: "Cam kết chỉ số và thời hạn hợp tác bằng văn bản pháp lý"
+        },
+        {
+            number: "05",
+            title: "Lập kế hoạch và triển khai",
+            desc: "Nghiên cứu, lập kế hoạch đa kênh và thực thi công việc"
+        },
+        {
+            number: "06",
+            title: "Theo dõi và gửi báo cáo",
+            desc: "Theo dõi đảm bảo tiến độ công việc, gửi báo cáo hàng tháng"
+        }
+    ];
+
+    return (
+        <section className="pb-24 bg-white overflow-hidden">
+            <div className="max-w-5xl mx-auto px-6 space-y-16">
+                {/* Tiêu đề Quy trình hợp tác */}
+                <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 uppercase tracking-tight">
+                        QUY TRÌNH HỢP TÁC
+                    </h2>
+                </div>
+
+                {/* Danh sách các bước dạng timeline */}
+                <div className="relative border-l-2 border-neutral-900 ml-4 md:ml-6 space-y-10 pl-6 md:pl-10">
+                    {steps.map((step, index) => (
+                        <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group">
+
+                            {/* Dấu chấm trên đường timeline */}
+                            <div className="absolute -left-[31px] md:-left-[47px] top-1.5 md:top-1/2 md:-translate-y-1/2 w-4 h-4 bg-white border-4 border-neutral-900 rounded-full"></div>
+
+                            {/* Khối bên trái: Mũi tên cam chứa tiêu đề bước */}
+                            <div className="w-full md:w-5/12 bg-[#ed792f] text-white py-4 px-6 rounded-r-xl shadow-sm relative flex items-center">
+                                <span className="font-bold text-xl sm:text-xl uppercase tracking-wide">
+                                    {step.number}. {step.title}
+                                </span>
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-
-            {/* ================= SECTION 5: MỘT SỐ DỰ ÁN TIÊU BIỂU ================= */}
-            <section className="bg-[#faf8f6] py-24 border-t border-neutral-200/40 px-6">
-                <div className="max-w-6xl mx-auto">
-                    <div className="mb-16 space-y-2">
-                        <span className="text-[11px] font-medium tracking-wider text-[#ed792f] uppercase block">Case studies</span>
-                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 uppercase">
-                            Một số dự án tiêu biểu
-                        </h2>
-                        <p className="text-xs sm:text-sm text-neutral-500 font-normal">Hệ thống ma trận phân phối nội dung đa kênh mang về tăng trưởng vượt bậc</p>
-                    </div>
-
-                    {/* Grid Dự Án đối xứng bo góc mềm mịn */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
-                        {[
-                            { title: "Bài viết định hướng Fanpage & Bài đăng cộng đồng", img: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?q=80&w=500&auto=format&fit=crop" },
-                            { title: "Sản xuất bộ Visual Graphic, Banner truyền thông", img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop" },
-                            { title: "Chuỗi chiến dịch Video ngắn Reels/Tiktok đa nền tảng", img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=500&auto=format&fit=crop" },
-                            { title: "Video tư vấn dài chuyên sâu tích hợp kênh Youtube", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500&auto=format&fit=crop" },
-                            { title: "Dashboard báo cáo hiệu suất nội dung Meta Business", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=crop" }
-                        ].map((project, idx) => (
-                            <div key={idx} className="group rounded-xl overflow-hidden border border-neutral-200/60 shadow-sm bg-white flex flex-col justify-between">
-                                <div className="overflow-hidden aspect-[4/3]">
-                                    <img 
-                                        src={project.img} 
-                                        alt={project.title} 
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                                    />
-                                </div>
-                                <div className="p-4 bg-white">
-                                    <h3 className="font-semibold text-neutral-900 text-xs sm:text-sm group-hover:text-[#ed792f] transition-colors leading-snug">
-                                        {project.title}
-                                    </h3>
-                                </div>
+                            {/* Khối bên phải: Card nội dung mô tả trắng viền cam */}
+                            <div className="w-full md:w-6/12 bg-white border border-[#ed792f] rounded-2xl py-4 px-6 shadow-sm">
+                                <p className="text-neutral-700 text-base font-medium leading-relaxed">
+                                    {step.desc}
+                                </p>
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-            {/* SECTION REGISTRATION BOTTOM BUTTON ONLY (Đã lược bỏ hoàn toàn Footer) */}
-            <section id="register-bottom" className="bg-neutral-950 py-16 text-center px-6">
-                <div className="max-w-4xl mx-auto space-y-6">
-                    <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white">
-                        Sẵn sàng bứt phá doanh thu cùng hệ thống tài sản số?
-                    </h3>
-                    <div className="flex justify-center">
-                        <button className="bg-[#ed792f] hover:bg-[#d66520] text-white text-xs font-medium px-6 py-3 rounded-lg transition-all duration-300 shadow-sm">
-                            Nhận tư vấn chiến lược miễn phí
-                        </button>
-                    </div>
+                        </div>
+                    ))}
                 </div>
-            </section>
 
-            {/* CSS Keyframe Animations */}
+            </div>
+        </section>
+    );
+}
+
+// ================= MAIN PAGE COMPONENT =================
+export default function CmicContentCarePage() {
+    return (
+        <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-x-hidden font-sans scroll-smooth relative">
+            <HeroSection />
+            <BrandMarqueeSection />
+            <SolutionSection />
+            <ServicesSection />
+            <PortfolioSection />
+            <WorkflowSection />
+
             <style>{`
                 @keyframes fadeInUp {
                     from { opacity: 0; transform: translateY(12px); }
@@ -280,8 +476,11 @@ export default function CmicContentCarePage() {
                     0%, 100% { transform: translateY(0); }
                     50% { transform: translateY(-8px); }
                 }
+                @keyframes marquee {
+                    0% { transform: translateX(0%); }
+                    100% { transform: translateX(-33.333%); }
+                }
             `}</style>
-
         </div>
     );
 }
