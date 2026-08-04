@@ -37,7 +37,7 @@ function HeroSection() {
 
             <div className="lg:col-span-7 relative w-full aspect-[16/9] flex items-center justify-center group z-10">
                 <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/15 to-amber-500/5 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-700" />
-                <div className="absolute inset-0 rounded-2xl p-2.5 bg-white border border-slate-200 shadow-xl overflow-hidden z-20 transition-transform duration-500 group-hover:-translate-y-1">
+                <div className="absolute inset-0 rounded-2xl p-2.5 bg-white z-20 transition-transform duration-500 group-hover:-translate-y-1">
                     <div className="w-full h-full rounded-xl bg-slate-950 overflow-hidden relative">
                         <iframe
                             className="w-full h-full absolute inset-0 z-10"

@@ -11,7 +11,7 @@ const WEBSITE_TYPES = [
         description:
             "Khẳng định vị thế chuyên nghiệp, số hóa toàn bộ thông tin năng lực, tầm nhìn, sứ mệnh và dịch vụ của doanh nghiệp để làm việc với các đối tác lớn.",
         image:
-            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
+            "/dichvu.DichVuThietKe/1.png",
     },
     {
         id: "giao-duc",
@@ -19,7 +19,7 @@ const WEBSITE_TYPES = [
         description:
             "Đóng gói thương hiệu và hệ thống bài giảng trực tuyến cho Chuyên gia. Tích hợp công nghệ bảo mật chống tải lậu video để bảo vệ tuyệt đối bản quyền chất xám.",
         image:
-            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop",
+            "/dichvu.DichVuThietKe/2.png",
     },
     {
         id: "landing-page",
@@ -27,7 +27,7 @@ const WEBSITE_TYPES = [
         description:
             "Thiết kế cô đọng, tập trung vào duy nhất một sản phẩm hoặc chiến dịch cốt lõi, loại bỏ mọi yếu tố gây nhiễu để hướng người dùng đến hành vi duy nhất: Điền form đăng ký hoặc bấm mua hàng.",
         image:
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+            "/dichvu.DichVuThietKe/3.png",
     },
     {
         id: "thuong-mai-dien-tu",
@@ -35,7 +35,7 @@ const WEBSITE_TYPES = [
         description:
             "Tích hợp giỏ hàng, cổng thanh toán tự động, quản lý kho vận và chương trình khuyến mãi thông minh giúp bứt phá doanh số bán hàng online.",
         image:
-            "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1000&auto=format&fit=crop",
+            "/dichvu.DichVuThietKe/4.png",
     },
     {
         id: "tin-tuc-mag",
@@ -43,7 +43,7 @@ const WEBSITE_TYPES = [
         description:
             "Tối ưu tốc độ tải trang cực nhanh, cấu trúc chuẩn SEO Google, tối ưu trải nghiệm đọc và tích hợp hệ thống quản lý bài viết phân quyền chuyên nghiệp.",
         image:
-            "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop",
+            "/dichvu.DichVuThietKe/5.png",
     },
     {
         id: "dat-lich-dich-vu",
@@ -51,7 +51,7 @@ const WEBSITE_TYPES = [
         description:
             "Tự động hóa quy trình đặt hẹn cho Spa, Clinic, Nhà hàng, Salon. Tích hợp nhắc lịch qua Zalo/SMS và quản lý ca làm việc của nhân sự.",
         image:
-            "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000&auto=format&fit=crop",
+            "/dichvu.DichVuThietKe/6.png",
     },
 ];
 
@@ -131,10 +131,12 @@ function HeroSection() {
     return (
         <section
             ref={ref}
-            className={`relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 md:pt-5 pb-12 transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
+            // Đã sửa lại lỗi cú pháp thừa dấu } ở dòng này và khôi phục hiệu ứng reveal
+            className={`relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 md:pt-5 pb-12 transition-all duration-[1000ms] ease-out transform ${
+                isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
         >
-            {/* TIÊU ĐỀ CHÍNH HERO CĂN GIỮA (THÊM MỚI THEO ẢNH) */}
+            {/* TIÊU ĐỀ CHÍNH HERO CĂN GIỮA */}
             <div className="w-full text-center mb-12 sm:mb-16">
                 <h1 className="text-xl lg:text-[35px] font-black tracking-tight leading-snug uppercase">
                     <span className="text-slate-950 block mb-1">
@@ -146,15 +148,16 @@ function HeroSection() {
                 </h1>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* QUAN TRỌNG 1: Đã xóa "items-start" để 2 cột (trái - phải) luôn cao bằng nhau */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
 
-                {/* CỘT BÊN TRÁI: CAROUSEL ẢNH */}
+                {/* CỘT BÊN TRÁI: CAROUSEL ẢNH (Đóng vai trò kéo dài chiều cao section) */}
                 <div className="lg:col-span-6 w-full relative">
                     <div className="flex flex-col gap-5 sm:gap-6 w-full">
                         {visibleImages.map((item, idx) => (
                             <div
                                 key={`${item.id}-img-${idx}`}
-                                className="relative w-full h-[180px] lg:h-[200px] rounded-2xl overflow-hidden shadow-md border border-neutral-200/60 group"
+                                className="relative w-full h-[180px] lg:h-[290px] rounded-2xl overflow-hidden shadow-md border border-neutral-200/60 group"
                             >
                                 <img
                                     src={item.image}
@@ -187,37 +190,42 @@ function HeroSection() {
                     </div>
                 </div>
 
-                {/* CỘT BÊN PHẢI: NỘI DUNG TĨNH */}
-                <div className="lg:col-span-6 flex flex-col justify-center h-full">
+                {/* QUAN TRỌNG 2: CỘT BÊN PHẢI (Khung đường ray) */}
+                <div className="lg:col-span-6 h-full relative">
+                    
+                    {/* QUAN TRỌNG 3: KHỐI STICKY (Sẽ trượt dọc bên trong cột bên phải) */}
+                    <div className="sticky top-24 lg:top-32 flex flex-col justify-center h-auto">
+                        
+                        {/* Danh sách 3 Loại hình */}
+                        <div className="space-y-7">
+                            {WEBSITE_TYPES.slice(0, 3).map((item) => (
+                                <div
+                                    key={item.id}
+                                    className="space-y-1.5 text-left pl-4 border-l-2 border-[#ed792f]"
+                                >
+                                    <h2 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
+                                        {item.title}
+                                    </h2>
+                                    <p className="text-neutral-600 text-sm leading-relaxed font-normal">
+                                        {item.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
 
-                    {/* Danh sách 3 Loại hình */}
-                    <div className="space-y-7">
-                        {WEBSITE_TYPES.slice(0, 3).map((item) => (
-                            <div
-                                key={item.id}
-                                className="space-y-1.5 text-left pl-4 border-l-2 border-[#ed792f]"
-                            >
-                                <h2 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
-                                    {item.title}
-                                </h2>
-                                <p className="text-neutral-600 text-sm leading-relaxed font-normal">
-                                    {item.description}
-                                </p>
-                            </div>
-                        ))}
+                        {/* NÚT ĐĂNG KÝ */}
+                        <div className="pt-10 w-full flex justify-center">
+                            <button className="inline-flex items-center justify-between gap-3 bg-[#ed792f] hover:bg-[#d96723] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-wide">
+                                <span>Đăng ký nhận tư vấn</span>
+                                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-sm">
+                                    📞
+                                </span>
+                            </button>
+                        </div>
+                        
                     </div>
-
-                    {/* NÚT ĐĂNG KÝ (ĐƯỢC ĐƯA RA GIỮA CỘT BẰNG flex justify-center) */}
-                    <div className="pt-10 w-full flex justify-center">
-                        <button className="inline-flex items-center justify-between gap-3 bg-[#ed792f] hover:bg-[#d96723] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-wide">
-                            <span>Đăng ký nhận tư vấn</span>
-                            <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-sm">
-                                📞
-                            </span>
-                        </button>
-                    </div>
-
                 </div>
+
             </div>
         </section>
     );
@@ -343,7 +351,7 @@ function ContactFormSection() {
 // ================= COMPONENT CHÍNH =================
 export default function CmicServicePage() {
     return (
-        <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-x-hidden font-sans scroll-smooth w-full">
+        <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-clip font-sans scroll-smooth w-full">
             <HeroSection />
 
             <RecommendedSection
