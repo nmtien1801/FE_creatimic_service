@@ -10,48 +10,42 @@ const WEBSITE_TYPES = [
         title: "Website Doanh nghiệp",
         description:
             "Khẳng định vị thế chuyên nghiệp, số hóa toàn bộ thông tin năng lực, tầm nhìn, sứ mệnh và dịch vụ của doanh nghiệp để làm việc với các đối tác lớn.",
-        image:
-            "/dichvu.DichVuThietKe/1.png",
+        image: "/dichvu.DichVuThietKe/1.png",
     },
     {
         id: "giao-duc",
         title: "Website Giáo dục",
         description:
             "Đóng gói thương hiệu và hệ thống bài giảng trực tuyến cho Chuyên gia. Tích hợp công nghệ bảo mật chống tải lậu video để bảo vệ tuyệt đối bản quyền chất xám.",
-        image:
-            "/dichvu.DichVuThietKe/2.png",
+        image: "/dichvu.DichVuThietKe/2.png",
     },
     {
         id: "landing-page",
         title: "Landing Page bán hàng",
         description:
             "Thiết kế cô đọng, tập trung vào duy nhất một sản phẩm hoặc chiến dịch cốt lõi, loại bỏ mọi yếu tố gây nhiễu để hướng người dùng đến hành vi duy nhất: Điền form đăng ký hoặc bấm mua hàng.",
-        image:
-            "/dichvu.DichVuThietKe/3.png",
+        image: "/dichvu.DichVuThietKe/3.png",
     },
     {
         id: "thuong-mai-dien-tu",
         title: "Website Thương mại điện tử",
         description:
             "Tích hợp giỏ hàng, cổng thanh toán tự động, quản lý kho vận và chương trình khuyến mãi thông minh giúp bứt phá doanh số bán hàng online.",
-        image:
-            "/dichvu.DichVuThietKe/4.png",
+        image: "/dichvu.DichVuThietKe/4.png",
     },
     {
         id: "tin-tuc-mag",
         title: "Website Tin tức / Tạp chí",
         description:
             "Tối ưu tốc độ tải trang cực nhanh, cấu trúc chuẩn SEO Google, tối ưu trải nghiệm đọc và tích hợp hệ thống quản lý bài viết phân quyền chuyên nghiệp.",
-        image:
-            "/dichvu.DichVuThietKe/5.png",
+        image: "/dichvu.DichVuThietKe/5.png",
     },
     {
         id: "dat-lich-dich-vu",
         title: "Website Đặt lịch / Booking Services",
         description:
             "Tự động hóa quy trình đặt hẹn cho Spa, Clinic, Nhà hàng, Salon. Tích hợp nhắc lịch qua Zalo/SMS và quản lý ca làm việc của nhân sự.",
-        image:
-            "/dichvu.DichVuThietKe/6.png",
+        image: "/dichvu.DichVuThietKe/6.png",
     },
 ];
 
@@ -113,7 +107,6 @@ function HeroSection() {
     const [startIndex, setStartIndex] = useState(0);
     const totalItems = WEBSITE_TYPES.length;
 
-    // Auto play cuộn dọc mỗi 4s
     useEffect(() => {
         const timer = setInterval(() => {
             setStartIndex((prev) => (prev + 1) % totalItems);
@@ -121,7 +114,6 @@ function HeroSection() {
         return () => clearInterval(timer);
     }, [totalItems]);
 
-    // Trích xuất 3 hình ảnh hiển thị cho Carousel dọc
     const visibleImages = [
         WEBSITE_TYPES[startIndex],
         WEBSITE_TYPES[(startIndex + 1) % totalItems],
@@ -131,15 +123,13 @@ function HeroSection() {
     return (
         <section
             ref={ref}
-            // Đã sửa lại lỗi cú pháp thừa dấu } ở dòng này và khôi phục hiệu ứng reveal
-            className={`relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 md:pt-5 pb-12 transition-all duration-[1000ms] ease-out transform ${
-                isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`relative w-full max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 pt-3 md:pt-6 pb-8 transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
         >
             {/* TIÊU ĐỀ CHÍNH HERO CĂN GIỮA */}
-            <div className="w-full text-center mb-12 sm:mb-16">
-                <h1 className="text-xl lg:text-[35px] font-black tracking-tight leading-snug uppercase">
-                    <span className="text-slate-950 block mb-1">
+            <div className="w-full text-center mb-4 sm:mb-8">
+                <h1 className="text-base sm:text-2xl lg:text-3xl font-black tracking-tight leading-snug uppercase">
+                    <span className="text-slate-950 block mb-0.5">
                         Dịch vụ lập trình & phát triển
                     </span>
                     <span className="text-[#ed792f]">
@@ -148,16 +138,16 @@ function HeroSection() {
                 </h1>
             </div>
 
-            {/* QUAN TRỌNG 1: Đã xóa "items-start" để 2 cột (trái - phải) luôn cao bằng nhau */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+            {/* CỐ ĐỊNH BỐ CỤC 2 CỘT SONG SONG TRÊN MỌI MÀN HÌNH */}
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-6 lg:gap-10 items-start">
 
-                {/* CỘT BÊN TRÁI: CAROUSEL ẢNH (Đóng vai trò kéo dài chiều cao section) */}
-                <div className="lg:col-span-6 w-full relative">
-                    <div className="flex flex-col gap-5 sm:gap-6 w-full">
+                {/* CỘT BÊN TRÁI: CAROUSEL ẢNH */}
+                <div className="w-full relative">
+                    <div className="flex flex-col gap-2 sm:gap-4 w-full">
                         {visibleImages.map((item, idx) => (
                             <div
                                 key={`${item.id}-img-${idx}`}
-                                className="relative w-full h-[180px] lg:h-[290px] rounded-2xl overflow-hidden shadow-md border border-neutral-200/60 group"
+                                className="relative w-full h-[110px] sm:h-[160px] lg:h-[220px] rounded-lg sm:rounded-xl overflow-hidden shadow-xs border border-neutral-200/60 group"
                             >
                                 <img
                                     src={item.image}
@@ -169,13 +159,13 @@ function HeroSection() {
                         ))}
                     </div>
 
-                    {/* Nút điều hướng nằm ngang ở dưới cùng */}
-                    <div className="w-full flex justify-center gap-4 mt-6 z-20">
+                    {/* Nút điều hướng */}
+                    <div className="w-full flex justify-center gap-2 sm:gap-3 mt-2.5 sm:mt-4 z-20">
                         <button
                             type="button"
                             aria-label="Ảnh trước"
                             onClick={() => setStartIndex((prev) => (prev - 1 + totalItems) % totalItems)}
-                            className="w-10 h-10 rounded-full bg-white border border-neutral-200 shadow-md hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-sm transition-all hover:scale-110"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white border border-neutral-200 shadow-2xs hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-[10px] sm:text-xs transition-all hover:scale-105"
                         >
                             ❮
                         </button>
@@ -183,30 +173,26 @@ function HeroSection() {
                             type="button"
                             aria-label="Ảnh kế tiếp"
                             onClick={() => setStartIndex((prev) => (prev + 1) % totalItems)}
-                            className="w-10 h-10 rounded-full bg-white border border-neutral-200 shadow-md hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-sm transition-all hover:scale-110"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white border border-neutral-200 shadow-2xs hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-[10px] sm:text-xs transition-all hover:scale-105"
                         >
                             ❯
                         </button>
                     </div>
                 </div>
 
-                {/* QUAN TRỌNG 2: CỘT BÊN PHẢI (Khung đường ray) */}
-                <div className="lg:col-span-6 h-full relative">
-                    
-                    {/* QUAN TRỌNG 3: KHỐI STICKY (Sẽ trượt dọc bên trong cột bên phải) */}
-                    <div className="sticky top-24 lg:top-32 flex flex-col justify-center h-auto">
-                        
-                        {/* Danh sách 3 Loại hình */}
-                        <div className="space-y-7">
+                {/* CỘT BÊN PHẢI: CHI TIẾT */}
+                <div className="h-full relative">
+                    <div className="sticky top-16 sm:top-24 flex flex-col justify-between h-auto space-y-3 sm:space-y-5">
+                        <div className="space-y-2 sm:space-y-4">
                             {WEBSITE_TYPES.slice(0, 3).map((item) => (
                                 <div
                                     key={item.id}
-                                    className="space-y-1.5 text-left pl-4 border-l-2 border-[#ed792f]"
+                                    className="space-y-0.5 sm:space-y-1 text-left pl-2 sm:pl-3 border-l-2 border-[#ed792f]"
                                 >
-                                    <h2 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
+                                    <h2 className="text-xs sm:text-base lg:text-lg font-bold text-neutral-900 tracking-tight leading-tight">
                                         {item.title}
                                     </h2>
-                                    <p className="text-neutral-600 text-sm leading-relaxed font-normal">
+                                    <p className="text-neutral-600 text-[10px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed font-normal">
                                         {item.description}
                                     </p>
                                 </div>
@@ -214,15 +200,14 @@ function HeroSection() {
                         </div>
 
                         {/* NÚT ĐĂNG KÝ */}
-                        <div className="pt-10 w-full flex justify-center">
-                            <button className="inline-flex items-center justify-between gap-3 bg-[#ed792f] hover:bg-[#d96723] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5 uppercase tracking-wide">
+                        <div className="pt-2 sm:pt-4 w-full flex justify-start">
+                            <button className="inline-flex items-center justify-between gap-1.5 sm:gap-2.5 bg-[#ed792f] hover:bg-[#d96723] text-white font-bold text-[10px] sm:text-xs md:text-sm px-3.5 sm:px-6 py-2 sm:py-3 rounded-full shadow-md transition-all transform hover:-translate-y-0.5 uppercase tracking-wide">
                                 <span>Đăng ký nhận tư vấn</span>
-                                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-sm">
+                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white/20 flex items-center justify-center text-[9px] sm:text-xs">
                                     📞
                                 </span>
                             </button>
                         </div>
-                        
                     </div>
                 </div>
 
@@ -231,34 +216,36 @@ function HeroSection() {
     );
 }
 
-// ================= SECTION 2: RECOMMENDED SECTION =================
+// ================= SECTION 2: RECOMMENDED SECTION (CHIA 2 CỘT SONG SONG) =================
 function RecommendedSection({ img1Url = "/dichvu.tronGoi/img1.png", img2Url = "/dichvu.tronGoi/img2.png" }) {
     const [ref, isRevealed] = useScrollReveal();
 
     return (
         <section
             ref={ref}
-            className={`w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`w-full max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
         >
-            <div className="flex flex-col items-center space-y-6 text-center">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 w-full">
-                    <div className="w-40 sm:w-44 h-24 sm:h-28 flex items-center justify-center flex-shrink-0">
-                        <img src={img1Url} alt="Recommended Seal" className="max-w-full max-h-full object-contain drop-shadow-sm" />
+            <div className="flex flex-col items-center space-y-4 text-center">
+                {/* CHIA 2 CỘT HIỂN THỊ HÀNG XÓM SONG SONG */}
+                <div className="grid grid-cols-2 gap-3 sm:gap-6 items-center justify-center w-full max-w-2xl mx-auto">
+                    <div className="w-full h-20 sm:h-24 flex items-center justify-center p-1">
+                        <img src={img1Url} alt="Recommended Seal" className="max-w-full max-h-full object-contain drop-shadow-xs" />
                     </div>
 
-                    <div className="flex flex-col items-center justify-center space-y-3">
-                        <div className="w-64 sm:w-72 h-24 sm:h-28 flex items-center justify-center">
-                            <img src={img2Url} alt="Kho Template Được Thiết Kế Dành Riêng Cho Từng Lĩnh Vực" className="max-w-full max-h-full object-contain drop-shadow-md" />
+                    <div className="w-full flex flex-col items-center justify-center space-y-1.5">
+                        <div className="w-full h-16 sm:h-20 flex items-center justify-center">
+                            <img src={img2Url} alt="Kho Template Được Thiết Kế Dành Riêng" className="max-w-full max-h-full object-contain drop-shadow-xs" />
                         </div>
-                        <div className="flex items-center justify-center gap-1.5 px-6 py-1.5 bg-white rounded-full border border-neutral-200/80 shadow-sm">
+                        <div className="flex items-center justify-center gap-1 px-3 sm:px-4 py-1 bg-white rounded-full border border-neutral-200/80 shadow-2xs">
                             {[...Array(5)].map((_, i) => (
-                                <span key={i} className="text-yellow-400 text-xl sm:text-2xl leading-none">★</span>
+                                <span key={i} className="text-yellow-400 text-sm sm:text-base leading-none">★</span>
                             ))}
                         </div>
                     </div>
                 </div>
-                <p className="text-neutral-800 text-sm sm:text-base md:text-lg font-normal leading-relaxed max-w-3xl pt-2">
+
+                <p className="text-neutral-700 text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-2xl pt-2">
                     Phương án này tập trung vào kết quả, giúp doanh nghiệp sở hữu website chuyên nghiệp với mức ngân sách tối ưu và triển khai trong thời gian sớm nhất.
                 </p>
             </div>
@@ -266,56 +253,53 @@ function RecommendedSection({ img1Url = "/dichvu.tronGoi/img1.png", img2Url = "/
     );
 }
 
-// ================= SECTION 3: CHÚNG TÔI CAM KẾT (THIẾT KẾ CẬP NHẬT CHUẨN ẢNH) =================
+// ================= SECTION 3: CHÚNG TÔI CAM KẾT (CỐ ĐỊNH 2 CỘT SONG SONG) =================
 function SpecialServiceSection() {
     const [ref, isRevealed] = useScrollReveal();
 
     return (
         <section
             ref={ref}
-            className="py-16 w-full px-4 sm:px-8 md:px-12 lg:px-16 border-t border-neutral-200/60 max-w-7xl mx-auto"
+            className="py-8 sm:py-14 w-full px-2 sm:px-6 lg:px-8 max-w-6xl mx-auto"
         >
             <div
                 className={`transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     }`}
             >
-                <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 uppercase tracking-tight mb-12 text-left pl-10 sm:pl-12 lg:pl-14">
+                <h2 className="text-base sm:text-2xl font-black text-neutral-900 uppercase tracking-tight mb-6 sm:mb-8 text-center sm:text-left">
                     CHÚNG TÔI CAM KẾT
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12 lg:gap-x-16">
+                {/* CỐ ĐỊNH 2 CỘT SONG SONG TRÊN CẢ MOBILE VÀ DESKTOP */}
+                <div className="grid grid-cols-2 gap-y-6 sm:gap-y-8 gap-x-2.5 sm:gap-x-6 lg:gap-x-8">
                     {COMMITMENTS.map((item) => (
-                        <div key={item.id} className="relative text-left ml-9 sm:ml-12 lg:ml-14">
+                        <div key={item.id} className="relative flex flex-col w-full text-left pl-2.5 sm:pl-4">
 
-                            {/* BADGE NỬA VÒNG TRÒN VÀ LÕI TRẮNG (Căn chính giữa trục dọc của Top Box) */}
-                            {/* Left-0 để tâm của Badge bám sát lề trái của Box Content */}
-                            <div className="absolute left-0 top-[34px] sm:top-[36px] -translate-x-1/2 -translate-y-1/2 w-[76px] h-[76px] sm:w-[84px] sm:h-[84px] flex items-center justify-center z-10">
+                            {/* 1. BADGE NỬA VÒNG TRÒN DÍNH SÁT KHUNG TIÊU ĐỀ (KHÔNG CÒN KHOẢNG TRẮNG) */}
+                            <div className="absolute -left-2.5 sm:-left-3.5 top-[24px] sm:top-[30px] -translate-y-1/2 w-[48px] h-[48px] sm:w-[62px] sm:h-[62px] flex items-center justify-center z-10">
+                                {/* Nửa vòng tròn cam */}
+                                <div className="absolute left-0 top-0 w-1/2 h-full bg-[#ed792f] rounded-l-full z-0" />
 
-                                {/* 1. Nửa vòng tròn cam (Nằm bên trái) */}
-                                <div className="absolute left-0 top-0 w-1/2 h-full bg-[#ed792f] rounded-l-full z-0"></div>
-
-                                {/* 2. Lõi vòng tròn trắng đè lên trên (Nhỏ hơn tạo ra viền cam hở ra ngoài) */}
-                                <div className="relative w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] bg-[#fffbf7] rounded-full border-[1.5px] border-[#ed792f] flex items-center justify-center z-10">
-                                    <span className="text-[#ed792f] font-black text-xl sm:text-2xl">
+                                {/* Lõi tròn trắng đè lên trên chứa con số */}
+                                <div className="relative w-[32px] h-[32px] sm:w-[42px] sm:h-[42px] bg-white rounded-full border-[1.5px] sm:border-[2px] border-[#ed792f] flex items-center justify-center z-10 shadow-2xs">
+                                    <span className="text-[#ed792f] font-black text-xs sm:text-base">
                                         {item.id}
                                     </span>
                                 </div>
-
                             </div>
 
-                            {/* CẤU TRÚC 2 KHỐI NỘI DUNG (Top & Bottom tách rời) */}
-                            <div className="flex flex-col w-full relative z-0">
+                            {/* 2. CẤU TRÚC 2 KHỐI NỘI DUNG NẰM KHÍT NHAU */}
+                            <div className="flex flex-col w-full space-y-1.5 z-0">
                                 {/* Top Box (Tiêu đề) */}
-                                <div className="w-full bg-[#fffbf7] border-[1.5px] border-[#ed792f] rounded-r-xl pl-11 sm:pl-12 lg:pl-14 pr-4 py-3 sm:py-4 min-h-[68px] sm:min-h-[72px] flex items-center">
-                                    <h3 className="text-base sm:text-lg font-bold text-neutral-900 leading-snug">
+                                <div className="w-full bg-[#fffbf7] border-[1.5px] border-[#ed792f] rounded-xl pl-9 sm:pl-12 pr-2.5 sm:pr-4 py-2 sm:py-3 min-h-[48px] sm:min-h-[60px] flex items-center">
+                                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-neutral-900 leading-tight sm:leading-snug">
                                         {item.title}
                                     </h3>
                                 </div>
 
                                 {/* Bottom Box (Mô tả) */}
-                                {/* Thêm mt-1.5 để tạo độ rãnh chia giống thiết kế */}
-                                <div className="w-full bg-[#fffbf7] border-[1.5px] border-[#ed792f] rounded-xl pl-8 sm:pl-10 pr-5 py-4 mt-0.5">
-                                    <p className="text-neutral-700 text-sm sm:text-base leading-relaxed font-normal">
+                                <div className="w-full bg-[#fffbf7] border-[1.5px] border-[#ed792f] rounded-xl p-2.5 sm:p-4 md:p-5">
+                                    <p className="text-neutral-700 text-[10px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed font-normal">
                                         {item.desc}
                                     </p>
                                 </div>
@@ -332,7 +316,7 @@ function SpecialServiceSection() {
 // ================= SECTION 4: CONTACT FORM =================
 function ContactFormSection() {
     return (
-        <section className="relative w-full py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-16 bg-slate-50 border-t border-slate-200/80 z-10">
+        <section className="relative w-full py-10 md:py-16 px-3 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200/80 z-10">
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none z-0 bg-no-repeat bg-center"
                 style={{
@@ -341,7 +325,7 @@ function ContactFormSection() {
                 }}
             />
 
-            <div className="relative z-20 max-w-xl mx-auto w-full">
+            <div className="relative z-20 max-w-lg mx-auto w-full">
                 <ContactForm />
             </div>
         </section>

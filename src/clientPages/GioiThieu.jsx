@@ -141,7 +141,7 @@ function AboutStorySection() {
 // ========================================================
 function CoreValuesSection({ coreValues }) {
   return (
-    <section className="relative w-full overflow-hidden py-10 md:py-14 bg-gray-50 flex justify-center">
+    <section className="relative w-full overflow-hidden py-8 md:py-14 bg-gray-50 flex justify-center">
       <div
         className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
         style={{
@@ -152,25 +152,27 @@ function CoreValuesSection({ coreValues }) {
         }}
       />
 
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-4 md:px-8 flex flex-col space-y-8 items-center">
-        <div className="w-full max-w-xs mx-auto flex items-center bg-gray-950 text-white rounded-full pr-5 pl-1.5 py-1 shadow-md border border-gray-800">
-          <div className="w-8 h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center font-bold text-sm shadow-inner">★</div>
-          <h2 className="text-base md:text-lg font-bold uppercase tracking-wider pl-3 text-center flex-1">
+      <div className="relative z-20 w-full max-w-4xl mx-auto px-3 sm:px-6 md:px-8 flex flex-col space-y-6 md:space-y-8 items-center">
+        {/* Badge Tiêu đề */}
+        <div className="w-full max-w-xs mx-auto flex items-center bg-gray-950 text-white rounded-full pr-4 sm:pr-5 pl-1.5 py-1 shadow-md border border-gray-800">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center font-bold text-xs sm:text-sm shadow-inner">★</div>
+          <h2 className="text-xs sm:text-base md:text-lg font-bold uppercase tracking-wider pl-2 sm:pl-3 text-center flex-1">
             GIÁ TRỊ CỐT LÕI
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1 w-full">
+        {/* Cố định grid-cols-2 cho mọi kích thước màn hình */}
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:gap-5 pt-1 w-full">
           {coreValues.map((val, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 flex flex-col text-left transition-all duration-300 hover:shadow-md"
+              className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-sm border border-gray-200 flex flex-col text-left transition-all duration-300 hover:shadow-md"
             >
-              <div className="bg-orange-500 text-white text-center py-2 font-bold text-sm md:text-base tracking-wide uppercase">
+              <div className="bg-orange-500 text-white text-center py-1.5 sm:py-2 px-1 font-bold text-xs sm:text-sm md:text-base tracking-wide uppercase leading-tight">
                 {val.title}
               </div>
-              <div className="p-4 md:p-5 bg-white flex-1 flex items-center">
-                <p className="text-gray-700 text-xs md:text-sm leading-relaxed font-normal">
+              <div className="p-2.5 sm:p-4 md:p-5 bg-white flex-1 flex items-center">
+                <p className="text-gray-700 text-[11px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed font-normal">
                   {val.desc}
                 </p>
               </div>

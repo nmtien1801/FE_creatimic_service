@@ -26,19 +26,19 @@ function HeroBanner() {
                 {/* RIGHT: Content Container */}
                 <div className="w-full md:w-[50%] z-10">
                     <div>
-                       <div className="relative py-3 sm:py-4 lg:py-5 w-full overflow-hidden">
-    {/* TIÊU ĐỀ CHÍNH - Thu gọn font size vừa vặn với màn Tablet */}
-    <h1 className="relative z-10 text-black font-bold uppercase tracking-tighter leading-none text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
-        ĐỐI TÁC CHIẾN LƯỢC
-    </h1>
+                        <div className="relative py-3 sm:py-4 lg:py-5 w-full overflow-hidden">
+                            {/* TIÊU ĐỀ CHÍNH - Thu gọn font size vừa vặn với màn Tablet */}
+                            <h1 className="relative z-10 text-black font-bold uppercase tracking-tighter leading-none text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
+                                ĐỐI TÁC CHIẾN LƯỢC
+                            </h1>
 
-    {/* KHỐI NỀN TRẮNG RỘNG - Xử lý không cho tràn màn hình Tablet */}
-    <div className="inline-block bg-white -mt-2 sm:-mt-3 lg:-mt-5 ml-[5%] sm:ml-[8%] lg:ml-[12%] pl-3 sm:pl-5 lg:pl-8 pr-4 sm:pr-8 lg:pr-20 pt-3 sm:pt-5 lg:pt-8 pb-2 sm:pb-3 lg:pb-4 shadow-sm max-w-[90%]">
-        <p className="font-bold uppercase tracking-wider text-black text-xs sm:text-base md:text-lg lg:text-3xl leading-snug lg:leading-none whitespace-normal sm:whitespace-nowrap">
-            INHOUSE MARKETING PARTNER
-        </p>
-    </div>
-</div>
+                            {/* KHỐI NỀN TRẮNG RỘNG - Xử lý không cho tràn màn hình Tablet */}
+                            <div className="inline-block bg-white -mt-2 sm:-mt-3 lg:-mt-5 ml-[5%] sm:ml-[8%] lg:ml-[12%] pl-3 sm:pl-5 lg:pl-8 pr-4 sm:pr-8 lg:pr-20 pt-3 sm:pt-5 lg:pt-8 pb-2 sm:pb-3 lg:pb-4 shadow-sm max-w-[90%]">
+                                <p className="font-bold uppercase tracking-wider text-black text-xs sm:text-base md:text-lg lg:text-3xl leading-snug lg:leading-none whitespace-normal sm:whitespace-nowrap">
+                                    INHOUSE MARKETING PARTNER
+                                </p>
+                            </div>
+                        </div>
 
                         <p className="text-neutral-800 text-base sm:text-lg leading-relaxed text-justify">
                             Thay thế mô hình thuê freelancer chắp vá hay agency làm theo dự án
@@ -139,56 +139,59 @@ function ProblemAndContact() {
 /* ================= SECTION 3: MÔ HÌNH ALL-IN-ONE ================= */
 function AllInOneModel() {
     return (
-        <div className="w-full px-10 md:px-35 py-12 md:py-16">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-14">
             {/* Header Section 3 */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center mb-8 sm:mb-12">
                 <div className="md:col-span-6 flex justify-center">
                     <img
                         src="/trongoi.marketing/img2.png"
                         alt="Biểu đồ năng lực"
-                        className="w-full max-w-[420px] h-auto object-contain"
+                        className="w-full max-w-[280px] sm:max-w-[360px] h-auto object-contain"
                     />
                 </div>
 
-                <div className="md:col-span-6 space-y-3">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight uppercase leading-tight">
+                <div className="md:col-span-6 space-y-1.5 sm:space-y-3 text-left">
+                    <h2 className="text-base sm:text-xl md:text-3xl font-extrabold text-neutral-900 tracking-tight uppercase leading-tight">
                         CHÚNG TÔI MANG ĐẾN MÔ HÌNH
                     </h2>
-                    <p className="text-xl sm:text-2xl font-extrabold text-[#e8752b]">
+                    <p className="text-lg sm:text-xl md:text-2xl font-extrabold text-[#e8752b] leading-tight">
                         All-in-One Marketing Partner
                     </p>
-                    <p className="text-neutral-700 text-base sm:text-lg leading-relaxed pt-2">
+                    <p className="text-neutral-700 text-xs sm:text-sm md:text-base leading-relaxed pt-1">
                         Tích hợp 4 năng lực cốt lõi trong một gói dịch vụ duy nhất, giúp doanh nghiệp vận hành marketing hiệu quả, chuyên nghiệp và tự chủ lâu dài:
                     </p>
                 </div>
             </div>
 
-            {/* Main Content Grid: 4 Năng lực cốt lõi */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            {/* Main Content Grid: Tối ưu tự xuống dòng mượt mà trên Mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center text-left">
+
                 {/* Left Side: Mục 01, 02 */}
-                <div className="md:col-span-6 space-y-8">
-                    <div className="space-y-2">
-                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                <div className="md:col-span-6 space-y-4 sm:space-y-6">
+                    <div className="space-y-1.5">
+                        {/* Đã loại bỏ whitespace-nowrap gây lỗi tràn div */}
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             01. Cố vấn chiến lược & Phễu chuyển đổi
                         </div>
-                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                        <p className="text-neutral-700 leading-relaxed text-xs sm:text-sm md:text-base">
                             Định hình chiến lược marketing gắn liền với mô hình kinh doanh. Thiết kế phễu bán hàng và hành trình trải nghiệm khách hàng tối ưu nhất cho từng ngành hàng.
                         </p>
                     </div>
 
-                    <div className="space-y-2">
-                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                    <div className="space-y-1.5">
+                        {/* Cho phép tự xuống dòng nếu chữ quá dài */}
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             02. Đội ngũ thực thi chuyên nghiệp
                         </div>
-                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                        <p className="text-neutral-700 leading-relaxed text-xs sm:text-sm md:text-base">
                             Trực tiếp triển khai trọn gói mọi hoạt động hàng ngày: Viết bài, thiết kế hình ảnh, sản xuất video ngắn, tối ưu SEO/Website, chạy quảng cáo và quản trị hệ thống kênh đa nền tảng.
                         </p>
                     </div>
                 </div>
 
-                {/* Right Side: Ảnh ghép Business (img2) */}
+                {/* Right Side: Ảnh ghép Business */}
                 <div className="md:col-span-6 flex justify-center">
-                    <div className="relative w-full max-w-[420px] aspect-[4/3] rounded-xl overflow-hidden shadow-lg border border-neutral-200">
+                    <div className="relative w-full max-w-[340px] aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-neutral-200">
                         <img
                             src="/trongoi.marketing/img3.png"
                             alt="Business Handshake keyboard"
@@ -197,35 +200,36 @@ function AllInOneModel() {
                     </div>
                 </div>
 
-                {/* Left Side Bottom: Biểu đồ hình quạt / bánh (img3) */}
-                <div className="md:col-span-6 flex justify-center order-2 md:order-1 pt-6 md:pt-0">
+                {/* Left Side Bottom: Biểu đồ hình quạt */}
+                <div className="md:col-span-6 flex justify-center order-2 md:order-1 pt-2 md:pt-0">
                     <img
                         src="/trongoi.marketing/img4.png"
                         alt="Mô hình bánh đà Marketing"
-                        className="w-full max-w-[380px] h-auto object-contain"
+                        className="w-full max-w-[280px] sm:max-w-[340px] h-auto object-contain"
                     />
                 </div>
 
                 {/* Right Side Bottom: Mục 03, 04 */}
-                <div className="md:col-span-6 space-y-8 order-1 md:order-2">
-                    <div className="space-y-2">
-                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                <div className="md:col-span-6 space-y-4 sm:space-y-6 order-1 md:order-2">
+                    <div className="space-y-1.5">
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             03. Ứng dụng công nghệ & Tự động hóa
                         </div>
-                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                        <p className="text-neutral-700 leading-relaxed text-xs sm:text-sm md:text-base">
                             Xây dựng hệ thống Dashboard đo lường chỉ số kinh doanh real-time và ứng dụng AI Agent (n8n) để tự động hóa quy trình vận hành, tối ưu hóa năng suất làm việc.
                         </p>
                     </div>
 
-                    <div className="space-y-2">
-                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-3 py-1 text-base sm:text-lg rounded-sm">
+                    <div className="space-y-1.5">
+                        <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             04. Đào tạo - Phát triển đội ngũ inhouse
                         </div>
-                        <p className="text-neutral-700 leading-relaxed text-base sm:text-lg">
+                        <p className="text-neutral-700 leading-relaxed text-xs sm:text-sm md:text-base">
                             Đồng hành cùng doanh nghiệp tuyển dụng, phỏng vấn, trực tiếp đào tạo kỹ năng chuyên môn và chuyển giao trọn bộ quy trình chuẩn (SOP) giúp đội ngũ nội bộ nhanh chóng làm chủ và tự vận hành hệ thống marketing lâu dài.
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
     );

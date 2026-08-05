@@ -29,30 +29,30 @@ function useScrollReveal() {
     return [elementRef, isRevealed];
 }
 
-// ================= HERO SECTION (ĐÃ GỘP CONTACT KHÔNG VIỀN/NỀN) =================
+// ================= HERO SECTION =================
 function HeroSection() {
     return (
-        <section id="hero-top" className="relative max-w-5xl mx-auto px-6 pt-20 pb-16 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+        <section id="hero-top" className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-10 sm:pb-14 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
             <div
                 className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
                 style={{
                     backgroundImage: `url('/social/bg1.png')`,
                     backgroundPosition: 'center center',
-                    backgroundSize: '100% 100%',
+                    backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }}
             />
 
-            <div className="relative z-10 flex flex-col items-center text-center space-y-12">
+            <div className="relative z-10 flex flex-col items-center text-center space-y-6 sm:space-y-10">
                 {/* Tiêu đề căn giữa */}
-                <h1 className="text-xl sm:text-2xl md:text-[40px] font-extrabold text-neutral-900 leading-snug tracking-tight uppercase">
+                <h1 className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-neutral-900 leading-snug sm:leading-tight tracking-tight uppercase">
                     DỊCH VỤ CHĂM SÓC HỆ SINH THÁI NỘI DUNG<br />
-                    <span className="text-[#ed792f] block mt-1">ĐA KÊNH THỰC CHIẾN CHO SME</span>
+                    <span className="text-[#ed792f] block mt-0.5 sm:mt-1">ĐA KÊNH THỰC CHIẾN CHO SME</span>
                 </h1>
 
                 {/* Khung Video Premium căn giữa */}
-                <div className="w-full max-w-4xl animate-[float_5s_ease-in-out_infinite_0.2s]">
-                    <div className="relative w-full aspect-video bg-neutral-100 rounded-xl overflow-hidden border border-neutral-200/60 shadow-lg">
+                <div className="w-full max-w-3xl animate-[float_5s_ease-in-out_infinite_0.2s]">
+                    <div className="relative w-full aspect-video bg-neutral-100 rounded-xl overflow-hidden border border-neutral-200/60 shadow-md">
                         <iframe
                             className="w-full h-full object-cover"
                             src="https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -63,12 +63,12 @@ function HeroSection() {
                 </div>
 
                 {/* Đoạn mô tả */}
-                <p className="text-neutral-700 leading-relaxed text-base sm:text-lg max-w-4xl mx-auto text-center font-medium">
+                <p className="text-neutral-700 leading-relaxed text-xs sm:text-base md:text-lg max-w-3xl mx-auto text-center font-medium">
                     Đăng bài ngẫu hứng là cách nhanh nhất để triệt tiêu hiệu quả truyền thông. CMIC MEDIA đồng hành cùng bạn xây dựng ma trận nội dung đồng bộ, giáo dục thị trường và biến các kênh mạng xã hội thành phễu thu hút lead chất lượng cao với chi phí tối ưu nhất.
                 </p>
 
                 {/* Phần Form đăng ký */}
-                <div id="register-bottom" className="w-full max-w-2xl mx-auto space-y-6 pt-4">
+                <div id="register-bottom" className="w-full max-w-xl mx-auto space-y-4 pt-2">
                     <div className="w-full">
                         <ContactForm />
                     </div>
@@ -90,22 +90,22 @@ function BrandMarqueeSection() {
     ];
 
     return (
-        <section className="py-16 bg-[#faf8f6] overflow-hidden border-y border-neutral-200/40">
-            <div className="max-w-6xl mx-auto px-6 space-y-16">
+        <section className="py-10 sm:py-16 bg-[#faf8f6] overflow-hidden border-y border-neutral-200/40">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-14">
                 {/* Phần Marquee icon mạng xã hội */}
-                <div className="max-w-4xl mx-auto text-center space-y-8">
-                    <p className="text-neutral-800 text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                <div className="max-w-3xl mx-auto text-center space-y-6">
+                    <p className="text-neutral-800 text-xs sm:text-base font-medium leading-relaxed max-w-xl mx-auto">
                         Nhiều chủ doanh nghiệp và cá nhân kinh doanh đang tốn rất nhiều thời gian tự mày mò quản lý mạng xã hội...
                     </p>
 
                     <div className="relative w-full overflow-hidden flex">
-                        <div className="flex w-max animate-[marquee_25s_linear_infinite] items-center gap-16 sm:gap-24">
+                        <div className="flex w-max animate-[marquee_25s_linear_infinite] items-center gap-10 sm:gap-20">
                             {[...icons, ...icons, ...icons].map((item, index) => (
                                 <div key={index} className="flex items-center justify-center shrink-0">
                                     <img
                                         src={item.src}
                                         alt={item.alt}
-                                        className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-sm"
+                                        className="w-8 h-8 sm:w-12 sm:h-12 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-2xs"
                                     />
                                 </div>
                             ))}
@@ -114,36 +114,36 @@ function BrandMarqueeSection() {
                 </div>
 
                 {/* Phần: NHƯNG NHẬN LẠI KẾT QUẢ LẸT ĐẸT */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-10">
-                    <div className="lg:col-span-7 space-y-8">
-                        <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight uppercase">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center pt-4">
+                    <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-left">
+                        <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-neutral-900 tracking-tight uppercase">
                             NHƯNG NHẬN LẠI KẾT QUẢ <span className="text-red-600">LẸT ĐẸT</span>
                         </h2>
 
-                        <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="shrink-0 mt-1">
-                                    <XCircle className="w-8 h-8 text-red-600 fill-red-50" />
+                        <div className="space-y-3 sm:space-y-5">
+                            <div className="flex items-start gap-2.5 sm:gap-4">
+                                <div className="shrink-0 mt-0.5 sm:mt-1">
+                                    <XCircle className="w-5 h-5 sm:w-7 sm:h-7 text-red-600 fill-red-50" />
                                 </div>
-                                <p className="text-neutral-700 text-base sm:text-lg leading-relaxed font-normal">
+                                <p className="text-neutral-700 text-xs sm:text-base leading-relaxed font-normal">
                                     Bài đăng thưa thớt, không theo một lộ trình hay tuyến nội dung rõ ràng để đạt mục tiêu kinh doanh.
                                 </p>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="shrink-0 mt-1">
-                                    <XCircle className="w-8 h-8 text-red-600 fill-red-50" />
+                            <div className="flex items-start gap-2.5 sm:gap-4">
+                                <div className="shrink-0 mt-0.5 sm:mt-1">
+                                    <XCircle className="w-5 h-5 sm:w-7 sm:h-7 text-red-600 fill-red-50" />
                                 </div>
-                                <p className="text-neutral-700 text-base sm:text-lg leading-relaxed font-normal">
+                                <p className="text-neutral-700 text-xs sm:text-base leading-relaxed font-normal">
                                     Hình ảnh tự thiết kế bằng công cụ miễn phí bị mờ, không đúng kích thước chuẩn, bố cục lộn xộn làm giảm uy tín thương hiệu.
                                 </p>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className="shrink-0 mt-1">
-                                    <XCircle className="w-8 h-8 text-red-600 fill-red-50" />
+                            <div className="flex items-start gap-2.5 sm:gap-4">
+                                <div className="shrink-0 mt-0.5 sm:mt-1">
+                                    <XCircle className="w-5 h-5 sm:w-7 sm:h-7 text-red-600 fill-red-50" />
                                 </div>
-                                <p className="text-neutral-700 text-base sm:text-lg leading-relaxed font-normal">
+                                <p className="text-neutral-700 text-xs sm:text-base leading-relaxed font-normal">
                                     Chỉ tập trung vào bài viết bán hàng trực diện khiến người theo dõi nhàm chán và bấm hủy tương tác.
                                 </p>
                             </div>
@@ -151,11 +151,11 @@ function BrandMarqueeSection() {
                     </div>
 
                     <div className="lg:col-span-5 flex justify-center">
-                        <div className="w-full max-w-md">
+                        <div className="w-full max-w-xs sm:max-w-md">
                             <img
                                 src="/social/img1.png"
                                 alt="Kết quả lẹt đẹt khi tự làm nội dung"
-                                className="w-full h-auto object-contain drop-shadow-xl"
+                                className="w-full h-auto object-contain drop-shadow-md"
                             />
                         </div>
                     </div>
@@ -165,15 +165,14 @@ function BrandMarqueeSection() {
     );
 }
 
-// ================= SOLUTION SECTION COMPONENT (SECTION 4) =================
+// ================= SOLUTION SECTION COMPONENT =================
 function SolutionSection() {
     return (
-        <section className="py-14 bg-white overflow-hidden">
-            {/* Thêm max-w-6xl và mx-auto để ảnh nền giới hạn bằng khung nội dung */}
-            <div className="relative max-w-7xl mx-auto px-6 py-8 space-y-8">
-                {/* Ảnh nền có giới hạn chiều rộng */}
+        <section className="py-8 sm:py-14 bg-white overflow-hidden">
+            <div className="relative max-w-7xl mx-auto px-2 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8">
+                {/* Ảnh nền */}
                 <div
-                    className="absolute inset-0 pointer-events-none z-0 rounded-2xl"
+                    className="absolute inset-0 pointer-events-none z-0 rounded-xl sm:rounded-2xl"
                     style={{
                         backgroundImage: `url('/social/bg3.png')`,
                         backgroundPosition: 'center center',
@@ -182,37 +181,41 @@ function SolutionSection() {
                     }}
                 />
 
-                {/* Nội dung bên trong (để nổi lên trên ảnh nền) */}
+                {/* Tiêu đề Section */}
                 <div className="relative z-10 text-center">
-                    <h2 className="text-xl sm:text-2xl font-extrabold text-neutral-900 uppercase tracking-tight">
+                    <h2 className="text-xs sm:text-xl md:text-2xl font-extrabold text-neutral-900 uppercase tracking-tight">
                         GIẢI PHÁP TRỌN GÓI TỪ <span className="text-[#ed792f]">CMIC MEDIA</span>
                     </h2>
                 </div>
 
-                <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
-                    <div className="flex flex-col space-y-4 text-center md:text-left">
-                        <h3 className="text-xl font-bold text-neutral-900 min-h-[56px] flex items-center justify-center md:justify-start">
+                {/* DÀN 1 HÀNG DÙNG CỐ ĐỊNH grid-cols-3 */}
+                <div className="relative z-10 grid grid-cols-3 gap-2 sm:gap-6 md:gap-8 items-start">
+                    {/* Cột 1 */}
+                    <div className="flex flex-col space-y-1 sm:space-y-3 text-center md:text-left">
+                        <h3 className="text-[11px] sm:text-base md:text-lg font-bold text-neutral-900 leading-snug">
                             Thiết kế nhận diện thương hiệu
                         </h3>
-                        <p className="text-neutral-600 text-base leading-relaxed">
+                        <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed font-normal">
                             Không chỉ dừng lại ở logo, đây là hệ thống quy chuẩn toàn diện từ màu sắc, phông chữ đến ấn phẩm truyền thông, giúp thương hiệu luôn nổi bật, chuyên nghiệp và khắc sâu vào tâm trí khách hàng.
                         </p>
                     </div>
 
-                    <div className="flex flex-col space-y-4 text-center md:text-left">
-                        <h3 className="text-xl font-bold text-[#ed792f] min-h-[56px] flex items-center justify-center md:justify-start">
+                    {/* Cột 2 */}
+                    <div className="flex flex-col space-y-1 sm:space-y-3 text-center md:text-left">
+                        <h3 className="text-[11px] sm:text-base md:text-lg font-bold text-[#ed792f] leading-snug">
                             Nội dung đa dạng hoá
                         </h3>
-                        <p className="text-neutral-600 text-base leading-relaxed">
+                        <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed font-normal">
                             Kết hợp linh hoạt giữa bài viết nhận diện, phân tích chuyên sâu, hình ảnh graphic trực quan, video ngắn, video dài và tài liệu đi kèm giá trị.
                         </p>
                     </div>
 
-                    <div className="flex flex-col space-y-4 text-center md:text-left">
-                        <h3 className="text-xl font-bold text-neutral-900 min-h-[56px] flex items-center justify-center md:justify-start">
+                    {/* Cột 3 */}
+                    <div className="flex flex-col space-y-1 sm:space-y-3 text-center md:text-left">
+                        <h3 className="text-[11px] sm:text-base md:text-lg font-bold text-neutral-900 leading-snug">
                             Tối ưu theo dữ liệu
                         </h3>
-                        <p className="text-neutral-600 text-base leading-relaxed">
+                        <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed font-normal">
                             Chuyển hóa các chỉ số marketing thực tế thành hành động cải tiến cụ thể. Bằng cách phân tích sâu hành vi và hiệu suất, chúng tôi tinh chỉnh chiến dịch liên tục nhằm thúc đẩy chuyển đổi và tối đa hóa mục tiêu kinh doanh của doanh nghiệp.
                         </p>
                     </div>
@@ -222,7 +225,7 @@ function SolutionSection() {
     );
 }
 
-// ================= SERVICES SECTION (SECTION 5 - CÁC GÓI DỊCH VỤ) =================
+// ================= SERVICES SECTION =================
 function ServicesSection() {
     const servicesTop = [
         {
@@ -248,10 +251,10 @@ function ServicesSection() {
     ];
 
     return (
-        <section className="bg-white overflow-hidden relative pb-32">
-            {/* Ảnh nền bg5.png đặt ở bottom của section */}
+        <section className="bg-white overflow-hidden relative pb-12 sm:pb-20">
+            {/* Background trang trí phía dưới */}
             <div
-                className="absolute bottom-20 left-0 right-0 h-64 md:h-200 pointer-events-none z-0"
+                className="absolute bottom-6 left-0 right-0 h-40 md:h-80 pointer-events-none z-0"
                 style={{
                     backgroundImage: `url('/social/bg5.png')`,
                     backgroundPosition: '80% 100%',
@@ -260,74 +263,77 @@ function ServicesSection() {
                 }}
             />
 
-            <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="max-w-6xl mx-auto px-2 sm:px-6 relative z-10">
 
-                <div className="relative flex flex-col items-center mb-20 pt-16">
-                    <div className="bg-[#ed792f] text-white rounded-2xl py-6 px-12 text-center shadow-xl z-10">
-                        <h2 className="text-xl sm:text-2xl font-black uppercase tracking-wider leading-snug">
+                {/* Badge CÁC GÓI DỊCH VỤ ở giữa */}
+                <div className="relative flex flex-col items-center mb-6 sm:mb-12 pt-6 sm:pt-10">
+                    <div className="bg-[#ed792f] text-white rounded-lg sm:rounded-2xl py-2 sm:py-3.5 px-5 sm:px-10 text-center shadow-md z-10">
+                        <h2 className="text-[11px] sm:text-base md:text-lg font-black uppercase tracking-wider leading-tight">
                             CÁC GÓI<br />DỊCH VỤ
                         </h2>
                     </div>
-                    <div className="w-0 h-0 border-l-[24px] border-l-transparent border-r-[24px] border-r-transparent border-t-[30px] border-t-[#ed792f] -mt-1 z-10"></div>
+                    <div className="w-0 h-0 border-l-[12px] sm:border-l-[20px] border-l-transparent border-r-[12px] sm:border-r-[20px] border-r-transparent border-t-[14px] sm:border-t-[24px] border-t-[#ed792f] -mt-1 z-10"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-24 relative mb-20">
-                    <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 border-l-2 border-dashed border-neutral-300 hidden md:block z-0"></div>
+                {/* Grid cố định 2 cột song song chuẩn thiết kế */}
+                <div className="grid grid-cols-2 gap-y-6 sm:gap-y-12 gap-x-3 sm:gap-x-10 lg:gap-x-16 relative mb-8 sm:mb-14">
+                    {/* Đường kẻ nét đứt ở chính giữa */}
+                    <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 border-l-2 border-dashed border-neutral-300 z-0"></div>
 
-                    {/* 1. Fanpage */}
-                    <div className="flex flex-col md:flex-row-reverse items-center md:items-start text-center md:text-right gap-6 relative z-10">
+                    {/* 1. Fanpage (Bên trái -> Căn phải) */}
+                    <div className="flex flex-col sm:flex-row-reverse items-center sm:items-start text-center sm:text-right gap-2 sm:gap-4 relative z-10">
                         <div className="shrink-0">
-                            <img src={servicesTop[0].icon} alt="Facebook" className="w-14 h-14 object-contain drop-shadow-sm" />
+                            <img src={servicesTop[0].icon} alt="Facebook" className="w-7 h-7 sm:w-11 sm:h-11 object-contain drop-shadow-2xs" />
                         </div>
-                        <div className="space-y-3">
-                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[0].title}</h3>
-                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[0].description}</p>
+                        <div className="space-y-1 sm:space-y-1.5">
+                            <h3 className="text-[11px] sm:text-sm md:text-base font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[0].title}</h3>
+                            <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed">{servicesTop[0].description}</p>
                         </div>
                     </div>
 
-                    {/* 2. Instagram */}
-                    <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 relative z-10">
+                    {/* 2. Instagram (Bên phải -> Căn trái) */}
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 relative z-10">
                         <div className="shrink-0">
-                            <img src={servicesTop[1].icon} alt="Instagram" className="w-14 h-14 object-contain drop-shadow-sm" />
+                            <img src={servicesTop[1].icon} alt="Instagram" className="w-7 h-7 sm:w-11 sm:h-11 object-contain drop-shadow-2xs" />
                         </div>
-                        <div className="space-y-3">
-                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[1].title}</h3>
-                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[1].description}</p>
+                        <div className="space-y-1 sm:space-y-1.5">
+                            <h3 className="text-[11px] sm:text-sm md:text-base font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[1].title}</h3>
+                            <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed">{servicesTop[1].description}</p>
                         </div>
                     </div>
 
-                    {/* 3. Youtube */}
-                    <div className="flex flex-col md:flex-row-reverse items-center md:items-start text-center md:text-right gap-6 relative z-10 pt-6">
+                    {/* 3. Youtube (Bên trái -> Căn phải) */}
+                    <div className="flex flex-col sm:flex-row-reverse items-center sm:items-start text-center sm:text-right gap-2 sm:gap-4 relative z-10 pt-1 sm:pt-3">
                         <div className="shrink-0">
-                            <img src={servicesTop[2].icon} alt="Youtube" className="w-14 h-14 object-contain drop-shadow-sm" />
+                            <img src={servicesTop[2].icon} alt="Youtube" className="w-7 h-7 sm:w-11 sm:h-11 object-contain drop-shadow-2xs" />
                         </div>
-                        <div className="space-y-3">
-                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[2].title}</h3>
-                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[2].description}</p>
+                        <div className="space-y-1 sm:space-y-1.5">
+                            <h3 className="text-[11px] sm:text-sm md:text-base font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[2].title}</h3>
+                            <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed">{servicesTop[2].description}</p>
                         </div>
                     </div>
 
-                    {/* 4. Tiktok */}
-                    <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 relative z-10 pt-6">
+                    {/* 4. Tiktok (Bên phải -> Căn trái) */}
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-4 relative z-10 pt-1 sm:pt-3">
                         <div className="shrink-0">
-                            <img src={servicesTop[3].icon} alt="Tiktok" className="w-14 h-14 object-contain drop-shadow-sm" />
+                            <img src={servicesTop[3].icon} alt="Tiktok" className="w-7 h-7 sm:w-11 sm:h-11 object-contain drop-shadow-2xs" />
                         </div>
-                        <div className="space-y-3">
-                            <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[3].title}</h3>
-                            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">{servicesTop[3].description}</p>
+                        <div className="space-y-1 sm:space-y-1.5">
+                            <h3 className="text-[11px] sm:text-sm md:text-base font-extrabold text-neutral-900 uppercase tracking-tight">{servicesTop[3].title}</h3>
+                            <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed">{servicesTop[3].description}</p>
                         </div>
                     </div>
                 </div>
 
-                {/* LinkedIn */}
-                <div className="relative max-w-2xl mx-auto px-8 text-center space-y-6 z-10">
+                {/* 5. Gói LinkedIn ở dưới cùng */}
+                <div className="relative max-w-xl mx-auto px-2 text-center space-y-1.5 sm:space-y-3 z-10">
                     <div className="flex justify-center">
                         <div className="shrink-0">
-                            <img src="/linkedin.png" alt="LinkedIn" className="w-14 h-14 object-contain drop-shadow-sm" />
+                            <img src="/linkedin.png" alt="LinkedIn" className="w-7 h-7 sm:w-11 sm:h-11 object-contain drop-shadow-2xs" />
                         </div>
                     </div>
-                    <h3 className="text-xl font-extrabold text-neutral-900 uppercase tracking-tight">CHĂM SÓC LINKEDIN</h3>
-                    <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                    <h3 className="text-[11px] sm:text-sm md:text-base font-extrabold text-neutral-900 uppercase tracking-tight">CHĂM SÓC LINKEDIN</h3>
+                    <p className="text-neutral-600 text-[9px] sm:text-xs md:text-sm leading-tight sm:leading-relaxed">
                         LinkedIn là thánh địa dành riêng cho các mối quan hệ doanh nghiệp với doanh nghiệp (B2B), các chủ doanh nghiệp lớn và đối tác chiến lược. CMIC MEDIA giúp bạn xây dựng trang cá nhân và trang doanh nghiệp trên LinkedIn với các nội dung chuẩn mực, tư duy vĩ mô để mở khóa những cơ hội hợp tác nghìn đô.
                     </p>
                 </div>
@@ -337,9 +343,8 @@ function ServicesSection() {
     );
 }
 
-// ================= PORTFOLIO & CTA SECTION (SECTION 6) =================
+// ================= PORTFOLIO & CTA SECTION =================
 function PortfolioSection() {
-    // 4 hình ảnh mẫu dự án thực tế trong ảnh 1
     const portfolioImages = [
         "/social/img2.png",
         "/social/img3.png",
@@ -348,30 +353,30 @@ function PortfolioSection() {
     ];
 
     return (
-        <section className="py-24 bg-white overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6 space-y-16">
+        <section className="py-12 sm:py-20 bg-white overflow-hidden">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-14">
 
-                {/* Lưới hiển thị 4 hình ảnh dự án thực tế */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+                {/* Lưới 2 cột trên Mobile/Tablet, 4 cột trên Laptop */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 items-center">
                     {portfolioImages.map((imgSrc, index) => (
                         <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
                             <img
                                 src={imgSrc}
                                 alt={`Dự án thực tế ${index + 1}`}
-                                className="w-full h-auto object-cover rounded-lg"
+                                className="w-full h-auto object-cover rounded-lg border border-neutral-200/60 shadow-2xs"
                             />
                         </div>
                     ))}
                 </div>
 
-                {/* Nút CTA: ĐĂNG KÝ NHẬN TƯ VẤN kèm icon điện thoại */}
-                <div className="flex justify-center pt-6">
+                {/* Nút CTA: ĐĂNG KÝ NHẬN TƯ VẤN */}
+                <div className="flex justify-center pt-2 sm:pt-4">
                     <a
                         href="#register-bottom"
-                        className="inline-flex items-center gap-3 bg-[#ed792f] hover:bg-[#d66822] text-white font-bold text-xl sm:text-xl py-4 px-10 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+                        className="inline-flex items-center gap-2 sm:gap-3 bg-[#ed792f] hover:bg-[#d66822] text-white font-bold text-xs sm:text-base md:text-lg py-3 sm:py-3.5 px-6 sm:px-9 rounded-full shadow-md transition-all duration-300 hover:scale-105"
                     >
                         <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
-                        <Phone className="w-6 h-6 fill-white" />
+                        <Phone className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
                     </a>
                 </div>
 
@@ -380,7 +385,7 @@ function PortfolioSection() {
     );
 }
 
-// ================= WORKFLOW SECTION (SECTION 7 - QUY TRÌNH HỢP TÁC) =================
+// ================= WORKFLOW SECTION =================
 function WorkflowSection() {
     const steps = [
         {
@@ -416,33 +421,32 @@ function WorkflowSection() {
     ];
 
     return (
-        <section className="pb-24 bg-white overflow-hidden">
-            <div className="max-w-5xl mx-auto px-6 space-y-16">
-                {/* Tiêu đề Quy trình hợp tác */}
+        <section className="pb-16 sm:pb-24 bg-white overflow-hidden">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-14">
                 <div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 uppercase tracking-tight">
+                    <h2 className="text-base sm:text-xl font-bold text-neutral-900 uppercase tracking-tight text-left">
                         QUY TRÌNH HỢP TÁC
                     </h2>
                 </div>
 
                 {/* Danh sách các bước dạng timeline */}
-                <div className="relative border-l-2 border-neutral-900 ml-4 md:ml-6 space-y-10 pl-6 md:pl-10">
+                <div className="relative border-l-2 border-neutral-900 ml-3 sm:ml-6 space-y-6 sm:space-y-8 pl-4 sm:pl-8">
                     {steps.map((step, index) => (
-                        <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group">
+                        <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-6 group">
 
                             {/* Dấu chấm trên đường timeline */}
-                            <div className="absolute -left-[31px] md:-left-[47px] top-1.5 md:top-1/2 md:-translate-y-1/2 w-4 h-4 bg-white border-4 border-neutral-900 rounded-full"></div>
+                            <div className="absolute -left-[23px] sm:-left-[39px] top-3 md:top-1/2 md:-translate-y-1/2 w-3 sm:w-3.5 h-3 sm:h-3.5 bg-white border-2 sm:border-3 border-neutral-900 rounded-full"></div>
 
-                            {/* Khối bên trái: Mũi tên cam chứa tiêu đề bước */}
-                            <div className="w-full md:w-5/12 bg-[#ed792f] text-white py-4 px-6 rounded-r-xl shadow-sm relative flex items-center">
-                                <span className="font-bold text-xl sm:text-xl uppercase tracking-wide">
+                            {/* Khối bên trái */}
+                            <div className="w-full md:w-5/12 bg-[#ed792f] text-white py-2.5 sm:py-3 px-4 sm:px-5 rounded-r-lg sm:rounded-r-xl shadow-2xs relative flex items-center">
+                                <span className="font-bold text-xs sm:text-sm md:text-base uppercase tracking-wide text-left leading-snug">
                                     {step.number}. {step.title}
                                 </span>
                             </div>
 
-                            {/* Khối bên phải: Card nội dung mô tả trắng viền cam */}
-                            <div className="w-full md:w-6/12 bg-white border border-[#ed792f] rounded-2xl py-4 px-6 shadow-sm">
-                                <p className="text-neutral-700 text-base font-medium leading-relaxed">
+                            {/* Khối bên phải */}
+                            <div className="w-full md:w-6/12 bg-white border border-[#ed792f] rounded-lg sm:rounded-xl py-2.5 sm:py-3 px-4 sm:px-5 shadow-2xs text-left">
+                                <p className="text-neutral-700 text-[11px] sm:text-xs md:text-sm font-medium leading-relaxed">
                                     {step.desc}
                                 </p>
                             </div>
