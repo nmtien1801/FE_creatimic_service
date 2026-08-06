@@ -39,9 +39,8 @@ function HeroSection() {
             </div>
 
             <div className="lg:col-span-7 relative w-full aspect-[16/9] max-w-2xl mx-auto flex items-center justify-center group z-10">
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/15 to-amber-500/5 rounded-2xl sm:rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-700" />
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl p-1.5 sm:p-2.5 bg-white z-20 transition-transform duration-500 group-hover:-translate-y-1 shadow-md">
-                    <div className="w-full h-full rounded-lg sm:rounded-xl bg-slate-950 overflow-hidden relative">
+                <div className="absolute inset-0 p-1.5 sm:p-2.5 z-20 transition-transform duration-500 group-hover:-translate-y-1">
+                    <div className="w-full h-full bg-slate-950 overflow-hidden relative">
                         <iframe
                             className="w-full h-full absolute inset-0 z-10"
                             src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&controls=1"
@@ -256,7 +255,7 @@ function TimelineFlowSection({ workflowSteps }) {
                                         </div>
 
                                         <h3 className="text-sm sm:text-base md:text-lg font-black text-slate-950 tracking-tight mb-1.5 sm:mb-2 uppercase group-hover/timeline:text-orange-600 transition-colors">
-                                             {stageNum}. {step.title}
+                                            {stageNum}. {step.title}
                                         </h3>
                                         <p className="text-slate-500 text-xs sm:text-sm font-normal leading-relaxed">
                                             {step.desc}
@@ -266,7 +265,7 @@ function TimelineFlowSection({ workflowSteps }) {
                                     /* --- STAGE 01, 02, 05 --- */
                                     <>
                                         <h3 className="text-sm sm:text-base md:text-lg font-black text-slate-950 tracking-tight mb-1.5 sm:mb-2 uppercase group-hover/timeline:text-orange-600 transition-colors">
-                                             {stageNum}. {step.title}
+                                            {stageNum}. {step.title}
                                         </h3>
                                         <p className="text-slate-500 text-xs sm:text-sm font-normal leading-relaxed mb-3 sm:mb-4">
                                             {step.desc}

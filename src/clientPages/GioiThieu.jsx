@@ -1,7 +1,8 @@
 import React from 'react';
 import ContactForm from '../components/FormContact';
 
-const bgImageUrl = "https://web.hn.ss.bfcplatform.vn/muadienmay/content/article2/3087889034-1620532650.jpg";
+const img1Url = "/gioiThieu/img1.png";
+const bgSession1 = "/gioiThieu/bgSs1.png";
 const bgSession3 = "/gioiThieu/bgSs3.png";
 const bgSession4 = "/gioiThieu/bgSs4.png";
 
@@ -12,16 +13,16 @@ function BannerSection() {
   return (
     <section className="relative w-full overflow-hidden min-h-[400px] md:min-h-[480px] py-28 md:py-36 px-4 md:px-8 bg-gray-950 flex flex-col items-center justify-center text-center">
       <img
-        src={bgImageUrl}
+        src={bgSession1}
         alt="About Banner Background"
-        className="absolute inset-0 w-full h-full object-cover blur-sm scale-105 opacity-40 pointer-events-none z-0"
+        className="absolute inset-0 w-full h-full object-cover scale-105 pointer-events-none z-0"
       />
-      <div className="absolute inset-0 bg-black/60 z-10" />
 
       <div className="relative z-20 space-y-4 max-w-3xl mx-auto">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-wide uppercase drop-shadow-md">
           VỀ CHÚNG TÔI
         </h1>
+
         <p className="text-xs md:text-sm font-medium text-gray-200 tracking-wider uppercase inline-block">
           Câu chuyện thương hiệu - Tầm nhìn - Sứ mệnh - Giá trị cốt lõi
         </p>
@@ -37,7 +38,7 @@ function AboutStorySection() {
   return (
     <section className="relative w-full overflow-hidden py-10 md:py-14 px-10 md:px-30 bg-white">
       <img
-        src={bgImageUrl}
+        src={img1Url}
         alt="Background Blur"
         className="absolute inset-0 w-full h-full object-cover blur-2xl scale-105 opacity-10 pointer-events-none z-0"
       />
@@ -122,9 +123,9 @@ function AboutStorySection() {
           </div>
 
           <div className="lg:col-span-5 flex justify-center lg:justify-end relative self-stretch items-start pt-2">
-            <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-xl border-4 border-white z-20">
+            <div className="relative w-full max-w-md rounded-3xl overflow-hidden z-20">
               <img
-                src={bgImageUrl}
+                src={img1Url}
                 alt="CMIC Leader Profile"
                 className="w-full h-full min-h-[500px] max-h-[650px] object-cover"
               />
