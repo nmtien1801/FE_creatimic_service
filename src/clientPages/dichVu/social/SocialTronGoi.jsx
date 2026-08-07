@@ -55,7 +55,7 @@ function HeroSection() {
                     <div className="relative w-full aspect-video bg-neutral-100 rounded-xl overflow-hidden border border-neutral-200/60 shadow-md">
                         <iframe
                             className="w-full h-full object-cover"
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                            src="https://www.youtube.com/embed/U6oIQRSqnu8"
                             title="CMIC Media Content Introduction Video"
                             allowFullScreen
                         ></iframe>

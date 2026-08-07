@@ -43,7 +43,7 @@ function HeroSection() {
                     <div className="w-full h-full bg-slate-950 overflow-hidden relative">
                         <iframe
                             className="w-full h-full absolute inset-0 z-10"
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&controls=1"
+                            src="https://www.youtube.com/embed/4KNRA9_LgLI"
                             title="CMIC Media Dịch vụ Website"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
