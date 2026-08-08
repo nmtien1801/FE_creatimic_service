@@ -52,7 +52,7 @@ const RegisterForm = () => {
       <div className="w-full max-w-xs sm:max-w-[360px] bg-white p-4 sm:p-0 text-center">
         <div className="mb-6">
           <div className="mx-auto w-32 h-32 mb-4">
-            <img src="/logo.png" alt="HCA Logo" className="w-full h-full object-contain" />
+            <img src="/logo.png" alt="Creatimic Service Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex items-center justify-center space-x-3 mb-6">
             <div className="flex-grow border-t border-gray-300 max-w-[40px]"></div>

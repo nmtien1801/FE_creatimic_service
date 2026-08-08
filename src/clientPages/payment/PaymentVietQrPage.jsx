@@ -22,7 +22,7 @@ function StepDot({ idx, current, label }) {
     <div className="flex flex-col items-center gap-1.5">
       <div className={clsx(
         'w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300',
-        done  && 'bg-[#00c07b] text-white shadow-[0_0_0_3px_#00c07b22]',
+        done && 'bg-[#00c07b] text-white shadow-[0_0_0_3px_#00c07b22]',
         active && 'bg-white text-[#00c07b] border-2 border-[#00c07b] shadow-[0_0_0_3px_#00c07b22]',
         !done && !active && 'bg-white text-slate-300 border-2 border-slate-200',
       )}>
@@ -95,8 +95,8 @@ function Timer({ expiresAt, onExpire }) {
    Main Page
 ───────────────────────────────────────────── */
 export default function PaymentPayOSPage() {
-  const location  = useLocation();
-  const navigate  = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
   const socketRef = useRef(null);
 
   const product = location.state?.product;
@@ -108,13 +108,13 @@ export default function PaymentPayOSPage() {
   const totalAmount = currentItems.reduce((s, i) => s + i.price * i.qty, 0);
   const addInfo = sanitizeAddInfo(`Thanh toan ${product?.name || 'don hang'}`);
 
-  const [step,        setStep]        = useState(1);
-  const [loading,     setLoading]     = useState(false);
-  const [order,       setOrder]       = useState(null);
-  const [payment,     setPayment]     = useState(null);
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [order, setOrder] = useState(null);
+  const [payment, setPayment] = useState(null);
   const [orderStatus, setOrderStatus] = useState(null); // 'pending' | 'paid' | 'expired' | 'failed'
-  const [error,       setError]       = useState('');
-  const [polling,     setPolling]     = useState(false);
+  const [error, setError] = useState('');
+  const [polling, setPolling] = useState(false);
 
   /* Redirect nếu không có sản phẩm */
   useEffect(() => {
@@ -128,7 +128,7 @@ export default function PaymentPayOSPage() {
   useEffect(() => {
     if (!order?.orderId || step !== 2) return;
 
-    const backendUrl = import.meta.env.VITE_BE_URL || 'http://localhost:8080';
+    const backendUrl = import.meta.env.VITE_BE_URL || 'http://localhost:8082';
     const socket = io(backendUrl, { transports: ['websocket', 'polling'] });
     socketRef.current = socket;
 
