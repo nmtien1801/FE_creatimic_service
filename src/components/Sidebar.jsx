@@ -37,15 +37,6 @@ export default function SlideBar({ isSidebarOpen, onToggleSidebar }) {
       ].filter(Boolean)
     },
     {
-      id: 'products',
-      label: 'Sản phẩm',
-      icon: Package,
-      items: [
-        { label: 'Danh mục chung', path: '/products/categories' },
-        { label: 'Danh sách sản phẩm', path: '/products/list' },
-      ]
-    },
-    {
       id: 'post',
       label: 'Bài viết',
       icon: Newspaper,
@@ -143,16 +134,6 @@ export default function SlideBar({ isSidebarOpen, onToggleSidebar }) {
                 </div>
               ))}
 
-              {/* Link lẻ */}
-              <NavLink
-                to="/recruitment/manager"
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-sm text-white no-underline ${isActive ? 'bg-white/20 font-semibold' : 'hover:bg-white/10'}`
-                }
-              >
-                <Briefcase className="w-5 h-5 flex-shrink-0" />
-                <span className="flex-1 text-left font-medium">Đăng tuyển dụng</span>
-              </NavLink>
             </div>
           ) : (
             /* Collapsed Icons */

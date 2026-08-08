@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AdminLayout from "../components/layout/AdminLayout.jsx";
@@ -40,6 +41,7 @@ import News from "../clientPages/TinTuc.jsx";
 import Contact from "../clientPages/LienHe.jsx";
 import PostDetail from '../components/post/postDetail.jsx'
 import HoSoNangLuc from "../clientPages/HoSoNangLuc.jsx";
+import Employee from "../adminPages/employee/employees.jsx";
 
 import ChinhSach1 from '../components/chinhsach/Chinhsach1.jsx'
 import ChinhSach2 from '../components/chinhsach/Chinhsach2.jsx'
@@ -48,6 +50,8 @@ import ChinhSach4 from '../components/chinhsach/Chinhsach4.jsx'
 
 const ProtectedRoute = ({ children }) => {
   const { userInfo, isLoading } = useSelector((state) => state.auth);
+  const location = useLocation();
+  const isProfileRoute = location.pathname.startsWith("/profile/");
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -57,7 +61,9 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (userInfo.role === "client") return <Navigate to="/profile/info" replace />;
+  if (userInfo.role === "client" && !isProfileRoute) {
+    return <Navigate to="/profile/info" replace />;
+  }
 
   return children;
 };
@@ -119,7 +125,7 @@ function RouterRoot() {
           <Route path="dich-vu/tron-goi-marketing" element={<TronGoiMarketing />} />
 
           <Route path="tin-tuc" element={<News />} />
-          <Route path="/tin-tuc/:title/:id" element={<PostDetail />} />
+          <Route path="tin-tuc/:title/:id" element={<PostDetail />} />
           <Route path="lien-he" element={<Contact />} />
           <Route path="ho-so-nang-luc" element={<HoSoNangLuc />} />
 
@@ -149,6 +155,9 @@ function RouterRoot() {
           {/* route news */}
           <Route path="news/detail" element={<NewsDetail />} />   {/* Đăng tin */}
           <Route path="news/manager" element={<NewsManager />} />           {/* Danh sách tin (ví dụ) */}
+
+          {/* route hr */}
+          <Route path="hr/employees" element={<Employee />} />   {/* Nhân viên */}
 
         </Route>
 
