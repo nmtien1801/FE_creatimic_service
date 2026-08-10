@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CustomerImageBorder from '../../../utils/CustomerImageBorder';
+import ContactForm from '../../../components/FormContact';
 
 // ========================================================
 // ASSETS & CONFIG
@@ -9,13 +10,77 @@ const bgSession5 = "/dichvu.tronGoi/bgSs5.png";
 const bgTitle3 = "/dichvu.tronGoi/bg3Titile.png";
 
 // ========================================================
+// SCROLL REVEAL (hiệu ứng xuất hiện khi lăn chuột)
+// ========================================================
+function RevealStyles() {
+    return (
+        <style>{`
+            .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(28px);
+                transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+                will-change: opacity, transform;
+            }
+            .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .reveal-on-scroll {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+            }
+        `}</style>
+    );
+}
+
+function useRevealOnScroll(options = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    React.useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        observer.observe(node);
+        return () => observer.disconnect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return [ref, isVisible];
+}
+
+function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest }) {
+    const [ref, isVisible] = useRevealOnScroll();
+    return (
+        <Tag
+            ref={ref}
+            className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+            style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+            {...rest}
+        >
+            {children}
+        </Tag>
+    );
+}
+
+// ========================================================
 // SUB-COMPONENTS
 // ========================================================
 
 // 1. HERO SECTION
-function HeroSection() {
+function HeroSection({ onScrollToForm }) {
     return (
-        <section className="relative w-full pt-10 pb-12 lg:pt-20 lg:pb-24 px-4 sm:px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
+        <Reveal as="section" className="relative w-full pt-10 pb-12 lg:pt-20 lg:pb-24 px-4 sm:px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
             <div className="absolute top-[-10%] left-[-5%] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="lg:col-span-5 space-y-4 sm:space-y-6 text-center lg:text-left relative z-10">
@@ -32,7 +97,11 @@ function HeroSection() {
                     Kiến tạo các lớp trải nghiệm sâu sắc từ cấu trúc UI/UX độc bản, tối ưu hiệu năng tốc độ đến hạ tầng tracking chuyển đổi cho doanh nghiệp SME.
                 </p>
                 <div className="pt-2">
-                    <button className="inline-flex items-center gap-3 bg-slate-950 hover:bg-orange-600 text-white font-bold text-xs sm:text-sm px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl shadow-lg transition-all uppercase tracking-wider">
+                    <button 
+                        type="button"
+                        onClick={onScrollToForm}
+                        className="inline-flex items-center gap-3 bg-slate-950 hover:bg-orange-600 text-white font-bold text-xs sm:text-sm px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl shadow-lg transition-all uppercase tracking-wider cursor-pointer"
+                    >
                         Đăng ký nhận tư vấn
                     </button>
                 </div>
@@ -51,14 +120,14 @@ function HeroSection() {
                     </div>
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
 
 // 2. UNIFIED PROBLEMS SECTION
 function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
     return (
-        <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto z-10 bg-white">
+        <Reveal as="section" className="relative w-full py-12 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto z-10 bg-white">
             <span className="absolute right-[-10%] top-[10%] w-[300px] h-[300px] bg-slate-100 rounded-full opacity-40 pointer-events-none blur-3xl z-0" />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
@@ -87,9 +156,10 @@ function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
 
                     {/* Danh sách thẻ bài toán */}
                     <div className="flex flex-col space-y-3 sm:space-y-4">
-                        {webProblems.map((prob) => (
-                            <div
+                        {webProblems.map((prob, idx) => (
+                            <Reveal
                                 key={prob.id}
+                                delay={idx * 90}
                                 className="w-full bg-[#FFFBF7] border border-orange-500/20 rounded-xl overflow-hidden shadow-xs flex items-stretch min-h-[96px] sm:min-h-[112px] transition-all duration-300 hover:shadow-md hover:border-orange-400 hover:-translate-y-0.5 group"
                             >
                                 {/* Số thứ tự */}
@@ -124,12 +194,12 @@ function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
                                         className="w-full h-full object-cover rounded-lg sm:rounded-2xl transition-transform duration-700 ease-out transform group-hover:scale-105"
                                     />
                                 </div>
-                            </div>
+                            </Reveal>
                         ))}
                     </div>
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
 
@@ -137,7 +207,7 @@ function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
 function PentagonSolutionTitle() {
     return (
         <section className="relative w-full flex flex-col items-center">
-            <div className="relative w-full py-12 md:py-20 overflow-hidden flex justify-center items-center px-4">
+            <Reveal className="relative w-full py-12 md:py-20 overflow-hidden flex justify-center items-center px-4">
                 <div
                     className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 bg-no-repeat bg-center"
                     style={{
@@ -153,7 +223,7 @@ function PentagonSolutionTitle() {
                         GIẢI PHÁP CHIẾN LƯỢC TẠI <span className="text-[#C96F1E]">CMIC MEDIA</span>
                     </h2>
                 </div>
-            </div>
+            </Reveal>
         </section>
     );
 }
@@ -161,7 +231,7 @@ function PentagonSolutionTitle() {
 // 4. PENTAGON SECTION
 function PentagonSolutionSection() {
     return (
-        <section className="relative w-full px-4 sm:px-6 py-8 md:py-12 flex flex-col items-center">
+        <Reveal as="section" className="relative w-full px-4 sm:px-6 py-8 md:py-12 flex flex-col items-center">
             <div className="relative w-full overflow-hidden flex flex-col items-center">
                 <div className="relative z-10 w-full max-w-2xl px-2 flex justify-center items-center">
                     <img
@@ -171,7 +241,7 @@ function PentagonSolutionSection() {
                     />
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
 
@@ -180,7 +250,7 @@ function TimelineFlowSection({ workflowSteps }) {
     const stagesWithRightTimeline = ["01", "03"];
 
     return (
-        <section className="relative py-12 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto z-10 w-full flex flex-col items-center justify-center">
+        <Reveal as="section" className="relative py-12 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto z-10 w-full flex flex-col items-center justify-center">
             <div className="text-center mb-8 sm:mb-12 space-y-1 sm:space-y-2 relative z-10">
                 <span className="text-[10px] sm:text-xs font-bold tracking-widest text-orange-600 uppercase block">— LUỒNG PHÁT TRIỂN DỰ ÁN —</span>
                 <h2 className="text-xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight uppercase">Quy Trình 5 Bước Vận Hành</h2>
@@ -206,7 +276,7 @@ function TimelineFlowSection({ workflowSteps }) {
                     }
 
                     return (
-                        <div key={idx} className="relative w-full flex flex-col md:flex-row items-center">
+                        <Reveal key={idx} delay={idx * 100} className="relative w-full flex flex-col md:flex-row items-center">
                             <div className={`${layoutClass} group/timeline relative flex flex-col text-left bg-white/60 md:bg-transparent p-4 sm:p-5 md:p-0 rounded-2xl border md:border-none border-orange-500/10 shadow-xs md:shadow-none`}>
 
                                 {/* --- STAGE 4 --- */}
@@ -288,18 +358,18 @@ function TimelineFlowSection({ workflowSteps }) {
                                     </>
                                 )}
                             </div>
-                        </div>
+                        </Reveal>
                     );
                 })}
             </div>
-        </section>
+        </Reveal>
     );
 }
 
-// 6. CONTACT FORM SECTION
-function ContactFormSection({ contactData, handleInputChange, handleFormSubmit }) {
+// 6. CONTACT FORM SECTION (Đã thay thế bằng ContactForm đã import)
+function ContactFormSection({ formRef }) {
     return (
-        <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 bg-slate-50 border-t border-slate-200/80 z-10">
+        <section ref={formRef} className="relative w-full py-12 md:py-20 px-4 sm:px-6 bg-slate-50 border-t border-slate-200/80 z-10 scroll-mt-6">
             <div
                 className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 bg-no-repeat bg-center"
                 style={{
@@ -308,40 +378,9 @@ function ContactFormSection({ contactData, handleInputChange, handleFormSubmit }
                 }}
             />
 
-            <div className="relative z-20 max-w-lg sm:max-w-xl mx-auto w-full">
-                <form onSubmit={handleFormSubmit} className="w-full bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl flex flex-col space-y-4 sm:space-y-5">
-                    <div className="text-center space-y-1 mb-1">
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase">LIÊN HỆ VỚI CHÚNG TÔI</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                        <div className="flex flex-col space-y-1 text-left">
-                            <label className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-slate-500">Họ và tên *</label>
-                            <input type="text" name="fullName" required value={contactData.fullName} onChange={handleInputChange} className="w-full border border-slate-200 rounded-lg px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 text-slate-900 transition-all placeholder:text-slate-400" placeholder="Nguyễn Văn A" />
-                        </div>
-                        <div className="flex flex-col space-y-1 text-left">
-                            <label className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-slate-500">Số điện thoại *</label>
-                            <input type="tel" name="phone" required value={contactData.phone} onChange={handleInputChange} className="w-full border border-slate-200 rounded-lg px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 text-slate-900 transition-all placeholder:text-slate-400" placeholder="0901 234 567" />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col space-y-1 text-left">
-                        <label className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-slate-500">Địa chỉ Email *</label>
-                        <input type="email" name="email" required value={contactData.email} onChange={handleInputChange} className="w-full border border-slate-200 rounded-lg px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 text-slate-900 transition-all placeholder:text-slate-400" placeholder="name@company.com" />
-                    </div>
-
-                    <div className="flex flex-col space-y-1 text-left">
-                        <label className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-slate-500">Bạn cần CMIC MEDIA tư vấn gì? *</label>
-                        <textarea name="consultRequest" required rows={3} value={contactData.consultRequest} onChange={handleInputChange} className="w-full border border-slate-200 rounded-lg px-3.5 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 text-slate-900 transition-all resize-none placeholder:text-slate-400" placeholder="Nêu rõ bài toán cần giải quyết..." />
-                    </div>
-
-                    <div className="pt-2">
-                        <button type="submit" className="w-full bg-slate-950 hover:bg-orange-600 text-white font-bold text-xs sm:text-sm py-3.5 sm:py-4 rounded-xl shadow-md transition-all uppercase tracking-widest">
-                            Gửi thông tin ngay
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <Reveal className="relative z-20 max-w-xl mx-auto w-full">
+                <ContactForm />
+            </Reveal>
         </section>
     );
 }
@@ -352,23 +391,14 @@ function ContactFormSection({ contactData, handleInputChange, handleFormSubmit }
 export default function WebServicePage() {
     const bgImageUrl = "https://web.hn.ss.bfcplatform.vn/muadienmay/content/article2/3087889034-1620532650.jpg";
 
-    const [contactData, setContactData] = useState({
-        fullName: '',
-        phone: '',
-        email: '',
-        consultRequest: '',
-        marketingChannels: ''
-    });
+    // Ref cho Form Contact
+    const formRef = useRef(null);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setContactData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log("Dữ liệu liên hệ gửi đi:", contactData);
-        alert("Gửi thông tin liên hệ thành công!");
+    // Hàm cuộn mượt xuống Form Contact
+    const handleScrollToForm = () => {
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     const webProblems = [
@@ -388,9 +418,10 @@ export default function WebServicePage() {
 
     return (
         <div className="w-full bg-white font-sans antialiased text-slate-600 selection:bg-orange-500 selection:text-white relative min-h-screen overflow-hidden">
+            <RevealStyles />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000001_1px,transparent_1px),linear-gradient(to_bottom,#00000001_1px,transparent_1px)] bg-[length:50px_50px] pointer-events-none z-0" />
 
-            <HeroSection />
+            <HeroSection onScrollToForm={handleScrollToForm} />
             <UnifiedProblemsSection webProblems={webProblems} bgImageUrl={bgImageUrl} />
             <PentagonSolutionTitle />
 
@@ -409,11 +440,7 @@ export default function WebServicePage() {
                 <TimelineFlowSection workflowSteps={workflowSteps} />
             </div>
 
-            <ContactFormSection
-                contactData={contactData}
-                handleInputChange={handleInputChange}
-                handleFormSubmit={handleFormSubmit}
-            />
+            <ContactFormSection formRef={formRef} />
         </div>
     );
 }

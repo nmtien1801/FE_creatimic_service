@@ -1,12 +1,77 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import ContactForm from '../../../components/FormContact';
+
+/* =========================================
+    SCROLL REVEAL (hiệu ứng xuất hiện khi lăn chuột)
+========================================= */
+function RevealStyles() {
+    return (
+        <style>{`
+            .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(28px);
+                transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+                will-change: opacity, transform;
+            }
+            .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .reveal-on-scroll {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+            }
+        `}</style>
+    );
+}
+
+function useRevealOnScroll(options = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    React.useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        observer.observe(node);
+        return () => observer.disconnect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return [ref, isVisible];
+}
+
+function Reveal({ children, as: Tag = 'div', delay = 0, className = '', style = {}, ...rest }) {
+    const [ref, isVisible] = useRevealOnScroll();
+    return (
+        <Tag
+            ref={ref}
+            className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+            style={{ ...style, transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+            {...rest}
+        >
+            {children}
+        </Tag>
+    );
+}
 
 /* =========================================
     SECTION 1: Header Hero (bg1.png)
 ========================================= */
 const HeroHeaderSection = () => {
     return (
-        <section
+        <Reveal
+            as="section"
             className="relative w-full py-12 sm:py-20 md:py-28 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
             style={{ backgroundImage: "url('/dichvu.chamSoc/bg1.png')" }}
         >
@@ -33,7 +98,7 @@ const HeroHeaderSection = () => {
                 </p>
 
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -42,11 +107,11 @@ const HeroHeaderSection = () => {
 ========================================= */
 const ContactFormSection = () => {
     return (
-        <section className="w-full py-8 sm:py-12 bg-slate-50 flex justify-center items-center px-3 sm:px-4">
+        <Reveal as="section" className="w-full py-8 sm:py-12 bg-slate-50 flex justify-center items-center px-3 sm:px-4">
             <div className="w-full max-w-xl mx-auto">
                 <ContactForm />
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -62,7 +127,8 @@ const WhyNeglectedSection = () => {
     ];
 
     return (
-        <section
+        <Reveal
+            as="section"
             className="relative w-full py-10 sm:py-16 text-slate-900 flex justify-center items-center px-3 sm:px-4 bg-cover sm:bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/dichvu.chamSoc/bg4.png')" }}
         >
@@ -83,7 +149,7 @@ const WhyNeglectedSection = () => {
 
                 <div className="w-full space-y-3 sm:space-y-5 max-w-3xl text-left">
                     {reasons.map((text, index) => (
-                        <div key={index} className="flex items-start gap-2.5 sm:gap-4">
+                        <Reveal key={index} delay={index * 90} className="flex items-start gap-2.5 sm:gap-4">
                             <div className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7 rounded-full border-2 border-[#dc2626] flex items-center justify-center mt-0.5">
                                 <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[#dc2626]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -92,11 +158,11 @@ const WhyNeglectedSection = () => {
                             <p className="text-xs sm:text-sm md:text-base font-medium leading-relaxed text-slate-800">
                                 {text}
                             </p>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -120,7 +186,8 @@ const ValueSystemSection = () => {
     ];
 
     return (
-        <section
+        <Reveal
+            as="section"
             className="relative w-full py-10 sm:py-16 text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden bg-cover sm:bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/dichvu.chamSoc/bg5.png')" }}
         >
@@ -147,7 +214,7 @@ const ValueSystemSection = () => {
 
                 <div className="w-full space-y-4 sm:space-y-6 max-w-3xl text-left">
                     {values.map((item, index) => (
-                        <div key={index} className="flex items-start gap-2.5 sm:gap-4">
+                        <Reveal key={index} delay={index * 90} className="flex items-start gap-2.5 sm:gap-4">
                             <div className="flex-shrink-0 w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#00c853] flex items-center justify-center mt-1 shadow-xs">
                                 <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -161,11 +228,11 @@ const ValueSystemSection = () => {
                                     {item.description}
                                 </p>
                             </div>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -189,7 +256,7 @@ const ImplementationSection = () => {
     ];
 
     return (
-        <section className="w-full py-8 sm:py-12 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
+        <Reveal as="section" className="w-full py-8 sm:py-12 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
             <div className="w-full max-w-4xl mx-auto flex flex-col items-start text-left">
 
                 <h2 className="text-base sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-slate-900 mb-3 sm:mb-4">
@@ -221,7 +288,7 @@ const ImplementationSection = () => {
 
                     <div className="col-span-8 space-y-3 sm:space-y-4">
                         {strategyPoints.map((item, index) => (
-                            <div key={index} className="flex items-start gap-2 sm:gap-3">
+                            <Reveal key={index} delay={index * 90} className="flex items-start gap-2 sm:gap-3">
                                 <div className="flex-shrink-0 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#00c853] flex items-center justify-center mt-0.5 shadow-xs">
                                     <svg className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -231,13 +298,13 @@ const ImplementationSection = () => {
                                     <strong className="text-slate-900 font-bold">{item.title}</strong>{' '}
                                     {item.description}
                                 </p>
-                            </div>
+                            </Reveal>
                         ))}
                     </div>
                 </div>
 
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -261,7 +328,7 @@ const SeoWritingSection = () => {
     ];
 
     return (
-        <section className="w-full py-6 sm:py-8 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
+        <Reveal as="section" className="w-full py-6 sm:py-8 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
             <div className="w-full max-w-4xl mx-auto flex flex-col items-start text-left">
 
                 <div className="bg-[#e65c00] text-white font-bold text-xs sm:text-sm uppercase py-1 px-3.5 sm:px-5 rounded-sm mb-3 sm:mb-4 inline-block">
@@ -290,7 +357,7 @@ const SeoWritingSection = () => {
 
                     <div className="col-span-8 space-y-3 sm:space-y-4">
                         {seoStandards.map((item, index) => (
-                            <div key={index} className="flex items-start gap-2 sm:gap-3">
+                            <Reveal key={index} delay={index * 90} className="flex items-start gap-2 sm:gap-3">
                                 <div className="flex-shrink-0 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#00c853] flex items-center justify-center mt-0.5 shadow-xs">
                                     <svg className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -300,14 +367,14 @@ const SeoWritingSection = () => {
                                     <strong className="text-slate-900 font-bold">{item.title}</strong>{' '}
                                     {item.description}
                                 </p>
-                            </div>
+                            </Reveal>
                         ))}
                     </div>
 
                 </div>
 
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -331,7 +398,7 @@ const ProductUpdateSection = () => {
     ];
 
     return (
-        <section className="w-full py-6 sm:py-8 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
+        <Reveal as="section" className="w-full py-6 sm:py-8 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
             <div className="w-full max-w-4xl mx-auto flex flex-col items-start text-left">
 
                 <div className="bg-[#e65c00] text-white font-bold text-xs sm:text-sm uppercase py-1 px-3.5 sm:px-5 rounded-sm mb-3 sm:mb-4 inline-block">
@@ -360,7 +427,7 @@ const ProductUpdateSection = () => {
 
                     <div className="col-span-8 space-y-3 sm:space-y-4">
                         {updateTasks.map((item, index) => (
-                            <div key={index} className="flex items-start gap-2 sm:gap-3">
+                            <Reveal key={index} delay={index * 90} className="flex items-start gap-2 sm:gap-3">
                                 <div className="flex-shrink-0 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#00c853] flex items-center justify-center mt-0.5 shadow-xs">
                                     <svg className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -370,14 +437,14 @@ const ProductUpdateSection = () => {
                                     <strong className="text-slate-900 font-bold">{item.title}</strong>{' '}
                                     {item.description}
                                 </p>
-                            </div>
+                            </Reveal>
                         ))}
                     </div>
 
                 </div>
 
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -397,7 +464,7 @@ const DesignBannerSection = () => {
     ];
 
     return (
-        <section className="w-full py-6 sm:py-8 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
+        <Reveal as="section" className="w-full py-6 sm:py-8 bg-white text-slate-900 flex justify-center items-center px-3 sm:px-4 overflow-hidden">
             <div className="w-full max-w-4xl mx-auto flex flex-col items-start text-left">
 
                 <div className="bg-[#e65c00] text-white font-bold text-xs sm:text-sm uppercase py-1 px-3.5 sm:px-5 rounded-sm mb-3 sm:mb-4 inline-block">
@@ -426,7 +493,7 @@ const DesignBannerSection = () => {
 
                     <div className="col-span-8 space-y-3 sm:space-y-4">
                         {designTasks.map((item, index) => (
-                            <div key={index} className="flex items-start gap-2 sm:gap-3">
+                            <Reveal key={index} delay={index * 90} className="flex items-start gap-2 sm:gap-3">
                                 <div className="flex-shrink-0 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#00c853] flex items-center justify-center mt-0.5 shadow-xs">
                                     <svg className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -436,7 +503,7 @@ const DesignBannerSection = () => {
                                     <strong className="text-slate-900 font-bold">{item.title}</strong>{' '}
                                     {item.description}
                                 </p>
-                            </div>
+                            </Reveal>
                         ))}
                     </div>
                 </div>
@@ -452,7 +519,7 @@ const DesignBannerSection = () => {
                 </div>
 
             </div>
-        </section>
+        </Reveal>
     );
 };
 
@@ -462,6 +529,7 @@ const DesignBannerSection = () => {
 const ServiceCareWebsite = () => {
     return (
         <div className="w-full overflow-hidden font-sans">
+            <RevealStyles />
             <HeroHeaderSection />
             <ContactFormSection />
             <WhyNeglectedSection />

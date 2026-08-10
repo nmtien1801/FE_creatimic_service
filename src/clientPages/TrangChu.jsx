@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ContactForm from '../components/FormContact';
 import { ChevronRight, ChevronDown } from "lucide-react";
 
 // ========================================================
-// DESIGN SYSTEM
-// Palette — Ink #14181F · Paper #FBF9F6 · Amber #DD8A3B (primary)
-//           Teal #135C50 (chiến lược/tin cậy) · Terracotta #B23A2E (cảnh báo)
-// Chữ hiển thị: 'Be Vietnam Pro' (tiêu đề) · 'Inter' (nội dung)
+// DESIGN SYSTEM & STYLES
 // ========================================================
 const bgSession1 = "/trangChu/bgSs1.png";
 const bgSession2 = "/trangChu/bgSs2.png";
@@ -41,11 +38,67 @@ function FontStyles() {
                 background-image: radial-gradient(rgba(20,24,31,0.05) 1px, transparent 1px);
                 background-size: 12px 12px;
             }
+            .cmic-landing .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(28px);
+                transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+                will-change: opacity, transform;
+            }
+            .cmic-landing .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .cmic-landing .reveal-on-scroll {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+            }
         `}</style>
     );
 }
 
-// Khối màu nền mềm phía sau mỗi section
+// ========================================================
+// SCROLL REVEAL (hiệu ứng xuất hiện khi lăn chuột)
+// ========================================================
+function useRevealOnScroll(options = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    React.useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        observer.observe(node);
+        return () => observer.disconnect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return [ref, isVisible];
+}
+
+function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest }) {
+    const [ref, isVisible] = useRevealOnScroll();
+    return (
+        <Tag
+            ref={ref}
+            className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+            style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+            {...rest}
+        >
+            {children}
+        </Tag>
+    );
+}
+
 function Ambient({ tone = 'amber' }) {
     const tones = {
         amber: ['#F3B372', '#DD8A3B'],
@@ -157,9 +210,7 @@ const HelpIcon = ({ className = icSm }) => (
     </svg>
 );
 
-// ========================================================
 // DATA
-// ========================================================
 const PROBLEMS_DATA = [
     {
         title: "Marketing manh mún, rời rạc",
@@ -233,9 +284,9 @@ const FAQS_DATA = [
 // ==========================================================
 
 // SESSION 1: HERO
-function HeroSection() {
+function HeroSection({ onScrollToForm }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8">
+        <Reveal as="section" className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8">
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40 sm:opacity-100"
                 style={{
@@ -246,8 +297,8 @@ function HeroSection() {
                 }}
             />
 
-            {/* Container căn giữa & giới hạn khung max-w-7xl */}
-            <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-[#14181F]">
+            <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch text-[#14181F]">
+                {/* Cột Trái */}
                 <div className="lg:col-span-7 flex flex-col justify-center items-center lg:items-start space-y-4 text-center lg:text-left">
                     <div className="space-y-1">
                         <h1 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight uppercase text-[#14181F] leading-tight">
@@ -277,15 +328,19 @@ function HeroSection() {
                     </div>
 
                     <div className="pt-2">
-                        <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F0A155] to-[#C96F1E] text-white font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide">
+                        <button
+                            onClick={onScrollToForm}
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F0A155] to-[#C96F1E] text-white font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 uppercase tracking-wide cursor-pointer"
+                        >
                             <IconBadge tone="ink" size="sm"><PhoneIcon className="w-3.5 h-3.5" /></IconBadge>
                             <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
                         </button>
                     </div>
                 </div>
 
-                <div className="lg:col-span-5 flex justify-center items-center">
-                    <div className="relative w-full max-w-sm lg:max-w-none aspect-[16/10] rounded-2xl overflow-hidden shadow-md border border-black/5">
+                {/* Cột Phải - Đã chỉnh sửa chiều cao */}
+                <div className="lg:col-span-5 flex justify-center items-center h-full">
+                    <div className="relative w-full max-w-sm lg:max-w-none h-full min-h-[250px] rounded-2xl overflow-hidden shadow-md border border-black/5">
                         <img
                             src="/trangChu/imgSs1.png"
                             alt="CMIC Media Banner"
@@ -294,29 +349,25 @@ function HeroSection() {
                     </div>
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
 
-// COMBINED SESSION 2 & 3: PROBLEMS + STRATEGY
+// PROBLEMS & STRATEGY
 function ProblemsAndStrategySection({ problems }) {
     return (
-        <section className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8">
-            {/* Container căn giữa & giới hạn khung max-w-7xl */}
+        <Reveal as="section" className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8">
             <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col space-y-10 md:space-y-12">
-
-                {/* PART 1: PROBLEMS (2 cột trên Mobile, 4 cột trên Laptop) */}
                 <div className="w-full flex flex-col space-y-4 sm:space-y-6">
                     <h2 className="text-base sm:text-xl md:text-2xl font-black text-[#14181F] text-center tracking-tight uppercase leading-snug">
                         Doanh nghiệp của bạn có đang gặp phải những <span className="text-[#B23A2E]">điểm nghẽn</span> này?
                     </h2>
 
-                    {/* Chia 2 cột trên màn hình nhỏ (2 hàng x 2 cột), tự động chuyển thành 4 cột trên màn rộng */}
                     <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
                         {problems.map((item, index) => {
                             const Icon = PROBLEM_ICONS[index] || NetworkIcon;
                             return (
-                                <div key={index} className="flex flex-col items-start gap-2 sm:gap-3 bg-white/90 backdrop-blur-xs p-3 sm:p-4 rounded-xl shadow-sm border border-black/5 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
+                                <Reveal key={index} delay={index * 90} className="flex flex-col items-start gap-2 sm:gap-3 bg-white/90 backdrop-blur-xs p-3 sm:p-4 rounded-xl shadow-sm border border-black/5 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group">
                                     <IconBadge tone="terracotta" size="sm">
                                         <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 group-hover:scale-110 transition-transform duration-300" />
                                     </IconBadge>
@@ -324,13 +375,12 @@ function ProblemsAndStrategySection({ problems }) {
                                         <h3 className="text-xs sm:text-sm md:text-base font-extrabold text-[#93291E] leading-snug">{item.title}</h3>
                                         <p className="text-[#4B5160] text-[11px] sm:text-xs md:text-sm leading-normal sm:leading-relaxed">{item.description}</p>
                                     </div>
-                                </div>
+                                </Reveal>
                             );
                         })}
                     </div>
                 </div>
 
-                {/* PART 2: STRATEGY */}
                 <div className="w-full flex flex-col space-y-8 text-[#14181F]">
                     <div className="w-full flex items-center justify-center py-2 px-2 sm:px-4">
                         <div className="flex items-center justify-center gap-1 sm:gap-2 max-w-fit text-center">
@@ -343,7 +393,7 @@ function ProblemsAndStrategySection({ problems }) {
                                 <p className="text-sm sm:text-base md:text-lg font-semibold text-[#14181F] tracking-wide">
                                     Marketing là tài sản số giúp bạn tạo dòng tiền bền vững
                                 </p>
-                                <p className="text-sm sm:text-base md:text-lg font-black text-[#135C50] tracking-wider uppercase">
+                                <p className="text-sm sm:text-base md:text-lg font-black text-[#C96F1E] tracking-wider uppercase">
                                     CMIC MEDIA
                                 </p>
                             </div>
@@ -356,8 +406,8 @@ function ProblemsAndStrategySection({ problems }) {
                     </div>
 
                     <div className="grid grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center w-full pt-2">
-                        {/* Phễu Marketing - Nằm bên trái (4/12 cột trên mobile, 5/12 trên lg) */}
-                        <div className="col-span-4 lg:col-span-5 flex justify-center items-center w-full max-w-[120px] sm:max-w-[180px] lg:max-w-[200px] mx-auto overflow-hidden">
+                        {/* TĂNG KÍCH THƯỚC KHUNG BÊN TRÁI CHỨA ẢNH PHỄU */}
+                        <div className="col-span-5 lg:col-span-5 flex justify-center items-center w-full max-w-[200px] sm:max-w-[280px] lg:max-w-[340px] mx-auto overflow-hidden">
                             <img
                                 src="/trangChu/pheuSs3.png"
                                 alt="Marketing Funnel"
@@ -365,8 +415,8 @@ function ProblemsAndStrategySection({ problems }) {
                             />
                         </div>
 
-                        {/* Nội dung đối tác chiến lược - Nằm bên phải (8/12 cột trên mobile, 7/12 trên lg) */}
-                        <div className="col-span-8 lg:col-span-7 flex flex-col space-y-1.5 sm:space-y-3 text-left">
+                        {/* CỘT NỘI DUNG BÊN PHẢI */}
+                        <div className="col-span-7 lg:col-span-7 flex flex-col space-y-1.5 sm:space-y-3 text-left">
                             <div>
                                 <h3 className="text-xs sm:text-lg md:text-xl font-black text-[#14181F] uppercase tracking-tight leading-tight">
                                     CMIC MEDIA ĐÓNG VAI TRÒ LÀ
@@ -387,9 +437,8 @@ function ProblemsAndStrategySection({ problems }) {
                                 </li>
                             </ul>
 
-                            {/* Các nhãn giải pháp */}
                             <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-0.5 sm:pt-1">
-                                <div className="inline-flex items-center bg-gradient-to-r from-[#146356] to-[#0F4B41] text-white rounded-md sm:rounded-lg shadow-sm divide-x divide-white/25 overflow-hidden">
+                                <div className="inline-flex items-center bg-gradient-to-r from-[#C96F1E] to-[#A85916] text-white rounded-md sm:rounded-lg shadow-sm divide-x divide-white/25 overflow-hidden">
                                     <div className="px-1.5 sm:px-3 py-1 text-[9px] sm:text-xs font-extrabold tracking-wide uppercase">
                                         Xây hệ thống
                                     </div>
@@ -411,26 +460,44 @@ function ProblemsAndStrategySection({ problems }) {
                     </div>
 
                     <div className="text-center pt-2 w-full flex flex-col items-center space-y-0.5">
-                        <p className="text-base sm:text-lg md:text-xl font-display italic tracking-wide font-medium text-[#0F4B41]">KPI MARKETING</p>
-                        <div className="w-44 sm:w-56 h-4 text-[#0F4B41] flex justify-center">
-                            <svg className="w-full h-full" viewBox="0 0 300 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 5 Q 75 18, 150 18 T 290 5 M150 18 L 150 22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
-                            </svg>
+                        <p className="text-base sm:text-lg md:text-xl font-display italic tracking-wide font-medium text-[#0F4B41]">
+                            KPI MARKETING
+                        </p>
+
+                        {/* Đã tăng width từ w-44 sm:w-56 -> w-64 sm:w-80 md:w-[360px] */}
+                        <div className="w-64 sm:w-80 md:w-[360px] h-5 text-[#0F4B41] flex justify-center">
+                           <svg
+    className="w-full h-full"
+    viewBox="0 0 300 30"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+>
+    <path
+        d="M 10 4 Q 10 16 130 16 Q 145 16 150 26 Q 155 16 170 16 Q 290 16 290 4"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    />
+</svg>
                         </div>
-                        <p className="text-xl sm:text-2xl md:text-3xl font-display italic font-medium tracking-wide text-[#0F4B41]">DOANH SỐ</p>
+
+                        <p className="text-xl sm:text-2xl md:text-3xl font-display italic font-medium tracking-wide text-[#0F4B41]">
+                            DOANH SỐ
+                        </p>
                     </div>
                 </div>
-
             </div>
-        </section>
+        </Reveal>
     );
 }
 
-// SESSION 4: SERVICES
+// SERVICES
 function ServicesSection({ services }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8">
-            {/* Container căn giữa & giới hạn khung max-w-7xl */}
+        <Reveal as="section" className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8">
             <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col space-y-8 md:space-y-10">
                 <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase border-l-4 border-[#C96F1E] pl-3">
                     Các dịch vụ chính CMIC MEDIA cung cấp
@@ -438,8 +505,9 @@ function ServicesSection({ services }) {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 w-full">
                     {services.map((svc, index) => (
-                        <div
+                        <Reveal
                             key={index}
+                            delay={(index % 2) * 120}
                             className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 w-full p-2 rounded-2xl"
                         >
                             <div className="w-full sm:w-2/5 shrink-0 flex items-center justify-center">
@@ -467,21 +535,20 @@ function ServicesSection({ services }) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
 
-// SESSION 5: FORM
-function ConsultationFormSection() {
+// SESSION 5: FORM (Nhận ref từ Component Cha)
+function ConsultationFormSection({ formRef }) {
     return (
-        <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[#FDF0DF]/60">
+        <section ref={formRef} className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[#FDF0DF]/60">
             <Ambient tone="amber" />
-            {/* Container căn giữa & giới hạn khung max-w-5xl */}
-            <div className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <Reveal className="relative z-10 max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-6 text-center lg:text-left space-y-3">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-[#14181F] tracking-tight uppercase leading-snug">
                         Sẵn sàng tăng bứt phá doanh số cùng CMIC MEDIA?
@@ -493,38 +560,34 @@ function ConsultationFormSection() {
                 <div className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">
                     <ContactForm />
                 </div>
-            </div>
+            </Reveal>
         </section>
     );
 }
 
-// SESSION 6: WORKFLOW
+// WORKFLOW
 function WorkflowSection({ steps }) {
     return (
-        <section className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8 bg-[#FBF9F6]">
+        <Reveal as="section" className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8 bg-[#FBF9F6]">
             <div className="absolute inset-0 flow-lines opacity-50 z-0" />
             <Ambient tone="teal" />
 
-            {/* Container căn giữa & giới hạn khung max-w-5xl */}
             <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col space-y-5 sm:space-y-6">
                 <h2 className="text-base sm:text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase">
                     Quy trình hợp tác
                 </h2>
 
-                {/* Trục Timeline dọc */}
                 <div className="relative w-full flex flex-col space-y-3 sm:space-y-4 pl-5 sm:pl-8 md:pl-10">
                     <div className="absolute left-[8px] sm:left-[14px] md:left-[16px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-[#C96F1E] via-[#0F4B41] to-[#14181F] pointer-events-none rounded-full" />
 
                     {steps.map((step, idx) => {
                         const Icon = STEP_ICONS[idx] || DocIcon;
                         return (
-                            <div key={idx} className="relative w-full grid grid-cols-12 gap-1.5 sm:gap-3 items-center pl-3 sm:pl-5 text-left group">
-                                {/* Dot Icon nằm chính giữa đường timeline */}
+                            <Reveal key={idx} delay={idx * 80} className="relative w-full grid grid-cols-12 gap-1.5 sm:gap-3 items-center pl-3 sm:pl-5 text-left group">
                                 <div className="absolute -left-[17px] sm:-left-[24px] md:-left-[31px] top-1/2 -translate-y-1/2 w-3 sm:w-4 h-3 sm:h-4 bg-white border-[2px] sm:border-[2.5px] border-[#14181F] rounded-full z-30 flex items-center justify-center group-hover:border-[#C96F1E] transition-colors duration-300">
                                     <div className="w-1 h-1 rounded-full bg-[#14181F] group-hover:bg-[#C96F1E] transition-colors duration-300" />
                                 </div>
 
-                                {/* Nhãn bước - Đã BỎ 'truncate', cho phép xuống dòng mượt mà */}
                                 <div className="col-span-5 lg:col-span-4 w-full">
                                     <div
                                         className="w-full flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#C96F1E] to-[#A85916] text-white font-extrabold text-[10px] sm:text-xs md:text-sm py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg shadow-sm select-none"
@@ -534,7 +597,6 @@ function WorkflowSection({ steps }) {
                                     </div>
                                 </div>
 
-                                {/* Chi tiết bước */}
                                 <div className="col-span-7 lg:col-span-8 w-full">
                                     <div className="w-full bg-white border border-[#C96F1E]/40 rounded-md sm:rounded-lg p-2 sm:p-3 shadow-xs min-h-[38px] sm:min-h-[44px] flex items-center">
                                         <p className="text-[#14181F] font-bold text-[10px] sm:text-xs md:text-sm leading-tight sm:leading-snug">
@@ -542,16 +604,16 @@ function WorkflowSection({ steps }) {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </Reveal>
                         );
                     })}
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
-// SESSION 7: FAQS
-// 1. Component con xử lý độc lập từng Thẻ FAQ (Siêu siêu mượt, phản hồi 0ms)
+
+// FAQS
 function FaqItem({ faq, isOpenDefault = false }) {
     const [isOpen, setIsOpen] = useState(isOpenDefault);
 
@@ -582,7 +644,6 @@ function FaqItem({ faq, isOpenDefault = false }) {
                 />
             </button>
 
-            {/* Khối Nội dung với transition mượt & nhanh (250ms) */}
             <div
                 className={`grid transition-all duration-250 ease-out ${isOpen
                     ? "grid-rows-[1fr] opacity-100"
@@ -601,7 +662,6 @@ function FaqItem({ faq, isOpenDefault = false }) {
     );
 }
 
-// 2. Component Cha FAQ chính
 function FaqSection({ faqs }) {
     return (
         <section className="relative w-full py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-[#FCFAF8]">
@@ -617,7 +677,7 @@ function FaqSection({ faqs }) {
 
             <div className="absolute inset-0 grain-soft opacity-60 z-0" />
 
-            <div className="relative z-10 max-w-5xl mx-auto flex flex-col space-y-6">
+            <Reveal className="relative z-10 max-w-5xl mx-auto flex flex-col space-y-6">
                 <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
                     <div className="flex items-center space-x-2">
                         <div className="flex flex-col items-center">
@@ -633,26 +693,38 @@ function FaqSection({ faqs }) {
 
                 <div className="space-y-3 sm:space-y-4">
                     {faqs.map((faq, index) => (
-                        <FaqItem
-                            key={index}
-                            faq={faq}
-                            isOpenDefault={index === 0} // Mặc định mở câu đầu tiên
-                        />
+                        <Reveal key={index} delay={index * 90}>
+                            <FaqItem
+                                faq={faq}
+                                isOpenDefault={index === 0}
+                            />
+                        </Reveal>
                     ))}
                 </div>
-            </div>
+            </Reveal>
         </section>
     );
 }
 
 // ========================================================
-// MAIN COMPONENT
+// MAIN COMPONENT (Xử lý cuộn trang)
 // ========================================================
 export default function MarketingLandingPage() {
+    // 1. Khai báo useRef cho Form
+    const formRef = useRef(null);
+
+    // 2. Hàm cuộn mượt xuống Form
+    const handleScrollToForm = () => {
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="cmic-landing overflow-x-hidden bg-[#FBF9F6] antialiased selection:bg-[#DD8A3B] selection:text-white">
             <FontStyles />
-            <HeroSection />
+            {/* Truyền hàm cuộn vào HeroSection */}
+            <HeroSection onScrollToForm={handleScrollToForm} />
 
             <div className="relative w-full overflow-hidden">
                 <div
@@ -669,7 +741,8 @@ export default function MarketingLandingPage() {
                 <ServicesSection services={SERVICES_DATA} />
             </div>
 
-            <ConsultationFormSection />
+            {/* Gán ref cho Form */}
+            <ConsultationFormSection formRef={formRef} />
             <WorkflowSection steps={STEPS_DATA} />
             <FaqSection faqs={FAQS_DATA} />
         </div>

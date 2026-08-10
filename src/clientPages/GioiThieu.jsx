@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import ContactForm from '../components/FormContact';
 
 const img1Url = "/gioiThieu/img1.png";
@@ -7,11 +7,75 @@ const bgSession3 = "/gioiThieu/bgSs3.png";
 const bgSession4 = "/gioiThieu/bgSs4.png";
 
 // ========================================================
+// SCROLL REVEAL (hiệu ứng xuất hiện khi lăn chuột)
+// ========================================================
+function RevealStyles() {
+    return (
+        <style>{`
+            .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(28px);
+                transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+                will-change: opacity, transform;
+            }
+            .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .reveal-on-scroll {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+            }
+        `}</style>
+    );
+}
+
+function useRevealOnScroll(options = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    React.useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        observer.observe(node);
+        return () => observer.disconnect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return [ref, isVisible];
+}
+
+function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest }) {
+    const [ref, isVisible] = useRevealOnScroll();
+    return (
+        <Tag
+            ref={ref}
+            className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+            style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+            {...rest}
+        >
+            {children}
+        </Tag>
+    );
+}
+
+// ========================================================
 // SESSION 1: BANNER VỀ CHÚNG TÔI
 // ========================================================
 function BannerSection() {
   return (
-    <section className="relative w-full overflow-hidden min-h-[400px] md:min-h-[480px] py-28 md:py-36 px-4 md:px-8 bg-gray-950 flex flex-col items-center justify-center text-center">
+    <Reveal as="section" className="relative w-full overflow-hidden min-h-[400px] md:min-h-[480px] py-28 md:py-36 px-4 md:px-8 bg-gray-950 flex flex-col items-center justify-center text-center">
       <img
         src={bgSession1}
         alt="About Banner Background"
@@ -27,7 +91,7 @@ function BannerSection() {
           Câu chuyện thương hiệu - Tầm nhìn - Sứ mệnh - Giá trị cốt lõi
         </p>
       </div>
-    </section>
+    </Reveal>
   );
 }
 
@@ -44,7 +108,7 @@ function AboutStorySection() {
       />
 
       <div className="relative z-20 w-full mx-auto space-y-12 px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 flex justify-center relative w-full mx-auto aspect-square max-w-sm">
             <div className="w-[82%] h-[82%] rounded-3xl overflow-hidden shadow-xl border-4 border-white absolute top-0 left-0">
               <img src="/gioiThieu/img1ss2.png" alt="Teamwork" className="w-full h-full object-cover" />
@@ -73,9 +137,9 @@ function AboutStorySection() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 flex flex-col space-y-5 text-left">
             <div className="space-y-3 text-sm md:text-base text-gray-700 font-normal leading-relaxed">
               <p>
@@ -126,7 +190,7 @@ function AboutStorySection() {
               />
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -137,7 +201,7 @@ function AboutStorySection() {
 // ========================================================
 function CoreValuesSection({ coreValues }) {
   return (
-    <section className="relative w-full overflow-hidden py-8 md:py-14 bg-gray-50 flex justify-center">
+    <Reveal as="section" className="relative w-full overflow-hidden py-8 md:py-14 bg-gray-50 flex justify-center">
       <div
         className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
         style={{
@@ -159,8 +223,9 @@ function CoreValuesSection({ coreValues }) {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 md:gap-5 pt-1 w-full">
           {coreValues.map((val, idx) => (
-            <div
+            <Reveal
               key={idx}
+              delay={idx * 90}
               className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-sm border border-gray-200 flex flex-col text-left transition-all duration-300 hover:shadow-md"
             >
               <div className="bg-orange-500 text-white text-center py-1.5 sm:py-2 px-1 font-bold text-xs sm:text-sm md:text-base tracking-wide uppercase leading-tight">
@@ -171,11 +236,11 @@ function CoreValuesSection({ coreValues }) {
                   {val.desc}
                 </p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
-    </section>
+    </Reveal>
   );
 }
 
@@ -195,9 +260,9 @@ function ContactSection() {
         }}
       />
 
-      <div className="relative z-20 w-full max-w-lg mx-auto">
+      <Reveal className="relative z-20 w-full max-w-lg mx-auto">
         <ContactForm />
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -227,6 +292,7 @@ export default function AboutPage() {
 
   return (
     <div className="w-full bg-white font-sans antialiased text-gray-900 selection:bg-orange-500 selection:text-white">
+      <RevealStyles />
       <BannerSection />
       <AboutStorySection />
       <CoreValuesSection coreValues={coreValues} />

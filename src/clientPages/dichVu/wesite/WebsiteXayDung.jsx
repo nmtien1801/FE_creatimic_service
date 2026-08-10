@@ -102,7 +102,7 @@ function useScrollReveal() {
 }
 
 // ================= SECTION 1: HERO & VERTICAL CAROUSEL =================
-function HeroSection() {
+function HeroSection({ onScrollToForm }) {
     const [ref, isRevealed] = useScrollReveal();
     const [startIndex, setStartIndex] = useState(0);
     const totalItems = WEBSITE_TYPES.length;
@@ -165,7 +165,7 @@ function HeroSection() {
                             type="button"
                             aria-label="Ảnh trước"
                             onClick={() => setStartIndex((prev) => (prev - 1 + totalItems) % totalItems)}
-                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white border border-neutral-200 shadow-2xs hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-[10px] sm:text-xs transition-all hover:scale-105"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white border border-neutral-200 shadow-2xs hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-[10px] sm:text-xs transition-all hover:scale-105 cursor-pointer"
                         >
                             ❮
                         </button>
@@ -173,7 +173,7 @@ function HeroSection() {
                             type="button"
                             aria-label="Ảnh kế tiếp"
                             onClick={() => setStartIndex((prev) => (prev + 1) % totalItems)}
-                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white border border-neutral-200 shadow-2xs hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-[10px] sm:text-xs transition-all hover:scale-105"
+                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white border border-neutral-200 shadow-2xs hover:bg-[#ed792f] hover:border-[#ed792f] text-neutral-600 hover:text-white flex items-center justify-center text-[10px] sm:text-xs transition-all hover:scale-105 cursor-pointer"
                         >
                             ❯
                         </button>
@@ -199,9 +199,13 @@ function HeroSection() {
                             ))}
                         </div>
 
-                        {/* NÚT ĐĂNG KÝ */}
+                        {/* NÚT ĐĂNG KÝ (Đã thêm onClick={onScrollToForm}) */}
                         <div className="pt-2 sm:pt-4 w-full flex justify-start">
-                            <button className="inline-flex items-center justify-between gap-1.5 sm:gap-2.5 bg-[#ed792f] hover:bg-[#d96723] text-white font-bold text-[10px] sm:text-xs md:text-sm px-3.5 sm:px-6 py-2 sm:py-3 rounded-full shadow-md transition-all transform hover:-translate-y-0.5 uppercase tracking-wide">
+                            <button
+                                type="button"
+                                onClick={onScrollToForm}
+                                className="inline-flex items-center justify-between gap-1.5 sm:gap-2.5 bg-[#ed792f] hover:bg-[#d96723] text-white font-bold text-[10px] sm:text-xs md:text-sm px-3.5 sm:px-6 py-2 sm:py-3 rounded-full shadow-md transition-all transform hover:-translate-y-0.5 uppercase tracking-wide cursor-pointer"
+                            >
                                 <span>Đăng ký nhận tư vấn</span>
                                 <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white/20 flex items-center justify-center text-[9px] sm:text-xs">
                                     📞
@@ -238,7 +242,7 @@ function SpecialServiceSection() {
                     {COMMITMENTS.map((item) => (
                         <div key={item.id} className="relative flex flex-col w-full text-left pl-2.5 sm:pl-4">
 
-                            {/* 1. BADGE NỬA VÒNG TRÒN DÍNH SÁT KHUNG TIÊU ĐỀ (KHÔNG CÒN KHOẢNG TRẮNG) */}
+                            {/* 1. BADGE NỬA VÒNG TRÒN DÍNH SÁT KHUNG TIÊU ĐỀ */}
                             <div className="absolute -left-2.5 sm:-left-3.5 top-[24px] sm:top-[30px] -translate-y-1/2 w-[48px] h-[48px] sm:w-[62px] sm:h-[62px] flex items-center justify-center z-10">
                                 {/* Nửa vòng tròn cam */}
                                 <div className="absolute left-0 top-0 w-1/2 h-full bg-[#ed792f] rounded-l-full z-0" />
@@ -277,9 +281,9 @@ function SpecialServiceSection() {
 }
 
 // ================= SECTION 3: CONTACT FORM =================
-function ContactFormSection() {
+function ContactFormSection({ formRef }) {
     return (
-        <section className="relative w-full py-10 md:py-16 px-3 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200/80 z-10">
+        <section ref={formRef} className="relative w-full py-10 md:py-16 px-3 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200/80 z-10 scroll-mt-6">
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none z-0 bg-no-repeat bg-center"
                 style={{
@@ -297,11 +301,23 @@ function ContactFormSection() {
 
 // ================= COMPONENT CHÍNH =================
 export default function CmicServicePage() {
+    // 1. Khai báo ref cho Form Contact
+    const formRef = useRef(null);
+
+    // 2. Hàm cuộn mượt xuống Form Contact
+    const handleScrollToForm = () => {
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-clip font-sans scroll-smooth w-full">
-            <HeroSection />
+            {/* Truyền hàm cuộn xuống HeroSection */}
+            <HeroSection onScrollToForm={handleScrollToForm} />
             <SpecialServiceSection />
-            <ContactFormSection />
+            {/* Gán formRef cho ContactFormSection */}
+            <ContactFormSection formRef={formRef} />
         </div>
     );
 }

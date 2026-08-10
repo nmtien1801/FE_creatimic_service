@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Phone } from "lucide-react";
 import ContactForm from '../../../components/FormContact';
 
-/* ================= SECTION 1: HERO BANNER ================= */
-function HeroBanner() {
+/* ================= CUSTOM HOOK & REVEAL COMPONENT ================= */
+function useRevealOnScroll(options = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return [ref, isVisible];
+}
+
+function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest }) {
+    const [ref, isVisible] = useRevealOnScroll();
     return (
-        <div
+        <Tag
+            ref={ref}
+            className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+            style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+            {...rest}
+        >
+            {children}
+        </Tag>
+    );
+}
+
+/* ================= SECTION 1: HERO BANNER ================= */
+function HeroBanner({ onScrollToForm }) {
+    return (
+        <Reveal
+            as="div"
             className="relative w-full px-6 py-10 px-10 md:px-35"
             style={{
                 background: "linear-gradient(100deg, #626567 0%, #ffffff 32%, #fbe2cf 68%, #f0904f 100%)"
@@ -27,12 +65,10 @@ function HeroBanner() {
                 <div className="w-full md:w-[50%] z-10">
                     <div>
                         <div className="relative py-3 sm:py-4 lg:py-5 w-full overflow-hidden">
-                            {/* TIÊU ĐỀ CHÍNH - Thu gọn font size vừa vặn với màn Tablet */}
                             <h1 className="relative z-10 text-black font-bold uppercase tracking-tighter leading-none text-2xl sm:text-3xl md:text-4xl lg:text-6xl">
                                 ĐỐI TÁC CHIẾN LƯỢC
                             </h1>
 
-                            {/* KHỐI NỀN TRẮNG RỘNG - Xử lý không cho tràn màn hình Tablet */}
                             <div className="inline-block bg-white -mt-2 sm:-mt-3 lg:-mt-5 ml-[5%] sm:ml-[8%] lg:ml-[12%] pl-3 sm:pl-5 lg:pl-8 pr-4 sm:pr-8 lg:pr-20 pt-3 sm:pt-5 lg:pt-8 pb-2 sm:pb-3 lg:pb-4 shadow-sm max-w-[90%]">
                                 <p className="font-bold uppercase tracking-wider text-black text-xs sm:text-base md:text-lg lg:text-3xl leading-snug lg:leading-none whitespace-normal sm:whitespace-nowrap">
                                     INHOUSE MARKETING PARTNER
@@ -49,11 +85,12 @@ function HeroBanner() {
                             của doanh nghiệp.
                         </p>
 
-                        {/* NÚT ĐĂNG KÝ NẰM CHÍNH GIỮA CỘT 2 */}
+                        {/* NÚT ĐĂNG KÝ: Thêm onClick={onScrollToForm} */}
                         <div className="flex justify-center mt-8 relative md:absolute md:right-1/7 md:top-1/1 md:-translate-y-1/2 z-10">
                             <button
                                 type="button"
-                                className="group inline-flex items-center gap-3 rounded-full pl-7 pr-2 py-2.5 font-extrabold text-white shadow-xl transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98]"
+                                onClick={onScrollToForm}
+                                className="group inline-flex items-center gap-3 rounded-full pl-7 pr-2 py-2.5 font-extrabold text-white shadow-xl transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
                                 style={{ background: "linear-gradient(90deg, #f0904f 0%, #e8752b 100%)" }}
                             >
                                 <span className="tracking-wide text-sm sm:text-base uppercase">
@@ -70,15 +107,15 @@ function HeroBanner() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Reveal>
     );
 }
 
 /* ================= SECTION 2: PROBLEM & CONTACT FORM ================= */
-function ProblemAndContact() {
+function ProblemAndContact({ formRef }) {
     return (
         <div className="w-full px-10 md:px-35 py-12 md:py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* LEFT COLUMN: Problem points (7 cols) */}
                 <div className="lg:col-span-7 space-y-6 text-neutral-800 text-base sm:text-lg leading-relaxed">
                     <p>
@@ -120,18 +157,18 @@ function ProblemAndContact() {
                     </div>
                 </div>
 
-                {/* RIGHT COLUMN: Contact Form (5 cols) */}
-                <div className="lg:col-span-5">
+                {/* RIGHT COLUMN: Contact Form (5 cols) - Gán formRef vào đây */}
+                <div ref={formRef} className="lg:col-span-5 scroll-mt-10">
                     <ContactForm />
                 </div>
-            </div>
+            </Reveal>
 
             {/* BOTTOM BANNER / CONCLUSION BOX */}
-            <div className="mt-10 bg-[#fbd0b4] border border-[#d6641e] p-4 sm:p-5 text-center rounded-sm">
+            <Reveal delay={100} className="mt-10 bg-[#fbd0b4] border border-[#d6641e] p-4 sm:p-5 text-center rounded-sm">
                 <p className="font-extrabold text-neutral-900 text-base sm:text-lg md:text-xl leading-snug">
                     CMIC MEDIA ra đời để mang đến giải pháp trọn gói, giải quyết trọn vẹn những bài toán này cho doanh nghiệp của bạn.
                 </p>
-            </div>
+            </Reveal>
         </div>
     );
 }
@@ -140,8 +177,7 @@ function ProblemAndContact() {
 function AllInOneModel() {
     return (
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-14">
-            {/* Header Section 3 */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center mb-8 sm:mb-12">
+            <Reveal className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center mb-8 sm:mb-12">
                 <div className="md:col-span-6 flex justify-center">
                     <img
                         src="/trongoi.marketing/img2.png"
@@ -161,15 +197,11 @@ function AllInOneModel() {
                         Tích hợp 4 năng lực cốt lõi trong một gói dịch vụ duy nhất, giúp doanh nghiệp vận hành marketing hiệu quả, chuyên nghiệp và tự chủ lâu dài:
                     </p>
                 </div>
-            </div>
+            </Reveal>
 
-            {/* Main Content Grid: Tối ưu tự xuống dòng mượt mà trên Mobile */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center text-left">
-
-                {/* Left Side: Mục 01, 02 */}
-                <div className="md:col-span-6 space-y-4 sm:space-y-6">
+                <Reveal delay={100} className="md:col-span-6 space-y-4 sm:space-y-6">
                     <div className="space-y-1.5">
-                        {/* Đã loại bỏ whitespace-nowrap gây lỗi tràn div */}
                         <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             01. Cố vấn chiến lược & Phễu chuyển đổi
                         </div>
@@ -179,7 +211,6 @@ function AllInOneModel() {
                     </div>
 
                     <div className="space-y-1.5">
-                        {/* Cho phép tự xuống dòng nếu chữ quá dài */}
                         <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             02. Đội ngũ thực thi chuyên nghiệp
                         </div>
@@ -187,10 +218,9 @@ function AllInOneModel() {
                             Trực tiếp triển khai trọn gói mọi hoạt động hàng ngày: Viết bài, thiết kế hình ảnh, sản xuất video ngắn, tối ưu SEO/Website, chạy quảng cáo và quản trị hệ thống kênh đa nền tảng.
                         </p>
                     </div>
-                </div>
+                </Reveal>
 
-                {/* Right Side: Ảnh ghép Business */}
-                <div className="md:col-span-6 flex justify-center">
+                <Reveal delay={200} className="md:col-span-6 flex justify-center">
                     <div className="relative w-full max-w-[340px] aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-neutral-200">
                         <img
                             src="/trongoi.marketing/img3.png"
@@ -198,19 +228,17 @@ function AllInOneModel() {
                             className="w-full h-full object-cover"
                         />
                     </div>
-                </div>
+                </Reveal>
 
-                {/* Left Side Bottom: Biểu đồ hình quạt */}
-                <div className="md:col-span-6 flex justify-center order-2 md:order-1 pt-2 md:pt-0">
+                <Reveal delay={100} className="md:col-span-6 flex justify-center order-2 md:order-1 pt-2 md:pt-0">
                     <img
                         src="/trongoi.marketing/img4.png"
                         alt="Mô hình bánh đà Marketing"
                         className="w-full max-w-[280px] sm:max-w-[340px] h-auto object-contain"
                     />
-                </div>
+                </Reveal>
 
-                {/* Right Side Bottom: Mục 03, 04 */}
-                <div className="md:col-span-6 space-y-4 sm:space-y-6 order-1 md:order-2">
+                <Reveal delay={200} className="md:col-span-6 space-y-4 sm:space-y-6 order-1 md:order-2">
                     <div className="space-y-1.5">
                         <div className="inline-block bg-[#fcd8c1] text-[#1c1c1c] font-extrabold px-2.5 py-1 text-xs sm:text-sm md:text-base rounded-xs max-w-full leading-snug">
                             03. Ứng dụng công nghệ & Tự động hóa
@@ -228,8 +256,7 @@ function AllInOneModel() {
                             Đồng hành cùng doanh nghiệp tuyển dụng, phỏng vấn, trực tiếp đào tạo kỹ năng chuyên môn và chuyển giao trọn bộ quy trình chuẩn (SOP) giúp đội ngũ nội bộ nhanh chóng làm chủ và tự vận hành hệ thống marketing lâu dài.
                         </p>
                     </div>
-                </div>
-
+                </Reveal>
             </div>
         </div>
     );
@@ -245,20 +272,18 @@ function Roadmap() {
             }}
         >
             <div className="w-full space-y-8">
-                {/* Header Section 4 */}
-                <div className="text-center space-y-2">
+                <Reveal className="text-center space-y-2">
                     <h2 className="text-xl md:text-2xl font-extrabold text-neutral-900 tracking-tight uppercase">
                         Lộ trình đồng hành toàn diện
                     </h2>
                     <p className="text-xl sm:text-2xl font-extrabold text-[#e85d04] uppercase tracking-wide">
                         3 Giai đoạn
                     </p>
-                </div>
+                </Reveal>
 
                 {/* GIAI ĐOẠN 1 */}
-                <div className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
+                <Reveal delay={100} className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row items-stretch">
-                        {/* CỘT ẢNH: Chiều rộng tự động (w-auto) ôm khít viền ảnh, không thừa 2 bên */}
                         <div className="w-full md:w-auto md:max-w-[35%] shrink-0 flex items-center justify-center bg-[#fde2d1]">
                             <img
                                 src="/trongoi.marketing/img5.png"
@@ -267,7 +292,6 @@ function Roadmap() {
                             />
                         </div>
 
-                        {/* CỘT NỘI DUNG: flex-1 tự động tràn vào áp sát mép ảnh */}
                         <div className="flex-1 p-6 md:p-8 space-y-4">
                             <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900 leading-snug">
                                 Giai đoạn 1: Chuẩn hoá hạ tầng & Khởi tạo tài sản số
@@ -295,10 +319,10 @@ function Roadmap() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </Reveal>
 
                 {/* GIAI ĐOẠN 2 */}
-                <div className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
+                <Reveal delay={150} className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row items-stretch">
                         <div className="w-full md:w-auto md:max-w-[35%] shrink-0 flex items-center justify-center bg-[#fde2d1]">
                             <img
@@ -335,10 +359,10 @@ function Roadmap() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </Reveal>
 
                 {/* GIAI ĐOẠN 3 */}
-                <div className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
+                <Reveal delay={200} className="bg-[#fde2d1]/90 border border-[#f8a873] rounded-2xl shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row items-stretch">
                         <div className="w-full md:w-auto md:max-w-[35%] shrink-0 flex items-center justify-center bg-[#fde2d1]">
                             <img
@@ -375,7 +399,7 @@ function Roadmap() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </Reveal>
             </div>
         </div>
     );
@@ -383,12 +407,46 @@ function Roadmap() {
 
 /* ================= MAIN COMPONENT ================= */
 export default function MarketingLandingPage() {
+    // 1. Tạo ref cho Form Contact
+    const formRef = useRef(null);
+
+    // 2. Hàm cuộn mượt xuống Form Contact
+    const handleScrollToForm = () => {
+        if (formRef.current) {
+            formRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="w-full bg-white text-neutral-800 font-sans">
-            <HeroBanner />
-            <ProblemAndContact />
+            {/* Truyền hàm cuộn vào HeroBanner */}
+            <HeroBanner onScrollToForm={handleScrollToForm} />
+            
+            {/* Truyền formRef vào ProblemAndContact */}
+            <ProblemAndContact formRef={formRef} />
+            
             <AllInOneModel />
             <Roadmap />
+
+            <style>{`
+                .reveal-on-scroll {
+                    opacity: 0;
+                    transform: translateY(28px);
+                    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+                    will-change: opacity, transform;
+                }
+                .reveal-on-scroll.is-visible {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .reveal-on-scroll {
+                        opacity: 1;
+                        transform: none;
+                        transition: none;
+                    }
+                }
+            `}</style>
         </div>
     );
 }

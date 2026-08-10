@@ -1,6 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown, Phone, Play, ArrowRight, Bot, AlertTriangle, CheckCircle2, Sparkles, Zap } from "lucide-react";
 import ContactForm from '../../../components/FormContact';
+
+/* ---------------------------------------------------------------
+   CUSTOM HOOK & REVEAL COMPONENT
+   --------------------------------------------------------------- */
+function useRevealOnScroll(options = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(entry.target);
+            }
+        }, options);
+
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return [ref, isVisible];
+}
+
+function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest }) {
+    const [ref, isVisible] = useRevealOnScroll();
+    return (
+        <Tag
+            ref={ref}
+            className={`reveal-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+            style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+            {...rest}
+        >
+            {children}
+        </Tag>
+    );
+}
 
 /* ---------------------------------------------------------------
    BRAND COLOR PALETTE & TOKENS
@@ -17,7 +56,7 @@ const bgSession7 = "/agent/bgSs7.png";
    --------------------------------------------------------------- */
 function HeroSection() {
     return (
-        <section className="relative w-full pt-14 pb-16 md:pt-28 md:pb-40 overflow-hidden text-white bg-cover bg-center bg-no-repeat">
+        <Reveal as="section" className="relative w-full pt-14 pb-16 md:pt-28 md:pb-40 overflow-hidden text-white bg-cover bg-center bg-no-repeat">
             {/* Lớp Ảnh Nền */}
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none z-0"
@@ -69,7 +108,7 @@ function HeroSection() {
                     </div>
                 </div>
             </div>
-        </section>
+        </Reveal>
     );
 }
 
@@ -81,17 +120,17 @@ function ComparisonSection() {
         <section className="py-10 md:py-16 bg-[#F7F8FC] border-b border-slate-200/80 relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
 
-                <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+                <Reveal className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
                     <span className="text-[#F2680C] font-extrabold text-[10px] sm:text-xs uppercase tracking-widest bg-[#F2680C]/10 px-3 py-1 rounded-full border border-[#F2680C]/20">
                         Sự Chuyển Đổi Mô Hình
                     </span>
                     <h2 className="text-base sm:text-2xl md:text-3xl font-black text-[#14181F] uppercase">
                         Bứt Phá Vận Hành Cùng AI Agent
                     </h2>
-                </div>
+                </Reveal>
 
                 {/* Cố định 2 cột 1 hàng */}
-                <div className="relative grid grid-cols-2 gap-2 sm:gap-6 items-stretch">
+                <Reveal className="relative grid grid-cols-2 gap-2 sm:gap-6 items-stretch">
 
                     {/* Bridge Icon ở giữa */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center">
@@ -162,7 +201,7 @@ function ComparisonSection() {
                         </div>
                     </div>
 
-                </div>
+                </Reveal>
             </div>
         </section>
     );
@@ -211,7 +250,7 @@ function VideoContactSection() {
             </div>
 
             <div className="relative z-10 max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 space-y-8">
-                <div className="grid lg:grid-cols-12 gap-6 items-center">
+                <Reveal className="grid lg:grid-cols-12 gap-6 items-center">
                     <div className="lg:col-span-7 text-left space-y-3">
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2680C]/10 border border-[#F2680C]/25 text-[#F2680C] text-[10px] sm:text-xs font-extrabold uppercase tracking-widest">
                             <Sparkles size={12} className="animate-pulse" />
@@ -268,11 +307,11 @@ function VideoContactSection() {
                             />
                         </div>
                     </div>
-                </div>
+                </Reveal>
 
-                <div id="lien-he" className="max-w-xl mx-auto rounded-xl bg-white/95 backdrop-blur-sm shadow-md">
+                <Reveal id="lien-he" className="max-w-xl mx-auto rounded-xl bg-white/95 backdrop-blur-sm shadow-md">
                     <ContactForm />
-                </div>
+                </Reveal>
             </div>
         </section>
     );
@@ -304,7 +343,7 @@ function PainPointsSection() {
     return (
         <section className="py-10 md:py-16 bg-[#1D428A] text-white">
             <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 space-y-6 text-center">
-                <div className="max-w-2xl mx-auto space-y-1">
+                <Reveal className="max-w-2xl mx-auto space-y-1">
                     <span className="text-[#F2680C] font-bold text-[9px] sm:text-xs uppercase tracking-wider bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15">
                         THỰC TRẠNG DOANH NGHIỆP
                     </span>
@@ -314,13 +353,14 @@ function PainPointsSection() {
                     <p className="text-[10px] sm:text-xs text-slate-200 font-normal">
                         Hầu hết SME hiện nay đều đang gặp tình trạng nghẽn cổ chai trong khâu vận hành hằng ngày.
                     </p>
-                </div>
+                </Reveal>
 
                 {/* Cố định 1 hàng 4 cột */}
                 <div className="grid grid-cols-4 gap-1.5 sm:gap-4">
                     {PAIN_POINTS.map((item, idx) => (
-                        <div
+                        <Reveal
                             key={idx}
+                            delay={idx * 80}
                             className="bg-white/10 backdrop-blur-sm p-1.5 sm:p-3 rounded-lg sm:rounded-2xl border border-white/15 shadow-sm text-left space-y-1 sm:space-y-2"
                         >
                             <div className="w-full aspect-[4/3] rounded-md sm:rounded-xl overflow-hidden border border-white/10">
@@ -329,13 +369,15 @@ function PainPointsSection() {
                             <p className="text-[9px] sm:text-xs text-slate-100 font-normal leading-tight sm:leading-relaxed">
                                 {item.desc}
                             </p>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
 
-                <h3 className="text-xs sm:text-lg md:text-xl font-bold text-[#F2680C] uppercase leading-snug pt-1">
-                    BẠN CÓ MUỐN TIẾT KIỆM NGUỒN LỰC & CẮT GIẢM CHI PHÍ VẬN HÀNH KHÔNG CẦN THIẾT?
-                </h3>
+                <Reveal>
+                    <h3 className="text-xs sm:text-lg md:text-xl font-bold text-[#F2680C] uppercase leading-snug pt-1">
+                        BẠN CÓ MUỐN TIẾT KIỆM NGUỒN LỰC & CẮT GIẢM CHI PHÍ VẬN HÀNH KHÔNG CẦN THIẾT?
+                    </h3>
+                </Reveal>
             </div>
         </section>
     );
@@ -379,26 +421,28 @@ function SolutionSection() {
             )}
 
             <div className="relative z-10 max-w-5xl mx-auto px-2 sm:px-6 lg:px-8 space-y-6 text-center">
-                <h2 className="text-sm sm:text-xl md:text-2xl font-extrabold text-[#14181F] uppercase leading-tight">
-                    <span className="text-[#F2680C]">GIẢI PHÁP</span> CỖ MÁY KHÔNG NGỦ AI AGENT (N8N)
-                </h2>
+                <Reveal>
+                    <h2 className="text-sm sm:text-xl md:text-2xl font-extrabold text-[#14181F] uppercase leading-tight">
+                        <span className="text-[#F2680C]">GIẢI PHÁP</span> CỖ MÁY KHÔNG NGỦ AI AGENT (N8N)
+                    </h2>
+                </Reveal>
 
                 {/* Cố định 2 cột */}
                 <div className="grid grid-cols-2 gap-2 sm:gap-4 items-stretch">
                     {/* Khối 1 */}
-                    <div className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
+                    <Reveal delay={100} className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
                         <h4 className="text-[11px] sm:text-xs md:text-sm font-bold text-[#F2680C]">{SOLUTIONS[0].title}</h4>
                         <p className="text-[9px] sm:text-xs text-slate-700 font-normal leading-tight sm:leading-relaxed">{SOLUTIONS[0].desc}</p>
-                    </div>
+                    </Reveal>
 
                     {/* Khối 2 */}
-                    <div className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
+                    <Reveal delay={200} className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
                         <h4 className="text-[11px] sm:text-xs md:text-sm font-bold text-[#F2680C]">{SOLUTIONS[1].title}</h4>
                         <p className="text-[9px] sm:text-xs text-slate-700 font-normal leading-tight sm:leading-relaxed">{SOLUTIONS[1].desc}</p>
-                    </div>
+                    </Reveal>
 
                     {/* Logo N8N ở giữa */}
-                    <div className="col-span-2 py-2 flex flex-col items-center justify-center space-y-1.5">
+                    <Reveal className="col-span-2 py-2 flex flex-col items-center justify-center space-y-1.5">
                         <div className="w-full max-w-[180px] sm:max-w-[280px] mx-auto flex items-center justify-center">
                             <img
                                 src="/agent/img1.png"
@@ -409,22 +453,22 @@ function SolutionSection() {
                         <p className="text-[10px] sm:text-xs md:text-sm text-slate-900 font-bold max-w-md leading-tight text-center">
                             Nền tảng tự động hóa quy trình mạnh mẽ nhất kết hợp AI để xây dựng hệ thống tự vận hành.
                         </p>
-                    </div>
+                    </Reveal>
 
                     {/* Khối 3 */}
-                    <div className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
+                    <Reveal delay={100} className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
                         <h4 className="text-[11px] sm:text-xs md:text-sm font-bold text-[#F2680C]">{SOLUTIONS[2].title}</h4>
                         <p className="text-[9px] sm:text-xs text-slate-700 font-normal leading-tight sm:leading-relaxed">{SOLUTIONS[2].desc}</p>
-                    </div>
+                    </Reveal>
 
                     {/* Khối 4 */}
-                    <div className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
+                    <Reveal delay={200} className="p-2.5 sm:p-4 rounded-xl border-1.5 sm:border-2 border-black text-left bg-white/90 shadow-2xs space-y-1">
                         <h4 className="text-[11px] sm:text-xs md:text-sm font-bold text-[#F2680C]">{SOLUTIONS[3].title}</h4>
                         <p className="text-[9px] sm:text-xs text-slate-700 font-normal leading-tight sm:leading-relaxed">{SOLUTIONS[3].desc}</p>
-                    </div>
+                    </Reveal>
                 </div>
 
-                <div>
+                <Reveal>
                     <a
                         href="#lien-he"
                         className="inline-flex items-center gap-1.5 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full font-bold text-white text-[10px] sm:text-xs bg-[#F2680C] hover:bg-[#D95B0A] shadow-md transition-all uppercase"
@@ -432,7 +476,7 @@ function SolutionSection() {
                         <Phone size={12} fill="#FFF" />
                         <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
                     </a>
-                </div>
+                </Reveal>
             </div>
         </section>
     );
@@ -452,13 +496,15 @@ function WorkflowSection() {
     return (
         <section className="pb-10 md:pb-16 bg-white border-t border-slate-100">
             <div className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 space-y-5">
-                <h2 className="text-base sm:text-xl font-bold uppercase text-left text-[#14181F] tracking-tight">
-                    QUY TRÌNH HỢP TÁC
-                </h2>
+                <Reveal>
+                    <h2 className="text-base sm:text-xl font-bold uppercase text-left text-[#14181F] tracking-tight">
+                        QUY TRÌNH HỢP TÁC
+                    </h2>
+                </Reveal>
 
                 <div className="space-y-3">
                     {WORKFLOW_STEPS.map((item, idx) => (
-                        <div key={idx} className="grid grid-cols-12 gap-1.5 sm:gap-3 items-center">
+                        <Reveal key={idx} delay={idx * 80} className="grid grid-cols-12 gap-1.5 sm:gap-3 items-center">
                             {/* Khối tiêu đề bước (5/12) */}
                             <div
                                 className="col-span-5 bg-[#F2680C] text-white font-bold p-2 sm:p-3 text-[10px] sm:text-xs md:text-sm rounded-md truncate text-left"
@@ -470,7 +516,7 @@ function WorkflowSection() {
                             <div className="col-span-7 bg-white p-2 sm:p-3 rounded-lg border-1.5 border-orange-400 text-[9px] sm:text-xs text-slate-800 leading-tight sm:leading-relaxed text-left">
                                 {item.desc}
                             </div>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
             </div>
@@ -522,7 +568,7 @@ function FaqSection() {
             )}
 
             <div className="relative z-10 w-full flex flex-col space-y-4 max-w-4xl mx-auto">
-                <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1">
+                <Reveal className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1">
                     <div className="flex items-center gap-2 w-full">
                         <h2 className="text-base sm:text-xl font-black text-[#14181F] tracking-tight uppercase shrink-0">
                             FAQs
@@ -531,7 +577,7 @@ function FaqSection() {
                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 border-[#14181F] bg-white" />
                         </div>
                     </div>
-                </div>
+                </Reveal>
 
                 <div className="w-full flex flex-col space-y-2.5 text-left">
                     {FAQS.map((faq, index) => {
@@ -539,7 +585,7 @@ function FaqSection() {
                         const formattedIndex = String(index + 1).padStart(2, "0");
 
                         return (
-                            <div key={index} className="w-full flex flex-col space-y-1 border-b border-gray-200/60 pb-2">
+                            <Reveal key={index} delay={index * 60} className="w-full flex flex-col space-y-1 border-b border-gray-200/60 pb-2">
                                 <button
                                     type="button"
                                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
@@ -567,7 +613,7 @@ function FaqSection() {
                                         </div>
                                     </div>
                                 )}
-                            </div>
+                            </Reveal>
                         );
                     })}
                 </div>
@@ -589,6 +635,26 @@ export default function CmicLanding() {
             <SolutionSection />
             <WorkflowSection />
             <FaqSection />
+
+            <style>{`
+                .reveal-on-scroll {
+                    opacity: 0;
+                    transform: translateY(28px);
+                    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+                    will-change: opacity, transform;
+                }
+                .reveal-on-scroll.is-visible {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .reveal-on-scroll {
+                        opacity: 1;
+                        transform: none;
+                        transition: none;
+                    }
+                }
+            `}</style>
         </div>
     );
 }
