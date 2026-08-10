@@ -7,44 +7,31 @@ import ContactForm from '../../../components/FormContact';
 const HeroHeaderSection = () => {
     return (
         <section
-            className="relative w-full aspect-[21/9] min-h-[220px] sm:min-h-[320px] md:min-h-[400px] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center"
+            className="relative w-full py-12 sm:py-20 md:py-28 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
             style={{ backgroundImage: "url('/dichvu.chamSoc/bg1.png')" }}
         >
-            <div className="text-center px-3 sm:px-4 w-full">
-                <h1 className="text-sm sm:text-2xl lg:text-3xl font-extrabold text-white uppercase tracking-wide leading-tight drop-shadow-md mb-1 sm:mb-3">
-                    GIẢI PHÁP CHĂM SÓC VÀ VẬN HÀNH <br className="hidden sm:block" /> WEBSITE TOÀN DIỆN
+            {/* Lớp phủ làm tối ảnh nền giúp chữ nổi bật và dễ đọc hơn */}
+            <div className="absolute inset-0 bg-black/40 z-0" />
+
+            {/* Khung chứa nội dung - Có max-w để chữ không bị tràn quá rộng */}
+            <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 w-full max-w-4xl mx-auto flex flex-col items-center">
+                
+                {/* Tiêu đề chính */}
+                <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white uppercase tracking-wide leading-tight drop-shadow-md mb-2 sm:mb-4">
+                    GIẢI PHÁP CHĂM SÓC VÀ VẬN HÀNH WEBSITE TOÀN DIỆN
                 </h1>
-                <p className="text-xs sm:text-base lg:text-lg text-white font-medium drop-shadow-md">
+
+                {/* Subtitle / Slogan */}
+                <p className="text-sm sm:text-lg lg:text-xl text-orange-400 font-semibold drop-shadow-md mb-4 sm:mb-6">
                     Tăng trưởng traffic tự nhiên - bền vững
                 </p>
-            </div>
-        </section>
-    );
-};
 
-/* =========================================
-    SECTION 2: Description & Button (bg2.png)
-========================================= */
-const HeroDescriptionSection = () => {
-    return (
-        <section
-            className="relative w-full aspect-video min-h-[340px] sm:min-h-[480px] md:min-h-[600px] bg-cover sm:bg-contain bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/dichvu.chamSoc/bg2.png')" }}
-        >
-            <div className="absolute top-[20%] sm:top-[28%] left-[6%] sm:left-[8%] md:left-[10%] w-[50%] sm:w-[50%] md:w-[42%] pr-2">
-                <p className="text-white text-[11px] sm:text-sm md:text-base lg:text-lg leading-relaxed font-medium text-left">
+                {/* Đoạn văn mô tả (Đã căn giữa đồng bộ & giới hạn độ rộng) */}
+                <p className="text-gray-100 text-xs sm:text-base lg:text-lg leading-relaxed font-normal max-w-2xl text-center">
                     Một website sinh lời là một website được chăm sóc liên tục.{' '}
                     <strong className="text-white font-bold">CMIC MEDIA</strong> cung cấp giải pháp quản trị website chuyên nghiệp: từ bảo trì kỹ thuật đến cập nhật các thay đổi, nội dung giá trị mỗi ngày, giúp doanh nghiệp khai thác tối đa tiềm năng kênh kỹ thuật số của mình.
                 </p>
-            </div>
 
-            <div className="absolute bottom-[6%] sm:bottom-[10%] left-1/2 -translate-x-1/2 w-auto">
-                <button className="flex items-center justify-center gap-1.5 sm:gap-2 bg-[#f97316] hover:bg-[#ea580c] text-black font-bold text-xs sm:text-sm md:text-base uppercase py-2 sm:py-3 px-5 sm:px-8 rounded-full transition-all duration-300 shadow-lg whitespace-nowrap">
-                    <span>Đăng ký nhận tư vấn</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 0 0-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z" />
-                    </svg>
-                </button>
             </div>
         </section>
     );
@@ -82,7 +69,7 @@ const WhyNeglectedSection = () => {
             <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
                 <h2 className="text-base sm:text-2xl md:text-3xl font-extrabold text-center uppercase tracking-tight leading-snug sm:leading-tight mb-6 sm:mb-10">
                     LÝ DO WEBSITE CỦA BẠN <br />
-                    ĐANG BỊ <span className="text-[#f97316]">KHÁCH HÀNG</span> VÀ{' '}
+                    ĐANG BỊ <span className="text-[#C96F1E]">KHÁCH HÀNG</span> VÀ{' '}
                     <span className="inline-block font-bold">
                         <span className="text-[#4285F4]">G</span>
                         <span className="text-[#EA4335]">o</span>
@@ -91,7 +78,7 @@ const WhyNeglectedSection = () => {
                         <span className="text-[#34A853]">l</span>
                         <span className="text-[#EA4335]">e</span>
                     </span>{' '}
-                    <span className="text-[#f97316]">LÃNG QUÊN</span>
+                    <span className="text-[#C96F1E]">LÃNG QUÊN</span>
                 </h2>
 
                 <div className="w-full space-y-3 sm:space-y-5 max-w-3xl text-left">
@@ -476,7 +463,6 @@ const ServiceCareWebsite = () => {
     return (
         <div className="w-full overflow-hidden font-sans">
             <HeroHeaderSection />
-            <HeroDescriptionSection />
             <ContactFormSection />
             <WhyNeglectedSection />
             <ValueSystemSection />

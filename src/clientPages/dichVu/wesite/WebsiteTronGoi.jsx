@@ -78,7 +78,7 @@ function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
                     <div className="space-y-2 sm:space-y-4 text-center lg:text-left">
                         <h2 className="text-xl sm:text-3xl font-black uppercase text-slate-900 tracking-tight leading-tight">
                             BẠN CÓ ĐANG GẶP PHẢI <br />
-                            <span className="text-orange-600">VẤN ĐỀ</span> SAU?
+                            <span className="text-[#C96F1E]">VẤN ĐỀ</span> SAU?
                         </h2>
                         <p className="text-slate-600 text-xs sm:text-base font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
                             Đa số các doanh nghiệp vừa và nhỏ (SME) hiện nay đều sở hữu trang web. Tuy nhiên, có đến hơn 85% trang web đang rơi vào trạng thái &ldquo;vùng đất chết&rdquo; vì vướng phải 4 điểm nghẽn nghiêm trọng cốt lõi.
@@ -150,7 +150,7 @@ function PentagonSolutionTitle() {
                     <div className="absolute left-[-10px] sm:left-[-14px] top-[-1px] bottom-[-1px] w-2.5 sm:w-3.5 bg-orange-500 transform skew-x-[20deg]" />
                     <div className="absolute right-[-10px] sm:right-[-14px] top-[-1px] bottom-[-1px] w-2.5 sm:w-3.5 bg-orange-500 transform skew-x-[20deg]" />
                     <h2 className="text-sm sm:text-xl lg:text-2xl font-black tracking-wider uppercase text-slate-900">
-                        GIẢI PHÁP CHIẾN LƯỢC TẠI <span className="text-orange-600">CMIC MEDIA</span>
+                        GIẢI PHÁP CHIẾN LƯỢC TẠI <span className="text-[#C96F1E]">CMIC MEDIA</span>
                     </h2>
                 </div>
             </div>

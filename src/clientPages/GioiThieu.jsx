@@ -42,11 +42,6 @@ function AboutStorySection() {
         alt="Background Blur"
         className="absolute inset-0 w-full h-full object-cover blur-2xl scale-105 opacity-10 pointer-events-none z-0"
       />
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-10 flex items-center justify-center">
-        <svg className="w-full h-full" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M-100 300 C 200 150, 400 450, 900 150 M-100 330 C 200 180, 400 480, 900 180" stroke="#E86A24" strokeWidth="1.5" />
-        </svg>
-      </div>
 
       <div className="relative z-20 w-full mx-auto space-y-12 px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -61,7 +56,7 @@ function AboutStorySection() {
 
           <div className="lg:col-span-7 flex flex-col space-y-3.5 text-left">
             <h2 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-gray-950">
-              CÂU CHUYỆN <span className="text-orange-600">THƯƠNG HIỆU</span>
+              CÂU CHUYỆN <span className="text-[#C96F1E]">THƯƠNG HIỆU</span>
             </h2>
             <div className="space-y-3.5 text-sm md:text-base text-gray-700 font-normal leading-relaxed">
               <p>
@@ -153,7 +148,7 @@ function CoreValuesSection({ coreValues }) {
         }}
       />
 
-      <div className="relative z-20 w-full max-w-4xl mx-auto px-3 sm:px-6 md:px-8 flex flex-col space-y-6 md:space-y-8 items-center">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-3 sm:px-6 md:px-8 flex flex-col space-y-6 md:space-y-8 items-center">
         {/* Badge Tiêu đề */}
         <div className="w-full max-w-xs mx-auto flex items-center bg-gray-950 text-white rounded-full pr-4 sm:pr-5 pl-1.5 py-1 shadow-md border border-gray-800">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center font-bold text-xs sm:text-sm shadow-inner">★</div>
@@ -162,8 +157,7 @@ function CoreValuesSection({ coreValues }) {
           </h2>
         </div>
 
-        {/* Cố định grid-cols-2 cho mọi kích thước màn hình */}
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:gap-5 pt-1 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 md:gap-5 pt-1 w-full">
           {coreValues.map((val, idx) => (
             <div
               key={idx}

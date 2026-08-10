@@ -486,8 +486,8 @@ function ConsultationFormSection() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-[#14181F] tracking-tight uppercase leading-snug">
                         Sẵn sàng tăng bứt phá doanh số cùng CMIC MEDIA?
                     </h2>
-                    <p className="text-[#4B5160] text-xs sm:text-sm leading-relaxed max-w-lg mx-auto lg:mx-0">
-                        Để lại thông tin nhận tư vấn miễn phí, đội ngũ chuyên gia của chúng tôi sẽ chủ động liên hệ khảo sát và đưa ra lộ trình phù hợp nhất cho doanh nghiệp của bạn.
+                    <p className="text-[#4B5160] text-xs sm:text-2sm leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Để lại thông tin nhận tư vấn miễn phí, đội ngũ của chúng tôi sẽ chủ động liên hệ khảo sát và đưa ra lộ trình phù hợp nhất cho doanh nghiệp của bạn.
                     </p>
                 </div>
                 <div className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">

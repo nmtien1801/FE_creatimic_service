@@ -163,7 +163,7 @@ const TinTuc = () => {
             {/* Đã sửa max-w-0xl thành max-w-7xl */}
             <main className="max-w-0xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-                <h1 className="text-3xl md:text-4xl font-black mb-12 bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-4xl mb-12 font-black tracking-tight uppercase text-[#C96F1E] leading-tight">
                     TIN TỨC
                 </h1>
 

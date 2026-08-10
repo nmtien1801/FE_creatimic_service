@@ -33,10 +33,10 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
             {/* Khối Hotline 1 */}
             <div className="text-right whitespace-nowrap">
               <a href="tel:0372672396" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
-                <Phone className="w-4 h-4" /> 037.267.2396
+                <Phone className="w-4 h-4" /> 034.7577.034
               </a>
               <p className="text-[10px] text-white/80 font-medium uppercase tracking-tight mt-0.5">
-                Hotline hỗ trợ 24/7
+                Hotline tư vấn
               </p>
             </div>
 
@@ -46,10 +46,10 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
             {/* Khối Hotline 2 - Hợp tác truyền thông */}
             <div className="text-right whitespace-nowrap">
               <a href="tel:0347577034" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
-                <Mail className="w-4 h-4" /> 034.757.7034
+                <Mail className="w-4 h-4" /> contact@creatimichub.vn
               </a>
               <p className="text-[10px] text-white/80 font-medium uppercase tracking-tight mt-0.5">
-                Hợp tác truyền thông
+                Liên hệ qua Email
               </p>
             </div>
           </div>

@@ -216,44 +216,7 @@ function HeroSection() {
     );
 }
 
-// ================= SECTION 2: RECOMMENDED SECTION (CHIA 2 CỘT SONG SONG) =================
-function RecommendedSection({ img1Url = "/dichvu.tronGoi/img1.png", img2Url = "/dichvu.tronGoi/img2.png" }) {
-    const [ref, isRevealed] = useScrollReveal();
-
-    return (
-        <section
-            ref={ref}
-            className={`w-full max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
-        >
-            <div className="flex flex-col items-center space-y-4 text-center">
-                {/* CHIA 2 CỘT HIỂN THỊ HÀNG XÓM SONG SONG */}
-                <div className="grid grid-cols-2 gap-3 sm:gap-6 items-center justify-center w-full max-w-2xl mx-auto">
-                    <div className="w-full h-20 sm:h-24 flex items-center justify-center p-1">
-                        <img src={img1Url} alt="Recommended Seal" className="max-w-full max-h-full object-contain drop-shadow-xs" />
-                    </div>
-
-                    <div className="w-full flex flex-col items-center justify-center space-y-1.5">
-                        <div className="w-full h-16 sm:h-20 flex items-center justify-center">
-                            <img src={img2Url} alt="Kho Template Được Thiết Kế Dành Riêng" className="max-w-full max-h-full object-contain drop-shadow-xs" />
-                        </div>
-                        <div className="flex items-center justify-center gap-1 px-3 sm:px-4 py-1 bg-white rounded-full border border-neutral-200/80 shadow-2xs">
-                            {[...Array(5)].map((_, i) => (
-                                <span key={i} className="text-yellow-400 text-sm sm:text-base leading-none">★</span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <p className="text-neutral-700 text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-2xl pt-2">
-                    Phương án này tập trung vào kết quả, giúp doanh nghiệp sở hữu website chuyên nghiệp với mức ngân sách tối ưu và triển khai trong thời gian sớm nhất.
-                </p>
-            </div>
-        </section>
-    );
-}
-
-// ================= SECTION 3: CHÚNG TÔI CAM KẾT (CỐ ĐỊNH 2 CỘT SONG SONG) =================
+// ================= SECTION 2: CHÚNG TÔI CAM KẾT (CỐ ĐỊNH 2 CỘT SONG SONG) =================
 function SpecialServiceSection() {
     const [ref, isRevealed] = useScrollReveal();
 
@@ -313,7 +276,7 @@ function SpecialServiceSection() {
     );
 }
 
-// ================= SECTION 4: CONTACT FORM =================
+// ================= SECTION 3: CONTACT FORM =================
 function ContactFormSection() {
     return (
         <section className="relative w-full py-10 md:py-16 px-3 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200/80 z-10">
@@ -337,12 +300,6 @@ export default function CmicServicePage() {
     return (
         <div className="bg-[#faf8f6] text-neutral-800 min-h-screen antialiased overflow-clip font-sans scroll-smooth w-full">
             <HeroSection />
-
-            <RecommendedSection
-                img1Url="/dichvu.tronGoi/img1.png"
-                img2Url="/dichvu.tronGoi/img2.png"
-            />
-
             <SpecialServiceSection />
             <ContactFormSection />
         </div>

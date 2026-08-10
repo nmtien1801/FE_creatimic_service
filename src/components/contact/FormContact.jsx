@@ -61,7 +61,7 @@ const ContactForm = () => {
 
     return (
         <div className="space-y-4">
-            <h2 className="text-xl font-bold text-orange-800 uppercase">Liên hệ với chúng tôi</h2>
+            <h2 className="text-xl font-bold text-[#C96F1E] uppercase">Để lại thông tin liên hệ</h2>
 
             <form onSubmit={handleSend} className="space-y-4">
                 <CustomInput

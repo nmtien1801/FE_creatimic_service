@@ -101,8 +101,8 @@ function RoleOfUiUxSection({ img1Url = "img1.png", img2Url = "img2.png" }) {
                 </div>
 
                 {/* 4. KHỐI UI (USER INTERFACE) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 items-center">
-                    <div className="order-2 md:order-1 flex flex-col justify-center text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 items-start">
+                    <div className="order-2 md:order-1 flex flex-col justify-start text-left">
                         <h3 className="text-base sm:text-xl font-bold text-neutral-950 mb-2 sm:mb-3">
                             UI (User Interface - Giao diện người dùng)
                         </h3>
@@ -120,7 +120,7 @@ function RoleOfUiUxSection({ img1Url = "img1.png", img2Url = "img2.png" }) {
                             <img
                                 src={img2Url}
                                 alt="UI Interface Mockup"
-                                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                                className="w-full h-full max-h-42 sm:max-h-60 object-cover hover:scale-105 transition-transform duration-700"
                             />
                         </div>
                     </div>
@@ -141,9 +141,8 @@ function CommitmentSection() {
             className="relative py-8 md:py-16 w-full px-2 sm:px-6 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/dichvu.WebDesign/bg2.png')" }}
         >
-            <div className={`max-w-6xl mx-auto transition-all duration-[1000ms] ease-out transform ${
-                isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}>
+            <div className={`max-w-6xl mx-auto transition-all duration-[1000ms] ease-out transform ${isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}>
 
                 {/* TIÊU ĐỀ */}
                 <div className="mb-6 md:mb-14">
