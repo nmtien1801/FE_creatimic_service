@@ -9,7 +9,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   const menuItems = [
     { label: "TRANG CHỦ", path: "/trang-chu" },
     { label: "GIỚI THIỆU", path: "/gioi-thieu" },
-    { label: "DỊCH VỤ", path: "/dich-vu/website-landing-page/tron-goi" },
+    { label: "DỊCH VỤ", path: "/#" },
     { label: "HỒ SƠ NĂNG LỰC", path: "/ho-so-nang-luc" },
     { label: "TIN TỨC", path: "/tin-tuc" },
     { label: "LIÊN HỆ", path: "/lien-he" },

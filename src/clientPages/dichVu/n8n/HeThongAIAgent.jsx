@@ -251,7 +251,7 @@ function VideoContactSection() {
 
             <div className="relative z-10 max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 space-y-8">
                 <Reveal className="grid lg:grid-cols-12 gap-6 items-center">
-                    <div className="lg:col-span-7 text-left space-y-3">
+                    <div className="lg:col-span-4 text-left space-y-3">
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2680C]/10 border border-[#F2680C]/25 text-[#F2680C] text-[10px] sm:text-xs font-extrabold uppercase tracking-widest">
                             <Sparkles size={12} className="animate-pulse" />
                             <span>Trải Nghiệm Thực Tế</span>
@@ -297,7 +297,7 @@ function VideoContactSection() {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-5">
+                    <div className="lg:col-span-8">
                         <div className="relative overflow-hidden rounded-xl shadow-lg border border-slate-200/80 bg-slate-950">
                             <iframe
                                 className="w-full aspect-video"
@@ -374,9 +374,11 @@ function PainPointsSection() {
                 </div>
 
                 <Reveal>
-                    <h3 className="text-xs sm:text-lg md:text-xl font-bold text-[#F2680C] uppercase leading-snug pt-1">
-                        BẠN CÓ MUỐN TIẾT KIỆM NGUỒN LỰC & CẮT GIẢM CHI PHÍ VẬN HÀNH KHÔNG CẦN THIẾT?
-                    </h3>
+                    <div className="mt-4 p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#F2680C] via-[#FF8A00] to-[#F2680C] text-white shadow-lg border border-white/20 max-w-6xl mx-auto">
+                        <h3 className="text-xs sm:text-base md:text-xl font-black uppercase tracking-tight leading-snug drop-shadow-sm">
+                            BẠN CÓ MUỐN TIẾT KIỆM NGUỒN LỰC & CẮT GIẢM CHI PHÍ VẬN HÀNH KHÔNG CẦN THIẾT?
+                        </h3>
+                    </div>
                 </Reveal>
             </div>
         </section>
@@ -573,9 +575,6 @@ function FaqSection() {
                         <h2 className="text-base sm:text-xl font-black text-[#14181F] tracking-tight uppercase shrink-0">
                             FAQs
                         </h2>
-                        <div className="h-[1.5px] bg-[#14181F] flex-1 relative">
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 border-[#14181F] bg-white" />
-                        </div>
                     </div>
                 </Reveal>
 
@@ -585,14 +584,15 @@ function FaqSection() {
                         const formattedIndex = String(index + 1).padStart(2, "0");
 
                         return (
-                            <Reveal key={index} delay={index * 60} className="w-full flex flex-col space-y-1 border-b border-gray-200/60 pb-2">
+                            <Reveal key={index} delay={index * 60} className="w-full flex flex-col space-y-1 border-b border-gray-200/80 pb-2">
                                 <button
                                     type="button"
                                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                                    className="w-full text-left flex items-start justify-between gap-2 cursor-pointer"
+                                    className="w-full text-left flex items-start justify-between gap-2 cursor-pointer group py-1"
                                 >
-                                    <h3 className="text-[11px] sm:text-xs md:text-sm font-bold text-[#14181F] flex items-start gap-1.5 leading-snug">
-                                        <span className="text-black text-[10px] mt-0.5 shrink-0">➤</span>
+                                    {/* Tăng độ đậm và tương phản cho Tiêu đề câu hỏi */}
+                                    <h3 className="text-xs sm:text-sm md:text-base font-extrabold text-[#14181F] flex items-start gap-1.5 leading-snug group-hover:text-[#C96F1E] transition-colors">
+                                        <span className="text-[#C96F1E] text-xs mt-0.5 shrink-0">➤</span>
                                         <span className="pt-0.5">
                                             {formattedIndex}. {faq.q}
                                         </span>
@@ -602,13 +602,14 @@ function FaqSection() {
                                         className="shrink-0 mt-0.5 text-[#14181F] transition-transform duration-200"
                                         style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
                                     >
-                                        <ChevronDown className="w-3.5 h-3.5" />
+                                        <ChevronDown className="w-4 h-4" />
                                     </span>
                                 </button>
 
                                 {isOpen && (
-                                    <div className="pl-4 pt-0.5">
-                                        <div className="text-[#4B5160] text-[10px] sm:text-xs leading-relaxed font-normal">
+                                    <div className="pl-3 sm:pl-4 pt-1 pb-1">
+                                        {/* Đã tăng font-size, màu đậm text-[#23272F] và font-medium giúp chữ nổi bật tuyệt đối */}
+                                        <div className="text-[#23272F] text-xs sm:text-sm leading-relaxed font-medium bg-white/70 backdrop-blur-xs p-2.5 sm:p-3 rounded-lg border border-gray-200/60 shadow-2xs">
                                             {faq.a}
                                         </div>
                                     </div>

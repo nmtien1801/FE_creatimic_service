@@ -69,7 +69,7 @@ function HeroBanner({ onScrollToForm }) {
                                 ĐỐI TÁC CHIẾN LƯỢC
                             </h1>
 
-                            <div className="inline-block bg-white -mt-2 sm:-mt-3 lg:-mt-5 ml-[5%] sm:ml-[8%] lg:ml-[12%] pl-3 sm:pl-5 lg:pl-8 pr-4 sm:pr-8 lg:pr-20 pt-3 sm:pt-5 lg:pt-8 pb-2 sm:pb-3 lg:pb-4 shadow-sm max-w-[90%]">
+                            <div className="inline-block bg-white -mt-2 sm:-mt-3 lg:-mt-5 ml-[5%] sm:ml-[8%] lg:ml-[12%] pl-3 sm:pl-5 lg:pl-8 pr-2 sm:pr-4 lg:pr-6 pt-3 sm:pt-5 lg:pt-8 pb-2 sm:pb-3 lg:pb-4 shadow-sm max-w-[90%]">
                                 <p className="font-bold uppercase tracking-wider text-black text-xs sm:text-base md:text-lg lg:text-3xl leading-snug lg:leading-none whitespace-normal sm:whitespace-nowrap">
                                     INHOUSE MARKETING PARTNER
                                 </p>
@@ -263,10 +263,10 @@ function AllInOneModel() {
 }
 
 /* ================= SECTION 4: LỘ TRÌNH ĐỒNG HÀNH TOÀN DIỆN ================= */
-function Roadmap() {
+function Roadmap({ onScrollToForm }) {
     return (
         <div
-            className="w-full py-16 px-10 md:px-35"
+            className="w-full pt-16 pb-10 px-6 md:px-35"
             style={{
                 background: "linear-gradient(180deg, #fff2e8 0%, #fcd7be 40%, #f0904f 100%)"
             }}
@@ -400,6 +400,26 @@ function Roadmap() {
                         </div>
                     </div>
                 </Reveal>
+
+                {/* NÚT BẤM HIỂN THỊ CHUẨN ĐÉT */}
+                <div className="flex justify-center">
+                    <button
+                        type="button"
+                        onClick={onScrollToForm}
+                        className="group inline-flex items-center gap-3 rounded-full pl-7 pr-2 py-2.5 font-extrabold text-white shadow-xl transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] cursor-pointer relative z-20"
+                        style={{ background: "linear-gradient(90deg, #f0904f 0%, #e8752b 100%)" }}
+                    >
+                        <span className="tracking-wide text-sm sm:text-base uppercase">
+                            Đăng ký nhận tư vấn
+                        </span>
+                        <span
+                            className="flex items-center justify-center rounded-full p-2.5"
+                            style={{ background: "rgba(0,0,0,0.15)" }}
+                        >
+                            <Phone size={18} strokeWidth={2.5} className="text-black fill-black" />
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -421,12 +441,12 @@ export default function MarketingLandingPage() {
         <div className="w-full bg-white text-neutral-800 font-sans">
             {/* Truyền hàm cuộn vào HeroBanner */}
             <HeroBanner onScrollToForm={handleScrollToForm} />
-            
+
             {/* Truyền formRef vào ProblemAndContact */}
             <ProblemAndContact formRef={formRef} />
-            
+
             <AllInOneModel />
-            <Roadmap />
+            <Roadmap onScrollToForm={handleScrollToForm} />
 
             <style>{`
                 .reveal-on-scroll {

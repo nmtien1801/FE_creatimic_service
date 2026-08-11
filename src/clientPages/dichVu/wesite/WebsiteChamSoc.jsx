@@ -79,8 +79,8 @@ const HeroHeaderSection = () => {
             <div className="absolute inset-0 bg-black/40 z-0" />
 
             {/* Khung chứa nội dung - Có max-w để chữ không bị tràn quá rộng */}
-            <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 w-full max-w-4xl mx-auto flex flex-col items-center">
-                
+            <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 w-full max-w-7xl mx-auto flex flex-col items-center">
+
                 {/* Tiêu đề chính */}
                 <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white uppercase tracking-wide leading-tight drop-shadow-md mb-2 sm:mb-4">
                     GIẢI PHÁP CHĂM SÓC VÀ VẬN HÀNH WEBSITE TOÀN DIỆN
@@ -92,7 +92,7 @@ const HeroHeaderSection = () => {
                 </p>
 
                 {/* Đoạn văn mô tả (Đã căn giữa đồng bộ & giới hạn độ rộng) */}
-                <p className="text-gray-100 text-xs sm:text-base lg:text-lg leading-relaxed font-normal max-w-2xl text-center">
+                <p className="text-gray-100 text-xs sm:text-base lg:text-lg leading-relaxed font-normal max-w-4xl text-center">
                     Một website sinh lời là một website được chăm sóc liên tục.{' '}
                     <strong className="text-white font-bold">CMIC MEDIA</strong> cung cấp giải pháp quản trị website chuyên nghiệp: từ bảo trì kỹ thuật đến cập nhật các thay đổi, nội dung giá trị mỗi ngày, giúp doanh nghiệp khai thác tối đa tiềm năng kênh kỹ thuật số của mình.
                 </p>

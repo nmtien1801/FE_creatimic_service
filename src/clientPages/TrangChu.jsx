@@ -382,30 +382,33 @@ function ProblemsAndStrategySection({ problems }) {
                 </div>
 
                 <div className="w-full flex flex-col space-y-8 text-[#14181F]">
-                    <div className="w-full flex items-center justify-center py-2 px-2 sm:px-4">
-                        <div className="flex items-center justify-center gap-1 sm:gap-2 max-w-fit text-center">
-                            <div className="flex flex-col items-center self-stretch justify-between shrink-0 pointer-events-none">
-                                <span className="text-2xl sm:text-3xl font-black font-display leading-none text-[#135C50]">“</span>
-                                <div className="w-[1.5px] h-full bg-[#135C50]/25 my-1"></div>
+                    <div className="w-full sm:hidden flex items-center justify-center px-2">
+                        <div className="flex items-center justify-center gap-1.5 max-w-fit text-center">
+                            {/* Ngoặc kép trái + Đường kẻ */}
+                            <div className="flex flex-col items-center justify-center shrink-0 pointer-events-none py-0.5">
+                                <span className="text-xl font-black font-display leading-none text-[#135C50]">“</span>
+                                <div className="w-[1.5px] h-3 bg-[#135C50]/25 my-0.5"></div>
                             </div>
 
-                            <div className="space-y-0.5 px-1 sm:px-2">
-                                <p className="text-sm sm:text-base md:text-lg font-semibold text-[#14181F] tracking-wide">
+                            {/* Nội dung text */}
+                            <div className="space-y-0.5 px-1">
+                                <p className="text-xs font-semibold text-[#14181F] tracking-wide leading-tight">
                                     Marketing là tài sản số giúp bạn tạo dòng tiền bền vững
                                 </p>
-                                <p className="text-sm sm:text-base md:text-lg font-black text-[#C96F1E] tracking-wider uppercase">
+                                <p className="text-xs font-black text-[#C96F1E] tracking-wider uppercase leading-tight">
                                     CMIC MEDIA
                                 </p>
                             </div>
 
-                            <div className="flex flex-col items-center self-stretch justify-between shrink-0 pointer-events-none">
-                                <div className="w-[1.5px] h-full bg-[#135C50]/25 my-1"></div>
-                                <span className="text-2xl sm:text-3xl font-black font-display leading-none text-[#135C50]">”</span>
+                            {/* Ngoặc kép phải + Đường kẻ (Đưa ngoặc kép lên đỉnh đối xứng) */}
+                            <div className="flex flex-col items-center justify-center shrink-0 pointer-events-none py-0.5">
+                                <span className="text-xl font-black font-display leading-none text-[#135C50]">”</span>
+                                <div className="w-[1.5px] h-3 bg-[#135C50]/25 my-0.5"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center w-full pt-2">
+                    <div className="grid grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center w-full">
                         {/* TĂNG KÍCH THƯỚC KHUNG BÊN TRÁI CHỨA ẢNH PHỄU */}
                         <div className="col-span-5 lg:col-span-5 flex justify-center items-center w-full max-w-[200px] sm:max-w-[280px] lg:max-w-[340px] mx-auto overflow-hidden">
                             <img
@@ -417,7 +420,28 @@ function ProblemsAndStrategySection({ problems }) {
 
                         {/* CỘT NỘI DUNG BÊN PHẢI */}
                         <div className="col-span-7 lg:col-span-7 flex flex-col space-y-1.5 sm:space-y-3 text-left">
-                            <div>
+                            <div className="hidden sm:flex items-center justify-center gap-1 sm:gap-2 max-w-fit text-center">
+                                <div className="flex flex-col items-center self-stretch justify-between shrink-0 pointer-events-none">
+                                    <span className="text-2xl sm:text-3xl font-black font-display leading-none text-[#135C50]">“</span>
+                                    <div className="w-[1.5px] h-full bg-[#135C50]/25 my-1"></div>
+                                </div>
+
+                                <div className="space-y-0.5 px-1 sm:px-2">
+                                    <p className="text-sm sm:text-base md:text-lg font-semibold text-[#14181F] tracking-wide">
+                                        Marketing là tài sản số giúp bạn tạo dòng tiền bền vững
+                                    </p>
+                                    <p className="text-sm sm:text-base md:text-lg font-black text-[#C96F1E] tracking-wider uppercase">
+                                        CMIC MEDIA
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-col items-center self-stretch justify-between shrink-0 pointer-events-none">
+                                    <div className="w-[1.5px] h-full bg-[#135C50]/25 my-1"></div>
+                                    <span className="text-2xl sm:text-3xl font-black font-display leading-none text-[#135C50]">”</span>
+                                </div>
+                            </div>
+
+                            <div className="mt-8">
                                 <h3 className="text-xs sm:text-lg md:text-xl font-black text-[#14181F] uppercase tracking-tight leading-tight">
                                     CMIC MEDIA ĐÓNG VAI TRÒ LÀ
                                 </h3>
@@ -456,38 +480,69 @@ function ProblemsAndStrategySection({ problems }) {
                                     </div>
                                 </div>
                             </div>
+
+                            <div className="hidden sm:flex w-fit text-center pt-2 flex flex-col items-center space-y-0.5 translate-x-4 sm:translate-x-25">
+                                <p className="text-base sm:text-lg md:text-xl font-display italic tracking-wide font-medium text-[#0F4B41]">
+                                    KPI MARKETING
+                                </p>
+
+                                {/* Đã tăng width từ w-44 sm:w-56 -> w-64 sm:w-80 md:w-[360px] */}
+                                <div className="w-64 sm:w-80 md:w-[360px] h-5 text-[#0F4B41] flex justify-center">
+                                    <svg
+                                        className="w-full h-full"
+                                        viewBox="0 0 300 30"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        preserveAspectRatio="none"
+                                    >
+                                        <path
+                                            d="M 10 4 Q 10 16 130 16 Q 145 16 150 26 Q 155 16 170 16 Q 290 16 290 4"
+                                            stroke="currentColor"
+                                            strokeWidth="2.5"
+                                            fill="none"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </div>
+
+                                <p className="text-xl sm:text-2xl md:text-3xl font-display italic font-medium tracking-wide text-[#0F4B41]">
+                                    DOANH SỐ
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="text-center pt-2 w-full flex flex-col items-center space-y-0.5">
+                    <div className="flex sm:hidden text-center w-full flex flex-col items-center space-y-0.5">
                         <p className="text-base sm:text-lg md:text-xl font-display italic tracking-wide font-medium text-[#0F4B41]">
                             KPI MARKETING
                         </p>
 
                         {/* Đã tăng width từ w-44 sm:w-56 -> w-64 sm:w-80 md:w-[360px] */}
                         <div className="w-64 sm:w-80 md:w-[360px] h-5 text-[#0F4B41] flex justify-center">
-                           <svg
-    className="w-full h-full"
-    viewBox="0 0 300 30"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="none"
->
-    <path
-        d="M 10 4 Q 10 16 130 16 Q 145 16 150 26 Q 155 16 170 16 Q 290 16 290 4"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    />
-</svg>
+                            <svg
+                                className="w-full h-full"
+                                viewBox="0 0 300 30"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                preserveAspectRatio="none"
+                            >
+                                <path
+                                    d="M 10 4 Q 10 16 130 16 Q 145 16 150 26 Q 155 16 170 16 Q 290 16 290 4"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                    fill="none"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
                         </div>
 
-                        <p className="text-xl sm:text-2xl md:text-3xl font-display italic font-medium tracking-wide text-[#0F4B41]">
+                        <p className="text-0.5xl sm:text-2xl md:text-3xl font-display italic font-medium tracking-wide text-[#0F4B41]">
                             DOANH SỐ
                         </p>
                     </div>
+
                 </div>
             </div>
         </Reveal>
@@ -497,7 +552,7 @@ function ProblemsAndStrategySection({ problems }) {
 // SERVICES
 function ServicesSection({ services }) {
     return (
-        <Reveal as="section" className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8">
+        <Reveal as="section" className="relative w-full overflow-hidden px-4 sm:px-6 lg:px-8">
             <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col space-y-8 md:space-y-10">
                 <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase border-l-4 border-[#C96F1E] pl-3">
                     Các dịch vụ chính CMIC MEDIA cung cấp
@@ -568,10 +623,7 @@ function ConsultationFormSection({ formRef }) {
 // WORKFLOW
 function WorkflowSection({ steps }) {
     return (
-        <Reveal as="section" className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8 bg-[#FBF9F6]">
-            <div className="absolute inset-0 flow-lines opacity-50 z-0" />
-            <Ambient tone="teal" />
-
+        <Reveal as="section" className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8 bg-transparent">
             <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col space-y-5 sm:space-y-6">
                 <h2 className="text-base sm:text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase">
                     Quy trình hợp tác
@@ -664,18 +716,8 @@ function FaqItem({ faq, isOpenDefault = false }) {
 
 function FaqSection({ faqs }) {
     return (
-        <section className="relative w-full py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-[#FCFAF8]">
-            <div
-                className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110 overflow-hidden"
-                style={{
-                    backgroundImage: `url(${bgSession7})`,
-                    backgroundPosition: "center center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                }}
-            />
-
-            <div className="absolute inset-0 grain-soft opacity-60 z-0" />
+        <section className="relative w-full py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-transparent">
+            <div className="absolute inset-0 grain-soft opacity-40 z-0 pointer-events-none" />
 
             <Reveal className="relative z-10 max-w-5xl mx-auto flex flex-col space-y-6">
                 <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
@@ -726,25 +768,42 @@ export default function MarketingLandingPage() {
             {/* Truyền hàm cuộn vào HeroSection */}
             <HeroSection onScrollToForm={handleScrollToForm} />
 
+            <div className="relative w-full">
+                <div
+                    className="absolute -top-5 sm:-top-10 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110 overflow-hidden"
+                    style={{
+                        backgroundImage: `url(${bgSession2})`,
+                        backgroundPosition: 'center top',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                />
+
+                {/* Bọc nội dung Session 2 */}
+                <div className="relative z-10 py-6 sm:py-10">
+                    <ProblemsAndStrategySection problems={PROBLEMS_DATA} />
+                    <ServicesSection services={SERVICES_DATA} />
+                </div>
+            </div>
+
+            {/* Gán ref cho Form */}
+            <ConsultationFormSection formRef={formRef} />
+
             <div className="relative w-full overflow-hidden">
                 <div
                     className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
                     style={{
-                        backgroundImage: `url(${bgSession2})`,
+                        backgroundImage: `url(${bgSession7})`,
                         backgroundPosition: 'center center',
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat'
                     }}
                 />
 
-                <ProblemsAndStrategySection problems={PROBLEMS_DATA} />
-                <ServicesSection services={SERVICES_DATA} />
+                <WorkflowSection steps={STEPS_DATA} />
+                <FaqSection faqs={FAQS_DATA} />
             </div>
 
-            {/* Gán ref cho Form */}
-            <ConsultationFormSection formRef={formRef} />
-            <WorkflowSection steps={STEPS_DATA} />
-            <FaqSection faqs={FAQS_DATA} />
         </div>
     );
 }

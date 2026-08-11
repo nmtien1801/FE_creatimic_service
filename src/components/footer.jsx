@@ -110,18 +110,18 @@ export default function Footer() {
                         <h3 className="text-base font-bold uppercase tracking-wider text-white">NHẬP EMAIL NHẬN THÔNG BÁO</h3>
                         <p className="text-sm italic font-normal opacity-90">Đăng kí nhận tin mới nhất từ chúng tôi</p>
 
-                        <form onSubmit={handleSend} className="flex w-full max-w-md h-10 bg-black rounded-lg overflow-hidden p-[2px] shadow-sm border border-black">
+                        <form onSubmit={handleSend} className="flex w-full max-w-md h-10 bg-white rounded-lg overflow-hidden border border-gray-300 focus-within:border-black transition-colors shadow-sm">
                             <input
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="flex-grow bg-white px-4 outline-none text-black text-sm rounded-l-md placeholder-gray-400"
+                                className="flex-grow bg-transparent px-4 outline-none text-black text-sm placeholder-gray-400"
                                 placeholder="Nhập email..."
                             />
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`px-6 text-sm font-semibold uppercase transition-all text-white bg-black ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-zinc-900"}`}
+                                className={`px-6 text-sm font-semibold uppercase transition-all text-white bg-black ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-zinc-800"}`}
                             >
                                 {loading ? "..." : "GỬI"}
                             </button>

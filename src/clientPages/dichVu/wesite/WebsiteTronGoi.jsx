@@ -80,7 +80,7 @@ function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest 
 // 1. HERO SECTION
 function HeroSection({ onScrollToForm }) {
     return (
-        <Reveal as="section" className="relative w-full pt-10 pb-12 lg:pt-20 lg:pb-24 px-4 sm:px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
+        <Reveal as="section" className="relative w-full pt-10 pb-12 lg:pt-20 px-4 sm:px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
             <div className="absolute top-[-10%] left-[-5%] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="lg:col-span-5 space-y-4 sm:space-y-6 text-center lg:text-left relative z-10">
@@ -94,10 +94,10 @@ function HeroSection({ onScrollToForm }) {
                     </span>
                 </h1>
                 <p className="text-xs sm:text-base text-slate-500 font-medium leading-relaxed max-w-md mx-auto lg:mx-0">
-                    Kiến tạo các lớp trải nghiệm sâu sắc từ cấu trúc UI/UX độc bản, tối ưu hiệu năng tốc độ đến hạ tầng tracking chuyển đổi cho doanh nghiệp SME.
+                    Giao diện tối ưu trải nghiệm người dùng, tốc độ mượt mà cùng hạ tầng đo lường chuyển đổi chuyên sâu cho các chiến dịch Digital Ads.
                 </p>
                 <div className="pt-2">
-                    <button 
+                    <button
                         type="button"
                         onClick={onScrollToForm}
                         className="inline-flex items-center gap-3 bg-slate-950 hover:bg-orange-600 text-white font-bold text-xs sm:text-sm px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl shadow-lg transition-all uppercase tracking-wider cursor-pointer"
@@ -127,7 +127,7 @@ function HeroSection({ onScrollToForm }) {
 // 2. UNIFIED PROBLEMS SECTION
 function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
     return (
-        <Reveal as="section" className="relative w-full py-12 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto z-10 bg-white">
+        <Reveal as="section" className="relative w-full py-12 md:pb-20 px-4 sm:px-6 max-w-7xl mx-auto z-10 bg-white">
             <span className="absolute right-[-10%] top-[10%] w-[300px] h-[300px] bg-slate-100 rounded-full opacity-40 pointer-events-none blur-3xl z-0" />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
@@ -212,7 +212,9 @@ function PentagonSolutionTitle() {
                     className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 bg-no-repeat bg-center"
                     style={{
                         backgroundImage: `url(${bgTitle3})`,
-                        backgroundSize: 'cover'
+                        backgroundPosition: 'center center',
+                        backgroundSize: '100% 75%',
+                        backgroundRepeat: 'no-repeat'
                     }}
                 />
 
@@ -428,11 +430,11 @@ export default function WebServicePage() {
             {/* Background container */}
             <div className="relative w-full overflow-hidden">
                 <div
-                    className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
+                    className="absolute inset-0 w-full pointer-events-none z-0"
                     style={{
                         backgroundImage: `url(${bgSession3})`,
                         backgroundPosition: 'center center',
-                        backgroundSize: 'cover',
+                        backgroundSize: '60% 100%', // hoặc '100% 100%' nếu muốn kéo giãn vừa khít khung
                         backgroundRepeat: 'no-repeat'
                     }}
                 />
