@@ -55,6 +55,7 @@ const bgSession7 = "/agent/bgSs7.png";
    1. HERO SECTION
    --------------------------------------------------------------- */
 const img6 = "/agent/img6.png";
+const img7 = "/agent/img7.png";
 
 function HeroSection() {
     // ---- Lazy load + fade-in cho background bằng IntersectionObserver ----
@@ -90,35 +91,52 @@ function HeroSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative w-full min-h-[85vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden text-white"
+            className="relative w-full min-h-[70vh] sm:min-h-[85vh] lg:min-h-screen flex flex-col justify-between overflow-hidden text-white bg-[#0B0E14]"
         >
+            {/* CSS Custom cho hiệu ứng viền đen chữ (Stroke) & Animation floating */}
             <style>{`
                 @keyframes heroImgFloat {
                     0%, 100% { transform: translateY(0px); }
                     50% { transform: translateY(-16px); }
                 }
+                .text-stroke-black {
+                    -webkit-text-stroke: 2px #000000;
+                    paint-order: stroke fill;
+                }
+                @media (min-width: 768px) {
+                    .text-stroke-black {
+                        -webkit-text-stroke: 3.5px #000000;
+                    }
+                }
             `}</style>
 
-            {/* Lớp Ảnh Nền bgSession1 — Parallax Fixed */}
+            {/* 1. Lớp Ảnh Nền bgSession1 — Responsive Attachment & Scaling (z-0) */}
             <div
-                className={`absolute inset-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${bgLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
+                className={`absolute inset-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${
+                    bgLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
                 style={{
                     backgroundImage: inView ? `url(${bgSession1})` : 'none',
                     backgroundPosition: 'center center',
-                    backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'fixed',
                 }}
-            />
+            >
+                {/* Dùng div tĩnh đè để ép style responsive không bị vỡ bởi inline style */}
+                <div 
+                    className="w-full h-full bg-cover sm:bg-cover bg-center bg-scroll md:bg-fixed"
+                    style={{
+                        backgroundImage: inView ? `url(${bgSession1})` : 'none',
+                    }}
+                />
+            </div>
 
-            {/* Lớp Ảnh img6 — KÍCH THƯỚC BẰNG HOÀN TOÀN bgSession1 (FULL SECTION) */}
+            {/* 2. Lớp Ảnh img6 — Responsive Object Contain/Cover (z-1) */}
             <div className="absolute inset-0 w-full h-full pointer-events-none z-1 flex items-center justify-center">
                 <img
                     src={img6}
                     alt="AI Agent N8N Overlay"
                     loading="lazy"
-                    className="w-full h-full object-cover select-none"
+                    className="w-full h-full object-contain md:object-cover select-none"
                     style={{ animation: 'heroImgFloat 6s ease-in-out infinite' }}
                 />
             </div>
@@ -126,55 +144,45 @@ function HeroSection() {
             {/* Nền màu chờ ảnh load */}
             <div className="absolute inset-0 bg-[#0B0E14] -z-10" />
 
-            {/* Overlay Gradient tối dịu làm nổi chữ ở giữa */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none z-2" />
+            {/* 3. Overlay Gradient tối nhẹ (z-2) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 pointer-events-none z-2" />
 
-            {/* Khối Nội Dung Chữ — ĐÃ CĂN GIỮA TOÀN BỘ (items-center & text-center) */}
-            <Reveal className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-0 w-full flex flex-col items-center text-center">
-                <div className="w-full flex flex-col items-center space-y-4">
+            {/* 4. Lớp Ảnh img7 — Responsive Position & Sizing (z-3) */}
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-3 flex items-center justify-center p-2 sm:p-4">
+                <img
+                    src={img7}
+                    alt="AI Center Graphic"
+                    loading="lazy"
+                    className="w-auto h-auto max-w-[90%] sm:max-w-[85%] max-h-[35vh] sm:max-h-[50vh] md:max-h-[65vh] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] select-none -translate-x-3 -translate-y-2 sm:-translate-x-10 sm:-translate-y-5 md:-translate-x-[72px] md:-translate-y-[36px] transition-all duration-300"
+                />
+            </div>
 
-                    {/* Tag Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2680C]/10 border border-[#F2680C]/30 text-[#F2680C] text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-                        Kỷ Nguyên Tự Động Hoá Doanh Nghiệp
-                    </div>
+            {/* 5. Khối Nội Dung Chữ Đặt Ở Góc Kèm Padding Căn Chỉnh (z-10) */}
+            <Reveal className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-10 md:px-16 lg:px-20 py-8 sm:py-10 md:py-16 flex flex-col justify-between min-h-[70vh] sm:min-h-[85vh] lg:min-h-screen">
+                
+                {/* Dòng chữ GÓC TRÊN BÊN TRÁI: KỶ NGUYÊN TỰ ĐỘNG HOÁ */}
+                <div className="text-left w-full pt-2 md:pt-6">
+                    <h2 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-wider text-stroke-black drop-shadow-[0_8px_8px_rgba(0,0,0,0.8)] inline-block">
+                        KỶ NGUYÊN TỰ ĐỘNG HOÁ
+                    </h2>
+                </div>
 
-                    {/* Tiêu đề chính Căn Giữa */}
-                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md">
-                        Ứng Dụng <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F2680C] via-orange-400 to-amber-300">
-                            AI Agent N8N
+                {/* Dòng chữ GÓC DƯỚI BÊN PHẢI: ỨNG DỤNG AI AGENT N8N & Subtitle */}
+                <div className="text-right w-full flex flex-col items-end space-y-1 sm:space-y-1.5 md:space-y-3 pb-2 md:pb-6">
+                    <h1 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.9)]">
+                        <span className="text-white text-stroke-black mr-1.5 sm:mr-2 md:mr-3">
+                            ỨNG DỤNG
+                        </span>
+                        <span className="text-[#F2680C] text-stroke-black">
+                            AI AGENT N8N
                         </span>
                     </h1>
 
-                    {/* Đoạn mô tả Căn Giữa */}
-                    <p className="text-xs sm:text-base md:text-lg font-normal text-slate-200 max-w-2xl leading-relaxed drop-shadow-sm">
-                        Giải phóng{' '}
-                        <span className="text-[#F2680C] font-semibold underline decoration-[#F2680C]/40">
-                            80% nguồn lực vận hành
-                        </span>{' '}
-                        thủ công cho SME bằng các trợ lý thông minh làm việc xuyên suốt 24/7.
+                    <p className="text-xs sm:text-xl md:text-2xl font-extrabold text-white uppercase tracking-wide text-stroke-black drop-shadow-md">
+                        Giải Phóng 80% Nguồn Lực Cho SME
                     </p>
-
-                    {/* Khối nút bấm Căn Giữa */}
-                    <div className="pt-3 flex flex-row flex-wrap justify-center items-center gap-3">
-                        <a
-                            href="#lien-he"
-                            className="group relative inline-flex items-center justify-center gap-1.5 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-bold text-white text-[10px] sm:text-xs md:text-sm bg-[#F2680C] shadow-md hover:bg-[#D95B0A] hover:scale-105 active:scale-95 transition-all duration-300 uppercase whitespace-nowrap"
-                        >
-                            <Phone size={14} fill="#FFF" />
-                            <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
-                        </a>
-
-                        <a
-                            href="#demo-video"
-                            className="inline-flex items-center justify-center gap-1.5 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-medium text-slate-200 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 text-[10px] sm:text-xs md:text-sm whitespace-nowrap"
-                        >
-                            <Play size={14} className="text-[#F2680C] fill-[#F2680C]" />
-                            <span>Xem Video Demo</span>
-                        </a>
-                    </div>
-
                 </div>
+
             </Reveal>
         </section>
     );
@@ -620,22 +628,32 @@ const FAQS = [
     }
 ];
 
+function Ambient({ tone = 'amber' }) {
+    const tones = {
+        amber: ['#F3B372', '#DD8A3B'],
+        teal: ['#63B3A4', '#135C50'],
+        terracotta: ['#E4A08B', '#B23A2E'],
+        ink: ['#9098A8', '#20242E'],
+    };
+    const [c1, c2] = tones[tone] || tones.amber;
+    return (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden z-0" aria-hidden="true">
+            <div className="absolute -top-20 -right-16 w-48 sm:w-72 h-48 sm:h-72 rounded-full blur-3xl opacity-20" style={{ background: c1 }} />
+            <div className="absolute -bottom-20 -left-16 w-44 sm:w-64 h-44 sm:h-64 rounded-full blur-3xl opacity-[0.15]" style={{ background: c2 }} />
+        </div>
+    );
+}
+
 function FaqSection() {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
         <section className="relative w-full py-8 md:py-12 px-3 md:px-16 bg-[#FCFAF8] overflow-hidden font-sans border-t border-gray-200">
-            {bgSession7 && (
-                <div
-                    className="absolute top-0 bottom-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
-                    style={{
-                        backgroundImage: `url(${bgSession7})`,
-                        backgroundPosition: 'center center',
-                        backgroundSize: '100% 100%',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
-            )}
+            {/* ---- BẮT ĐẦU NỀN MỚI ---- */}
+            <div className="absolute inset-0 flow-lines opacity-50 z-0 pointer-events-none" />
+            <Ambient tone="teal" />
+            <div className="absolute inset-0 grain-soft opacity-40 z-0 pointer-events-none" />
+            {/* ---- KẾT THÚC NỀN MỚI ---- */}
 
             <div className="relative z-10 w-full flex flex-col space-y-4 max-w-4xl mx-auto">
                 <Reveal className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1">
@@ -658,7 +676,7 @@ function FaqSection() {
                                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
                                     className="w-full text-left flex items-start justify-between gap-2 cursor-pointer group py-1"
                                 >
-                                    {/* Tăng độ đậm và tương phản cho Tiêu đề câu hỏi */}
+                                    {/* Tiêu đề câu hỏi */}
                                     <h3 className="text-xs sm:text-sm md:text-base font-extrabold text-[#14181F] flex items-start gap-1.5 leading-snug group-hover:text-[#C96F1E] transition-colors">
                                         <span className="text-[#C96F1E] text-xs mt-0.5 shrink-0">➤</span>
                                         <span className="pt-0.5">
@@ -676,8 +694,7 @@ function FaqSection() {
 
                                 {isOpen && (
                                     <div className="pl-3 sm:pl-4 pt-1 pb-1">
-                                        {/* Đã tăng font-size, màu đậm text-[#23272F] và font-medium giúp chữ nổi bật tuyệt đối */}
-                                        <div className="text-[#23272F] text-xs sm:text-sm leading-relaxed font-medium bg-white/70 backdrop-blur-xs p-2.5 sm:p-3 rounded-lg border border-gray-200/60 shadow-2xs">
+                                        <div className="text-[#23272F] text-xs sm:text-sm leading-relaxed font-medium bg-white/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-lg border border-gray-200/80 shadow-2xs">
                                             {faq.a}
                                         </div>
                                     </div>
