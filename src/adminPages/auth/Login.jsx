@@ -19,10 +19,10 @@ const LoginForm = () => {
         };
         if (username && password) {
             let res = await dispatch(Login(body));
-            
+
             if (res && res.payload && res.payload.EC === 0) {
                 navigate('/profile/info');
-            }else{
+            } else {
                 toast.error(res.payload.EM);
             }
         } else {
@@ -35,11 +35,16 @@ const LoginForm = () => {
             <div className="w-full max-w-xs sm:max-w-[360px] bg-white p-4 sm:p-0 text-center">
 
                 {/* Phần Logo và Tiêu đề */}
-                <div className="mb-6">
-                    <div className="mx-auto w-32 h-32 mb-4">
-                        <img src="/logo.png" alt="Creatimic Service Logo" className="w-full h-full object-contain" />
+                <div className="mb-6 text-center">
+                    <div className="mb-4 inline-block">
+                        <img
+                            src="/logo1.jpg"
+                            alt="logo"
+                            className="w-16 h-16 lg:w-20 lg:h-20 object-contain rounded-full mx-auto"
+                        />
                     </div>
 
+                    {/* Tiêu đề Đăng nhập */}
                     <div className="flex items-center justify-center space-x-3 mb-6">
                         <div className="flex-grow border-t border-gray-300 max-w-[40px]"></div>
                         <h1 className="text-xl text-gray-700 font-light tracking-wide">Đăng nhập</h1>

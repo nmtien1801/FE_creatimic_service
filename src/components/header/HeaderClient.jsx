@@ -16,7 +16,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   ];
 
   return (
-    <header className="bg-[#ed792f] shadow-md sticky top-0 z-50 w-full">
+    <header className="bg-[#fe7000] shadow-md sticky top-0 z-50 w-full">
       {/* 1. TOP HEADER: LOGO - CONTACT */}
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
@@ -24,7 +24,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
           {/* LOGO (Trái) */}
           <div className="flex-shrink-0 w-[120px] lg:w-[150px]">
             <NavLink to="/trang-chu">
-              <img src="/logo1.png" alt="logo" className="w-16 h-16 lg:w-20 lg:h-20 object-contain rounded-full" />
+              <img src="/logo.jpg" alt="logo" className="w-16 h-16 lg:w-20 lg:h-20 object-contain rounded-full" />
             </NavLink>
           </div>
 
@@ -32,7 +32,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
           <div className="hidden lg:flex flex-shrink-0 items-center justify-end gap-6">
             {/* Khối Hotline 1 */}
             <div className="text-right whitespace-nowrap">
-              <a href="tel:0372672396" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
+              <a href="tel:0347577034" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
                 <Phone className="w-4 h-4" /> 034.7577.034
               </a>
               <p className="text-[10px] text-white/80 font-medium uppercase tracking-tight mt-0.5">
@@ -45,7 +45,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
 
             {/* Khối Hotline 2 - Hợp tác truyền thông */}
             <div className="text-right whitespace-nowrap">
-              <a href="tel:0347577034" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
+              <a href="mailto:contact@creatimichub.vn" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
                 <Mail className="w-4 h-4" /> contact@creatimichub.vn
               </a>
               <p className="text-[10px] text-white/80 font-medium uppercase tracking-tight mt-0.5">

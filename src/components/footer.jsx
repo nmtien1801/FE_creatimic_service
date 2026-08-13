@@ -38,11 +38,8 @@ export default function Footer() {
                 {/* CỘT 1: THƯƠNG HIỆU & LIÊN HỆ */}
                 <div className="space-y-6">
                     {/* Brand Logo & Slogan */}
-                    <div className="space-y-4">
-                        <div className="flex items-center space-x-2 text-white">
-                            <img src="/logo.png" alt="CMIC MEDIA" className="h-10 w-auto object-contain brightness-0" />
-                            <span className="font-bold text-xl tracking-wide">CMIC MEDIA</span>
-                        </div>
+                    <div className="space-y-2">
+                        <img src="/logo1.jpg" alt="logo" className="w-18 h-18 lg:w-22 lg:h-22 object-contain rounded-full" />
                         <p className="text-lg md:text-xl font-medium leading-relaxed italic text-white/90">
                             Marketing là tài sản số giúp bạn tạo dòng tiền bền vững
                         </p>
@@ -133,7 +130,7 @@ export default function Footer() {
                         <h3 className="text-base font-bold uppercase tracking-wider text-white">THÔNG TIN LIÊN HỆ</h3>
                         <div className="flex items-center space-x-3">
                             {/* Facebook */}
-                            <a href="https://www.facebook.com/cmicstudio" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
+                            <a href="https://www.facebook.com/cmicmedia" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
                                 <img src="/facebook.png" alt="Facebook" className="w-9 h-9 object-contain" />
                             </a>
                             {/* Youtube */}
