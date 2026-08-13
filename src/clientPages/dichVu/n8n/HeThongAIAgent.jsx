@@ -54,61 +54,129 @@ const bgSession7 = "/agent/bgSs7.png";
 /* ---------------------------------------------------------------
    1. HERO SECTION
    --------------------------------------------------------------- */
+const img6 = "/agent/img6.png";
+
 function HeroSection() {
+    // ---- Lazy load + fade-in cho background bằng IntersectionObserver ----
+    const sectionRef = useRef(null);
+    const [bgLoaded, setBgLoaded] = useState(false);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const node = sectionRef.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.disconnect(); // chỉ cần trigger 1 lần
+                }
+            },
+            { rootMargin: '200px 0px', threshold: 0.01 } // nạp sớm trước khi tới gần
+        );
+
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!inView) return;
+        const img = new Image();
+        img.src = bgSession1;
+        img.onload = () => setBgLoaded(true);
+    }, [inView]);
+
     return (
-        <Reveal as="section" className="relative w-full pt-14 pb-16 md:pt-28 md:pb-40 overflow-hidden text-white bg-cover bg-center bg-no-repeat">
-            {/* Lớp Ảnh Nền */}
+        <section
+            ref={sectionRef}
+            className="relative w-full min-h-[85vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden text-white"
+        >
+            <style>{`
+                @keyframes heroImgFloat {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-16px); }
+                }
+            `}</style>
+
+            {/* Lớp Ảnh Nền bgSession1 — Parallax Fixed */}
             <div
-                className="absolute inset-0 w-full h-full pointer-events-none z-0"
+                className={`absolute inset-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${bgLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
                 style={{
-                    backgroundImage: `url(${bgSession1})`,
+                    backgroundImage: inView ? `url(${bgSession1})` : 'none',
                     backgroundPosition: 'center center',
                     backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
+                    backgroundRepeat: 'no-repeat',
+                    backgroundAttachment: 'fixed',
                 }}
             />
 
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] pointer-events-none z-0" />
-
-            <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-12 gap-6 items-center">
-                    <div className="lg:col-span-7 text-left space-y-3">
-                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F2680C]/10 border border-[#F2680C]/30 text-[#F2680C] text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-                            Kỷ Nguyên Tự Động Hoá Doanh Nghiệp
-                        </div>
-
-                        <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white uppercase tracking-tight leading-tight">
-                            Ứng Dụng <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F2680C] via-orange-400 to-amber-300">
-                                AI Agent N8N
-                            </span>
-                        </h1>
-
-                        <p className="text-xs sm:text-sm md:text-base font-normal text-slate-300 max-w-lg leading-relaxed">
-                            Giải phóng <span className="text-[#F2680C] font-semibold underline decoration-[#F2680C]/40">80% nguồn lực vận hành</span> thủ công cho SME bằng các trợ lý thông minh làm việc xuyên suốt 24/7.
-                        </p>
-
-                        <div className="pt-2 flex flex-row items-center gap-2.5">
-                            <a
-                                href="#lien-he"
-                                className="group relative inline-flex items-center justify-center gap-1.5 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-white text-[10px] sm:text-xs md:text-sm bg-[#F2680C] shadow-md hover:bg-[#D95B0A] transition-all duration-300 uppercase whitespace-nowrap"
-                            >
-                                <Phone size={13} fill="#FFF" />
-                                <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
-                            </a>
-
-                            <a
-                                href="#demo-video"
-                                className="inline-flex items-center justify-center gap-1.5 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-medium text-slate-200 hover:text-white bg-white/5 hover:bg-white/10 border border-white/15 backdrop-blur-md transition-all text-[10px] sm:text-xs md:text-sm whitespace-nowrap"
-                            >
-                                <Play size={13} className="text-[#F2680C] fill-[#F2680C]" />
-                                <span>Xem Video Demo</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            {/* Lớp Ảnh img6 — KÍCH THƯỚC BẰNG HOÀN TOÀN bgSession1 (FULL SECTION) */}
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-1 flex items-center justify-center">
+                <img
+                    src={img6}
+                    alt="AI Agent N8N Overlay"
+                    loading="lazy"
+                    className="w-full h-full object-cover select-none"
+                    style={{ animation: 'heroImgFloat 6s ease-in-out infinite' }}
+                />
             </div>
-        </Reveal>
+
+            {/* Nền màu chờ ảnh load */}
+            <div className="absolute inset-0 bg-[#0B0E14] -z-10" />
+
+            {/* Overlay Gradient tối dịu làm nổi chữ ở giữa */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none z-2" />
+
+            {/* Khối Nội Dung Chữ — ĐÃ CĂN GIỮA TOÀN BỘ (items-center & text-center) */}
+            <Reveal className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-0 w-full flex flex-col items-center text-center">
+                <div className="w-full flex flex-col items-center space-y-4">
+
+                    {/* Tag Badge */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F2680C]/10 border border-[#F2680C]/30 text-[#F2680C] text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+                        Kỷ Nguyên Tự Động Hoá Doanh Nghiệp
+                    </div>
+
+                    {/* Tiêu đề chính Căn Giữa */}
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md">
+                        Ứng Dụng <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F2680C] via-orange-400 to-amber-300">
+                            AI Agent N8N
+                        </span>
+                    </h1>
+
+                    {/* Đoạn mô tả Căn Giữa */}
+                    <p className="text-xs sm:text-base md:text-lg font-normal text-slate-200 max-w-2xl leading-relaxed drop-shadow-sm">
+                        Giải phóng{' '}
+                        <span className="text-[#F2680C] font-semibold underline decoration-[#F2680C]/40">
+                            80% nguồn lực vận hành
+                        </span>{' '}
+                        thủ công cho SME bằng các trợ lý thông minh làm việc xuyên suốt 24/7.
+                    </p>
+
+                    {/* Khối nút bấm Căn Giữa */}
+                    <div className="pt-3 flex flex-row flex-wrap justify-center items-center gap-3">
+                        <a
+                            href="#lien-he"
+                            className="group relative inline-flex items-center justify-center gap-1.5 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-bold text-white text-[10px] sm:text-xs md:text-sm bg-[#F2680C] shadow-md hover:bg-[#D95B0A] hover:scale-105 active:scale-95 transition-all duration-300 uppercase whitespace-nowrap"
+                        >
+                            <Phone size={14} fill="#FFF" />
+                            <span>ĐĂNG KÝ NHẬN TƯ VẤN</span>
+                        </a>
+
+                        <a
+                            href="#demo-video"
+                            className="inline-flex items-center justify-center gap-1.5 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-medium text-slate-200 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 text-[10px] sm:text-xs md:text-sm whitespace-nowrap"
+                        >
+                            <Play size={14} className="text-[#F2680C] fill-[#F2680C]" />
+                            <span>Xem Video Demo</span>
+                        </a>
+                    </div>
+
+                </div>
+            </Reveal>
+        </section>
     );
 }
 

@@ -134,15 +134,20 @@ export default function Footer() {
                                 <img src="/facebook.png" alt="Facebook" className="w-9 h-9 object-contain" />
                             </a>
                             {/* Youtube */}
-                            <a href="https://www.youtube.com/@CMICSTUDIO" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
+                            <a href="https://www.youtube.com/@cmicmedia" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
                                 <img src="/YouTube.png" alt="YouTube" className="w-9 h-9 object-contain" />
                             </a>
                             {/* Tiktok */}
-                            <a href="https://www.tiktok.com/@cmic.studio" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
+                            <a href="https://www.tiktok.com/@cmicmedia?_r=1&_t=ZS-98qZGiQHLm5" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
                                 <img src="/tiktok.png" alt="TikTok" className="w-9 h-9 object-contain" />
                             </a>
                             {/* Zalo */}
-                            <a href="#" className="transition-transform hover:scale-105">
+                            <a
+                                href="https://zalo.me/0333207128"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block transition-transform hover:scale-105 cursor-pointer"
+                            >
                                 <img src="/zalo.webp" alt="Zalo" className="w-9 h-9 object-contain" />
                             </a>
                         </div>
