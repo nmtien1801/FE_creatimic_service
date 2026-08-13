@@ -207,13 +207,13 @@ function UnifiedProblemsSection({ webProblems, bgImageUrl }) {
 function PentagonSolutionTitle() {
     return (
         <section className="relative w-full flex flex-col items-center">
-            <Reveal className="relative w-full py-12 md:py-20 overflow-hidden flex justify-center items-center px-4">
+            <Reveal className="relative w-full py-5 md:py-20 overflow-hidden flex justify-center items-center px-4">
                 <div
                     className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 bg-no-repeat bg-center"
                     style={{
                         backgroundImage: `url(${bgTitle3})`,
                         backgroundPosition: 'center center',
-                        backgroundSize: '100% 75%',
+                        backgroundSize: '100% 60%',
                         backgroundRepeat: 'no-repeat'
                     }}
                 />
