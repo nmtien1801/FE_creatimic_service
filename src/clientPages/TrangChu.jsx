@@ -623,45 +623,41 @@ function ConsultationFormSection({ formRef }) {
 // WORKFLOW
 function WorkflowSection({ steps }) {
     return (
-        <Reveal as="section" className="relative w-full overflow-hidden py-8 md:py-14 px-3 sm:px-6 lg:px-8 bg-transparent">
-            <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col space-y-5 sm:space-y-6">
-                <h2 className="text-base sm:text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase">
-                    Quy trình hợp tác
-                </h2>
+        <div className="max-w-5xl mx-auto w-full flex flex-col space-y-5 sm:space-y-6">
+            <h2 className="text-base sm:text-xl md:text-2xl font-black text-[#14181F] text-left tracking-tight uppercase">
+                Quy trình hợp tác
+            </h2>
 
-                <div className="relative w-full flex flex-col space-y-3 sm:space-y-4 pl-5 sm:pl-8 md:pl-10">
-                    <div className="absolute left-[8px] sm:left-[14px] md:left-[16px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-[#C96F1E] via-[#0F4B41] to-[#14181F] pointer-events-none rounded-full" />
+            <div className="relative w-full flex flex-col space-y-3 sm:space-y-4 pl-5 sm:pl-8 md:pl-10">
+                <div className="absolute left-[8px] sm:left-[14px] md:left-[16px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-[#C96F1E] via-[#0F4B41] to-[#14181F] pointer-events-none rounded-full" />
 
-                    {steps.map((step, idx) => {
-                        const Icon = STEP_ICONS[idx] || DocIcon;
-                        return (
-                            <Reveal key={idx} delay={idx * 80} className="relative w-full grid grid-cols-12 gap-1.5 sm:gap-3 items-center pl-3 sm:pl-5 text-left group">
-                                <div className="absolute -left-[17px] sm:-left-[24px] md:-left-[31px] top-1/2 -translate-y-1/2 w-3 sm:w-4 h-3 sm:h-4 bg-white border-[2px] sm:border-[2.5px] border-[#14181F] rounded-full z-30 flex items-center justify-center group-hover:border-[#C96F1E] transition-colors duration-300">
-                                    <div className="w-1 h-1 rounded-full bg-[#14181F] group-hover:bg-[#C96F1E] transition-colors duration-300" />
+                {steps.map((step, idx) => {
+                    const Icon = STEP_ICONS[idx] || DocIcon;
+                    return (
+                        <Reveal key={idx} delay={idx * 80} className="relative w-full grid grid-cols-12 gap-1.5 sm:gap-3 items-center pl-3 sm:pl-5 text-left group">
+                            <div className="absolute -left-[17px] sm:-left-[24px] md:-left-[31px] top-1/2 -translate-y-1/2 w-3 sm:w-4 h-3 sm:h-4 bg-white border-[2px] sm:border-[2.5px] border-[#14181F] rounded-full z-30 flex items-center justify-center group-hover:border-[#C96F1E] transition-colors duration-300">
+                                <div className="w-1 h-1 rounded-full bg-[#14181F] group-hover:bg-[#C96F1E] transition-colors duration-300" />
+                            </div>
+
+                            <div className="col-span-5 lg:col-span-4 w-full">
+                                <div className="w-full flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#C96F1E] to-[#A85916] text-white font-extrabold text-[10px] sm:text-xs md:text-sm py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg shadow-sm select-none">
+                                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                                    <span className="leading-tight break-words">{step.stepNum}</span>
                                 </div>
+                            </div>
 
-                                <div className="col-span-5 lg:col-span-4 w-full">
-                                    <div
-                                        className="w-full flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[#C96F1E] to-[#A85916] text-white font-extrabold text-[10px] sm:text-xs md:text-sm py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg shadow-sm select-none"
-                                    >
-                                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
-                                        <span className="leading-tight break-words">{step.stepNum}</span>
-                                    </div>
+                            <div className="col-span-7 lg:col-span-8 w-full">
+                                <div className="w-full bg-white border border-[#C96F1E]/40 rounded-md sm:rounded-lg p-2 sm:p-3 shadow-xs min-h-[38px] sm:min-h-[44px] flex items-center">
+                                    <p className="text-[#14181F] font-bold text-[10px] sm:text-xs md:text-sm leading-tight sm:leading-snug">
+                                        {step.detail}
+                                    </p>
                                 </div>
-
-                                <div className="col-span-7 lg:col-span-8 w-full">
-                                    <div className="w-full bg-white border border-[#C96F1E]/40 rounded-md sm:rounded-lg p-2 sm:p-3 shadow-xs min-h-[38px] sm:min-h-[44px] flex items-center">
-                                        <p className="text-[#14181F] font-bold text-[10px] sm:text-xs md:text-sm leading-tight sm:leading-snug">
-                                            {step.detail}
-                                        </p>
-                                    </div>
-                                </div>
-                            </Reveal>
-                        );
-                    })}
-                </div>
+                            </div>
+                        </Reveal>
+                    );
+                })}
             </div>
-        </Reveal>
+        </div>
     );
 }
 
@@ -716,35 +712,31 @@ function FaqItem({ faq, isOpenDefault = false }) {
 
 function FaqSection({ faqs }) {
     return (
-        <section className="relative w-full py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-transparent">
-            <div className="absolute inset-0 grain-soft opacity-40 z-0 pointer-events-none" />
-
-            <Reveal className="relative z-10 max-w-5xl mx-auto flex flex-col space-y-6">
-                <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
-                    <div className="flex items-center space-x-2">
-                        <div className="flex flex-col items-center">
-                            <div className="w-1.5 h-1.5 bg-[#14181F] rounded-full" />
-                            <div className="w-[1.5px] h-5 bg-[#14181F]" />
-                        </div>
-
-                        <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[#14181F] uppercase tracking-tight">
-                            FAQs
-                        </h2>
+        <Reveal className="max-w-5xl mx-auto flex flex-col space-y-6">
+            <div className="w-full flex items-center justify-between border-b-2 border-[#14181F]/80 pb-1.5">
+                <div className="flex items-center space-x-2">
+                    <div className="flex flex-col items-center">
+                        <div className="w-1.5 h-1.5 bg-[#14181F] rounded-full" />
+                        <div className="w-[1.5px] h-5 bg-[#14181F]" />
                     </div>
-                </div>
 
-                <div className="space-y-3 sm:space-y-4">
-                    {faqs.map((faq, index) => (
-                        <Reveal key={index} delay={index * 90}>
-                            <FaqItem
-                                faq={faq}
-                                isOpenDefault={index === 0}
-                            />
-                        </Reveal>
-                    ))}
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[#14181F] uppercase tracking-tight">
+                        FAQs
+                    </h2>
                 </div>
-            </Reveal>
-        </section>
+            </div>
+
+            <div className="space-y-3 sm:space-y-4">
+                {faqs.map((faq, index) => (
+                    <Reveal key={index} delay={index * 90}>
+                        <FaqItem
+                            faq={faq}
+                            isOpenDefault={index === 0}
+                        />
+                    </Reveal>
+                ))}
+            </div>
+        </Reveal>
     );
 }
 
@@ -789,20 +781,18 @@ export default function MarketingLandingPage() {
             {/* Gán ref cho Form */}
             <ConsultationFormSection formRef={formRef} />
 
-            <div className="relative w-full overflow-hidden">
-                <div
-                    className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 pointer-events-none z-0 scale-x-110"
-                    style={{
-                        backgroundImage: `url(${bgSession7})`,
-                        backgroundPosition: 'center center',
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                />
+            <section className="relative w-full overflow-hidden py-10 md:py-14 px-4 sm:px-6 lg:px-8 bg-[#FBF9F6]">
+                {/* --- CÁC LỚP BACKGROUND --- */}
+                <div className="absolute inset-0 flow-lines opacity-50 z-0 pointer-events-none" />
+                <Ambient tone="teal" />
+                <div className="absolute inset-0 grain-soft opacity-40 z-0 pointer-events-none" />
 
-                <WorkflowSection steps={STEPS_DATA} />
-                <FaqSection faqs={FAQS_DATA} />
-            </div>
+                {/* --- NỘI DUNG CHÍNH (Thêm space-y để 2 phần không dính liền nhau) --- */}
+                <div className="relative z-10 space-y-12 md:space-y-16">
+                    <WorkflowSection steps={STEPS_DATA} />
+                    <FaqSection faqs={FAQS_DATA} />
+                </div>
+            </section>
 
         </div>
     );
