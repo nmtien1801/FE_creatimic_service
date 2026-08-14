@@ -1,62 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Trang chính -->
   <url>
     <loc>https://cmicstudio.vn/trang-chu</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://cmicstudio.vn/gioi-thieu</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cmicstudio.vn/dich-vu</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cmicstudio.vn/tin-tuc</loc>
-    <lastmod>2026-04-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cmicstudio.vn/tuyen-dung</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cmicstudio.vn/lien-he</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://cmicstudio.vn/dich-vu/set-up-phong-livestream</loc>
-    <lastmod>2026-04-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cmicstudio.vn/dich-vu/phan-mem-auto-tone</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://cmicstudio.vn/ho-so-nang-luc</loc>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.7</priority>
   </url>
 
+  <!-- Dịch vụ: Website / Landing Page -->
   <url>
-    <loc>https://cmicstudio.vn/ten-san-pham-slug/id-danh-muc/id-san-pham</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://cmicstudio.vn/dich-vu/website-landing-page/tron-goi</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/website-landing-page/xay-dung</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/website-landing-page/thiet-ke-giao-dien</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/website-landing-page/cham-soc</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Dịch vụ: Chăm sóc kênh Social -->
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/tron-goi</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/fanpage</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/instagram</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/youtube</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/tiktok</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/linkedin</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/cham-soc-kenh-social/email-marketing</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Dịch vụ khác -->
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/he-thong-ai-agent</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/dich-vu/tron-goi-marketing</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Chính sách -->
+  <url>
+    <loc>https://cmicstudio.vn/dieu-khoan-dich-vu-va-dieu-kien-giao-dich-chung</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/cac-phuong-thuc-thanh-toan</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/chinh-sach-van-chuyen-va-giao-nhan</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cmicstudio.vn/chinh-sach-bao-mat-thong-tin-ca-nhan</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Ví dụ bài viết chi tiết (thay bằng URL thực tế của từng bài) -->
+  <url>
+    <loc>https://cmicstudio.vn/tin-tuc/tieu-de-bai-viet-vi-du/1</loc>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.6</priority>
   </url>
 
-  <url>
-    <loc>https://cmicstudio.vn/tin-tuc/tieu-de-bai-viet-viet-lien/1</loc>
-    <lastmod>2026-04-27</lastmod>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://cmicstudio.vn/tuyen-dung/tieu-de-cong-viec/1</loc>
-    <lastmod>2026-04-27</lastmod>
-    <priority>0.6</priority>
-  </url>
 </urlset>
