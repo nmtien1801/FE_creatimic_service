@@ -18,20 +18,65 @@ export default function ContactForm({ onSubmitSuccess }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Hàm validate dữ liệu
+  const validateForm = () => {
+    const nameTrimmed = formData.fullName.trim();
+    const phoneTrimmed = formData.phone.trim();
+    const emailTrimmed = formData.email.trim();
+    const consultTrimmed = formData.consultRequest.trim();
+
+    if (!nameTrimmed) {
+      toast.error("Vui lòng nhập họ và tên!");
+      return false;
+    }
+
+    // Regex kiểm tra SĐT Việt Nam (10 số, bắt đầu bằng 03, 05, 07, 08, 09)
+    const vnPhoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+    if (!vnPhoneRegex.test(phoneTrimmed)) {
+      toast.error("Số điện thoại không đúng định dạng Việt Nam (10 chữ số)!");
+      return false;
+    }
+
+    // Regex kiểm tra Email chuẩn
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailTrimmed)) {
+      toast.error("Email không đúng định dạng!");
+      return false;
+    }
+
+    if (!consultTrimmed) {
+      toast.error("Vui lòng nhập nội dung cần tư vấn!");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 1. Kiểm tra validate trước khi gửi
+    if (!validateForm()) return;
+
     setLoading(true);
 
+    // Dữ liệu đã làm sạch khoảng trắng
+    const cleanData = {
+      fullName: formData.fullName.trim(),
+      phone: formData.phone.trim(),
+      email: formData.email.trim(),
+      consultRequest: formData.consultRequest.trim(),
+      marketingChannels: formData.marketingChannels.trim()
+    };
+
     try {
-      // Giả định hàm trong ApiContact là ApiContact.create(formData) hoặc ApiContact.send(formData)
-      // Bạn điều chỉnh tên method tương ứng với file ApiContact của bạn nhé
-      const response = await ApiContact.create(formData);
+      const response = await ApiContact.sendContactApi(cleanData);
 
       toast.success("Gửi thông tin liên hệ thành công!");
 
       // Gọi callback báo cho component cha nếu có
       if (onSubmitSuccess) {
-        onSubmitSuccess(response?.data || formData);
+        onSubmitSuccess(response?.data || cleanData);
       }
 
       // Reset form sau khi gửi thành công
@@ -70,6 +115,7 @@ export default function ContactForm({ onSubmitSuccess }) {
           value={formData.fullName}
           onChange={handleChange}
           disabled={loading}
+          placeholder="Nguyễn Văn A"
           className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white disabled:bg-gray-100"
         />
       </div>
@@ -83,6 +129,7 @@ export default function ContactForm({ onSubmitSuccess }) {
           value={formData.phone}
           onChange={handleChange}
           disabled={loading}
+          placeholder="0912345678"
           className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white disabled:bg-gray-100"
         />
       </div>
@@ -96,6 +143,7 @@ export default function ContactForm({ onSubmitSuccess }) {
           value={formData.email}
           onChange={handleChange}
           disabled={loading}
+          placeholder="example@gmail.com"
           className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white disabled:bg-gray-100"
         />
       </div>
@@ -109,6 +157,7 @@ export default function ContactForm({ onSubmitSuccess }) {
           value={formData.consultRequest}
           onChange={handleChange}
           disabled={loading}
+          placeholder="Nhập nội dung tư vấn..."
           className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white resize-none disabled:bg-gray-100"
         />
       </div>
@@ -123,6 +172,7 @@ export default function ContactForm({ onSubmitSuccess }) {
           value={formData.marketingChannels}
           onChange={handleChange}
           disabled={loading}
+          placeholder="Fanpage, Website, TikTok..."
           className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-emerald-800 bg-white resize-none disabled:bg-gray-100"
         />
       </div>

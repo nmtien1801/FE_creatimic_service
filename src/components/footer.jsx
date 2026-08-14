@@ -16,13 +16,15 @@ export default function Footer() {
         try {
             setLoading(true);
             const contactData = {
-                name: "client",
+                fullName: "client",
                 email: email,
-                message: `Tôi đang quan tâm đến giải pháp marketing của bạn. Hãy liên hệ với tôi qua email này!`,
+                consultRequest: `Tôi đang quan tâm đến giải pháp marketing của bạn. Hãy liên hệ với tôi qua email này!`,
             };
-            await ApiContact.sendContactApi(contactData);
-            toast.success('Đã đăng ký nhận thông báo thành công!');
-            setEmail('');
+            let res = await ApiContact.sendContactApi(contactData);
+            if (res && res.EC === 0) {
+                toast.success('Đã đăng ký nhận thông báo thành công!');
+                setEmail('');
+            }
         } catch (error) {
             console.error('Error sending contact:', error);
             toast.error('Đăng ký thất bại. Vui lòng thử lại.');
