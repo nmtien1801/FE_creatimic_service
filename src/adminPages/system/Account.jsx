@@ -142,7 +142,7 @@ export default function UserInfoForm() {
 
         {/* Footer */}
         <div className="mt-8 text-right text-xs text-gray-500">
-          Copyright © 2025 by CMICSTUDIO
+          Copyright © 2025 by CMICAGENCY
         </div>
       </div>
     </div>

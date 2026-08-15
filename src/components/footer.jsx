@@ -153,6 +153,11 @@ export default function Footer() {
                                 <img src="/zalo.webp" alt="Zalo" className="w-9 h-9 object-contain" />
                             </a>
                         </div>
+                        <div className="flex items-center space-x-4 opacity-90 transition-all cursor-pointer">
+                            <a href="http://online.gov.vn/Home/WebDetails/143786" target="_blank" rel="noopener noreferrer">
+                                <img src="/bct.gif" alt="Bộ Công Thương" className="h-16" />
+                            </a>
+                        </div>
                     </div>
                 </div>
 

@@ -112,9 +112,8 @@ function HeroSection() {
 
             {/* 1. Lớp Ảnh Nền bgSession1 — Responsive Attachment & Scaling (z-0) */}
             <div
-                className={`absolute inset-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${
-                    bgLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
+                className={`absolute inset-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${bgLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
                 style={{
                     backgroundImage: inView ? `url(${bgSession1})` : 'none',
                     backgroundPosition: 'center center',
@@ -122,7 +121,7 @@ function HeroSection() {
                 }}
             >
                 {/* Dùng div tĩnh đè để ép style responsive không bị vỡ bởi inline style */}
-                <div 
+                <div
                     className="w-full h-full bg-cover sm:bg-cover bg-center bg-scroll md:bg-fixed"
                     style={{
                         backgroundImage: inView ? `url(${bgSession1})` : 'none',
@@ -159,7 +158,7 @@ function HeroSection() {
 
             {/* 5. Khối Nội Dung Chữ Đặt Ở Góc Kèm Padding Căn Chỉnh (z-10) */}
             <Reveal className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-10 md:px-16 lg:px-20 py-8 sm:py-10 md:py-16 flex flex-col justify-between min-h-[70vh] sm:min-h-[85vh] lg:min-h-screen">
-                
+
                 {/* Dòng chữ GÓC TRÊN BÊN TRÁI: KỶ NGUYÊN TỰ ĐỘNG HOÁ */}
                 <div className="text-left w-full pt-2 md:pt-6">
                     <h2 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-wider text-stroke-black drop-shadow-[0_8px_8px_rgba(0,0,0,0.8)] inline-block">
@@ -222,7 +221,7 @@ function ComparisonSection() {
                                 <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-600 text-[9px] sm:text-xs font-bold uppercase tracking-wider">
                                     <AlertTriangle size={11} /> Trước Khi Có AI
                                 </div>
-                                <span className="text-[9px] sm:text-xs font-mono text-slate-400 font-semibold hidden sm:inline">Thủ công</span>
+                                <span className="text-[9px] sm:text-xs text-slate-400 font-semibold hidden sm:inline">Thủ công</span>
                             </div>
 
                             <h3 className="text-xs sm:text-lg font-black text-[#14181F] leading-snug">
@@ -253,7 +252,7 @@ function ComparisonSection() {
                                 <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#F2680C]/10 border border-[#F2680C]/30 text-[#F2680C] text-[9px] sm:text-xs font-bold uppercase tracking-wider">
                                     <Bot size={11} /> AI Agent
                                 </div>
-                                <span className="text-[9px] sm:text-xs font-mono text-[#F2680C] font-bold hidden sm:inline">n8n Workflow</span>
+                                <span className="text-[9px] sm:text-xs text-[#F2680C] font-bold hidden sm:inline">n8n Workflow</span>
                             </div>
 
                             <h3 className="text-xs sm:text-lg font-black text-[#14181F] leading-snug">
@@ -419,7 +418,7 @@ function PainPointsSection() {
     return (
         <section className="py-10 md:py-16 bg-[#1D428A] text-white">
             <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 space-y-6 text-center">
-                <Reveal className="max-w-2xl mx-auto space-y-1">
+                <Reveal className="max-w-4xl mx-auto space-y-1">
                     <span className="text-[#F2680C] font-bold text-[9px] sm:text-xs uppercase tracking-wider bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15">
                         THỰC TRẠNG DOANH NGHIỆP
                     </span>

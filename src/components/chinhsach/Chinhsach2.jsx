@@ -12,7 +12,7 @@ export default function ChinhSach2() {
             Các Phương Thức Thanh Toán
           </h1>
           <p className="max-w-2xl mx-auto text-sm md:text-base italic text-slate-600">
-            Khi mua sắm trực tuyến tại website <span className="text-[#ed792f] font-semibold">cmicstudio.vn</span>, Quý khách hàng có thể lựa chọn một trong các hình thức thanh toán sau đây để hoàn tất giao dịch.
+            Khi mua sắm trực tuyến tại website <span className="text-[#ed792f] font-semibold">cmicagency.vn</span>, Quý khách hàng có thể lựa chọn một trong các hình thức thanh toán sau đây để hoàn tất giao dịch.
           </p>
         </div>
 

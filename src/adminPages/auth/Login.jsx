@@ -119,7 +119,7 @@ const LoginForm = () => {
 
                 {/* Phần Footer */}
                 <div className="text-center">
-                    <h2 className="text-lg text-gray-600 font-light tracking-widest mb-1">CMICSTUDIO</h2>
+                    <h2 className="text-lg text-gray-600 font-light tracking-widest mb-1">CMICAGENCY</h2>
                     <p className="text-xs text-gray-500">
                         &copy;{new Date().getFullYear()} All Rights Reserved. Privacy and Terms
                     </p>
