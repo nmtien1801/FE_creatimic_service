@@ -15,7 +15,7 @@ const ContactPage = () => {
 
                     {/* Column 1 (Bên Trái): Map & Contact Info */}
                     <div className="flex flex-col space-y-6 h-full">
-                        
+
                         {/* 1. Contact Information */}
                         <div className="space-y-4 text-gray-800">
                             {/* Địa chỉ */}
@@ -35,7 +35,7 @@ const ContactPage = () => {
                             {/* Email */}
                             <div className="flex items-center gap-4">
                                 <Mail className="w-6 h-6 shrink-0" />
-                                <p>contact@creatimichub.vn</p>
+                                <p>contact@cmicagency.vn</p>
                             </div>
                         </div>
 

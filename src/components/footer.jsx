@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { MapPin, Phone, Mail } from "lucide-react";
 import ApiContact from "../apis/ApiContact";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function Footer() {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleSend = async (e) => {
         e.preventDefault();
         if (!email) {
-            toast.error('Vui lòng nhập email!');
+            toast.error("Vui lòng nhập email!");
             return;
         }
         try {
@@ -22,16 +23,21 @@ export default function Footer() {
             };
             let res = await ApiContact.sendContactApi(contactData);
             if (res && res.EC === 0) {
-                toast.success('Đã đăng ký nhận thông báo thành công!');
-                setEmail('');
+                toast.success("Đã đăng ký nhận thông báo thành công!");
+                setEmail("");
             }
         } catch (error) {
-            console.error('Error sending contact:', error);
-            toast.error('Đăng ký thất bại. Vui lòng thử lại.');
+            console.error("Error sending contact:", error);
+            toast.error("Đăng ký thất bại. Vui lòng thử lại.");
         } finally {
             setLoading(false);
         }
     };
+
+    // Helper styling class cho NavLink
+    const getNavLinkClass = ({ isActive }) =>
+        `block transition-colors hover:underline ${isActive ? "font-bold underline text-white" : "opacity-90 hover:opacity-100"
+        }`;
 
     return (
         <footer className="bg-[#ed792f] font-sans py-14 px-6 md:px-12 text-sm text-black">
@@ -62,9 +68,9 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex items-center space-x-3">
-                            <Mail className="w-5 h-5 flex-shrink-0 text-black fill-black" />
+                            <Mail className="w-5 h-5 flex-shrink-0 text-black" />
                             <p>
-                                <span className="font-semibold">Email:</span> contact@creatimichub.vn
+                                <span className="font-semibold">Email:</span> contact@cmicagency.vn
                             </p>
                         </div>
                     </div>
@@ -75,29 +81,67 @@ export default function Footer() {
                     {/* Nhóm Thông tin */}
                     <div className="space-y-2">
                         <h3 className="text-base font-bold uppercase tracking-wider text-white">THÔNG TIN</h3>
-                        <p className="font-normal hover:underline cursor-pointer opacity-90">Giới thiệu CMIC MEDIA</p>
+                        <NavLink to="/gioi-thieu" className={getNavLinkClass}>
+                            Giới thiệu CMIC MEDIA
+                        </NavLink>
                     </div>
 
                     {/* Nhóm Chính sách */}
                     <div className="space-y-2">
                         <h3 className="text-base font-bold uppercase tracking-wider text-white">CHÍNH SÁCH & HỖ TRỢ</h3>
-                        <ul className="space-y-1.5 font-normal opacity-90">
-                            <li className="hover:underline cursor-pointer">Quy trình tiếp nhận yêu cầu & Cung cấp báo giá</li>
-                            <li className="hover:underline cursor-pointer">Điều khoản & Chính sách dịch vụ</li>
-                            <li className="hover:underline cursor-pointer">Chính sách vận chuyển & giao nhận</li>
-                            <li className="hover:underline cursor-pointer">Phương thức thanh toán</li>
-                            <li className="hover:underline cursor-pointer">Chính sách bảo mật thông tin</li>
+                        <ul className="space-y-1.5 font-normal">
+                            <li>
+                                <NavLink to="/quy-trinh-bao-gia" className={getNavLinkClass}>
+                                    Quy trình tiếp nhận yêu cầu & Cung cấp báo giá
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dieu-khoan-dich-vu-va-dieu-kien-giao-dich-chung" className={getNavLinkClass}>
+                                    Điều khoản & Chính sách dịch vụ
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/chinh-sach-van-chuyen-va-giao-nhan" className={getNavLinkClass}>
+                                    Chính sách vận chuyển & giao nhận
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/cac-phuong-thuc-thanh-toan" className={getNavLinkClass}>
+                                    Phương thức thanh toán
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/chinh-sach-bao-mat-thong-tin-ca-nhan" className={getNavLinkClass}>
+                                    Chính sách bảo mật thông tin
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
 
                     {/* Nhóm Dịch vụ */}
                     <div className="space-y-2">
                         <h3 className="text-base font-bold uppercase tracking-wider text-white">DỊCH VỤ</h3>
-                        <ul className="space-y-1.5 font-normal opacity-90">
-                            <li className="hover:underline cursor-pointer">Website - Landing Page</li>
-                            <li className="hover:underline cursor-pointer">Chăm sóc kênh social</li>
-                            <li className="hover:underline cursor-pointer">Hệ thống AI Agent (n8n)</li>
-                            <li className="hover:underline cursor-pointer">Trọn gói Marketing</li>
+                        <ul className="space-y-1.5 font-normal">
+                            <li>
+                                <NavLink to="/dich-vu/website-landing-page/xay-dung" className={getNavLinkClass}>
+                                    Website - Landing Page
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dich-vu/cham-soc-kenh-social/tron-goi" className={getNavLinkClass}>
+                                    Chăm sóc kênh social
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dich-vu/he-thong-ai-agent" className={getNavLinkClass}>
+                                    Hệ thống AI Agent (n8n)
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dich-vu/tron-goi-marketing" className={getNavLinkClass}>
+                                    Trọn gói Marketing
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>

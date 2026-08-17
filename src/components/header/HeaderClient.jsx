@@ -45,8 +45,8 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
 
             {/* Khối Hotline 2 - Hợp tác truyền thông */}
             <div className="text-right whitespace-nowrap">
-              <a href="mailto:contact@creatimichub.vn" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
-                <Mail className="w-4 h-4" /> contact@creatimichub.vn
+              <a href="mailto:contact@cmicagency.vn" className="flex items-center justify-end gap-1.5 text-white font-bold text-sm hover:text-black transition-colors">
+                <Mail className="w-4 h-4" /> contact@cmicagency.vn
               </a>
               <p className="text-[10px] text-white/80 font-medium uppercase tracking-tight mt-0.5">
                 Liên hệ qua Email
