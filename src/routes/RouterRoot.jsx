@@ -45,8 +45,9 @@ import Employee from "../adminPages/employee/employees.jsx";
 
 import ChinhSach1 from '../components/chinhsach/Chinhsach1.jsx'
 import ChinhSach2 from '../components/chinhsach/Chinhsach2.jsx'
-import ChinhSach3 from '../components/chinhsach/Chinhsach3.jsx'
-import ChinhSach4 from '../components/chinhsach/Chinhsach4.jsx'
+import ChinhSach3 from '../components/chinhsach/Chinhsach4.jsx'
+import ChinhSach4 from '../components/chinhsach/Chinhsach3.jsx'
+import ChinhSach5 from '../components/chinhsach/Chinhsach5.jsx'
 
 const ProtectedRoute = ({ children }) => {
   const { userInfo, isLoading } = useSelector((state) => state.auth);
@@ -129,10 +130,11 @@ function RouterRoot() {
           <Route path="lien-he" element={<Contact />} />
           <Route path="ho-so-nang-luc" element={<HoSoNangLuc />} />
 
-          <Route path="dieu-khoan-dich-vu-va-dieu-kien-giao-dich-chung" element={<ChinhSach1 />} />
-          <Route path="cac-phuong-thuc-thanh-toan" element={<ChinhSach2 />} />
-          <Route path="chinh-sach-van-chuyen-va-giao-nhan" element={<ChinhSach3 />} />
-          <Route path="chinh-sach-bao-mat-thong-tin-ca-nhan" element={<ChinhSach4 />} />
+          <Route path="quy-trinh-bao-gia" element={<ChinhSach1 />} />
+          <Route path="dieu-khoan-dich-vu-va-dieu-kien-giao-dich-chung" element={<ChinhSach2 />} />
+          <Route path="cac-phuong-thuc-thanh-toan" element={<ChinhSach3 />} />
+          <Route path="chinh-sach-van-chuyen-va-giao-nhan" element={<ChinhSach4 />} />
+          <Route path="chinh-sach-bao-mat-thong-tin-ca-nhan" element={<ChinhSach5 />} />
 
         </Route>
 
